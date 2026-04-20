@@ -380,7 +380,7 @@
             <span>每日互动 · 赢取积分</span>
           </div>
           <div class="list">
-            <div class="card row" data-goto="#">
+            <div class="card row" onclick="location.href='https://m.changyoyo.com/orchard/index.html?appCode=Changyoyo_Life_Central&spm=3.1.102335.102098.3.083921599210341544.02000000.02010992#/tree'">
               <div class="row-left">
                 <div class="logo green">果</div>
                 <div class="row-main">
@@ -410,14 +410,16 @@
         <section id="screen-channels" class="screen">
           <div class="channels-top">
             <div class="channels-top-title">畅由积分</div>
-            <div class="channels-circle">
-              <div class="channels-circle-val">12,860<span>积分</span></div>
+            <div style="display: flex; align-items: center; justify-content: center; position: relative;">
+              <div class="channels-circle" style="margin-bottom: 0;">
+                <div class="channels-circle-val">12,860<span>积分</span></div>
+              </div>
+              <div class="channels-actions" style="position: absolute; right: 0; display: flex; flex-direction: column; gap: 12px; margin-right: 20px;">
+                <button onclick="location.href='https://m.changyoyo.com/jfmall/index.html#/hjfStrategy'">积分攻略</button>
+                <button onclick="location.href='https://m.changyoyo.com/jfmall/index.html#/points-detail'">积分明细</button>
+              </div>
             </div>
-            <div class="channels-rmb">约合 ¥128.60 元</div>
-            <div class="channels-actions">
-              <button>积分攻略</button>
-              <button>积分明细</button>
-            </div>
+            <div class="channels-rmb" style="margin-top: 24px;">约合 ¥128.60 元</div>
           </div>
 
           <div class="seg-new">
@@ -434,7 +436,7 @@
 
           <div class="section-title">
             <h3>渠道列表</h3>
-            <span>点击进入兑换确认</span>
+            <span></span>
           </div>
 
           <div class="list" id="channelList"></div>
