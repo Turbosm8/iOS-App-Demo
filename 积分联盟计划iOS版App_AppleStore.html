@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-theme="apple">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -25,10 +25,10 @@
         --purple: #5856D6;
         --teal: #34C759;
         --warn: #FF9500;
-        --radius: 24px;
-        --radius-sm: 16px;
-        --shadow-soft: 0 12px 32px rgba(0, 0, 0, 0.08);
-        --shadow-sm: 0 6px 16px rgba(0, 0, 0, 0.06);
+        --radius: 18px;
+        --radius-sm: 14px;
+        --shadow-soft: 0 1px 10px rgba(0, 0, 0, 0.06);
+        --shadow-sm: 0 4px 14px rgba(0, 0, 0, 0.06);
         --mono: "SF Mono", ui-monospace, Menlo, Monaco, Consolas, monospace;
         --sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
       }
@@ -255,6 +255,22 @@
       .btn-primary:active { transform: scale(0.98); }
       .hint { margin-top: 14px; font-size: 14px; color: var(--muted); line-height: 1.5; font-weight: 600; }
 
+      html[data-theme="apple"] .noise { opacity: 0.015; }
+      html[data-theme="apple"] .top { background: rgba(242, 242, 247, 0.92); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); }
+      html[data-theme="apple"] .nav { background: rgba(255, 255, 255, 0.92); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); border-top: 1px solid var(--line); }
+      html[data-theme="apple"] .card { box-shadow: none; border: 1px solid var(--line); }
+      html[data-theme="apple"] .row, html[data-theme="apple"] .product { box-shadow: none; border: 1px solid var(--line); }
+      html[data-theme="apple"] .entry-icon { background: var(--bg); border: 1px solid var(--line); }
+      html[data-theme="apple"] .product-thumb-new { background: var(--bg); border: 1px solid var(--line); }
+      html[data-theme="apple"] .balance { box-shadow: none; border: 1px solid var(--line); }
+      html[data-theme="apple"] .balance-value { background: none; -webkit-text-fill-color: var(--text); color: var(--text); }
+      html[data-theme="apple"] .balance::after { background: radial-gradient(circle, rgba(0, 122, 255, 0.10) 0%, transparent 70%); }
+      html[data-theme="apple"] .btn-primary { background: var(--blue); box-shadow: none; }
+      html[data-theme="apple"] .member-card { background: var(--card); color: var(--text); box-shadow: none; border: 1px solid var(--line); }
+      html[data-theme="apple"] .member-title { color: var(--text); }
+      html[data-theme="apple"] .member-hint { color: var(--muted); opacity: 1; }
+      html[data-theme="apple"] .mall-banner { background: url('https://image.changyoyo.com/pic/admin/2026/03/18/png/034820781-895028.png') no-repeat center/cover !important; box-shadow: none; }
+
     </style>
   </head>
   <body>
@@ -448,7 +464,7 @@
           
 
           
-          <div class="mall-banner" style="background: url(\'https://image.changyoyo.com/pic/admin/2026/03/18/png/034820781-895028.png\') no-repeat center/cover; cursor: pointer;" onclick="location.href=\'https://www.sh.10086.cn/h5/common/doBusiness/llb.html?busicode=22022216&id=2601123121&WT.mc_id=260114_JBB_QYWX_01&assistantUserInfo=YEiq5vodeOvWW9qDI1fCxlq%2BKEtey%2FYtrNHgxhjdJ3KQT8aK9HQIEebNOON94fjjVapkrOh6Jb9NCpsQB4Z7v82VdB8dpRPfaDL0vgceJWQ%3D&forwardapp=WXYYT&vvTick=5912733\'">
+          <div class="mall-banner" style="background: url('https://image.changyoyo.com/pic/admin/2026/03/18/png/034820781-895028.png') no-repeat center/cover; cursor: pointer;" onclick="location.href='https://www.sh.10086.cn/h5/common/doBusiness/llb.html?busicode=22022216&id=2601123121&WT.mc_id=260114_JBB_QYWX_01&assistantUserInfo=YEiq5vodeOvWW9qDI1fCxlq%2BKEtey%2FYtrNHgxhjdJ3KQT8aK9HQIEebNOON94fjjVapkrOh6Jb9NCpsQB4Z7v82VdB8dpRPfaDL0vgceJWQ%3D&forwardapp=WXYYT&vvTick=5912733'">
             <!-- 活动海报 Banner 位 -->
           </div>
           
