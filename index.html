@@ -1,13 +1,41 @@
 <!doctype html>
 <html lang="zh-CN">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>积分联盟计划iOS版App</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>iOS App Demo</title>
+    <style>
+      :root { color-scheme: light; }
+      body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif; background: #fff; color: #111; }
+      .wrap { max-width: 920px; margin: 0 auto; padding: 40px 20px; }
+      h1 { font-size: 22px; margin: 0 0 10px; font-weight: 700; }
+      p { margin: 0 0 18px; color: #666; line-height: 1.6; }
+      .cards { display: grid; grid-template-columns: repeat(1, minmax(0, 1fr)); gap: 12px; margin-top: 18px; }
+      @media (min-width: 720px) { .cards { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+      a.card { display: block; text-decoration: none; color: inherit; border: 1px solid #eee; border-radius: 16px; padding: 16px; transition: transform 0.15s ease, border-color 0.15s ease; }
+      a.card:hover { transform: translateY(-2px); border-color: #ddd; }
+      .title { font-weight: 700; font-size: 16px; margin-bottom: 8px; }
+      .desc { color: #666; font-size: 13px; line-height: 1.6; }
+    </style>
   </head>
   <body>
-    <script>
-      location.replace("./%E7%A7%AF%E5%88%86%E8%81%94%E7%9B%9F%E8%AE%A1%E5%88%92iOS%E7%89%88App.html");
-    </script>
+    <div class="wrap">
+      <h1>积分联盟计划 Demo</h1>
+      <p>选择要预览的前端页面（GitHub Pages 发布后可直接访问）。</p>
+      <div class="cards">
+        <a class="card" href="./积分联盟计划iOS版App_DribbbleLux.html">
+          <div class="title">DribbbleLux（极简电商风格）</div>
+          <div class="desc">Clean Commerce 白底线条风格 + 商品详情页轮播/规格/数量/吸底按钮。</div>
+        </a>
+        <a class="card" href="./积分联盟计划iOS版App_AppleStore.html">
+          <div class="title">AppleStore（极简纯净风格）</div>
+          <div class="desc">更克制的 iOS 原生质感，用于对比参考。</div>
+        </a>
+        <a class="card" href="./积分联盟计划iOS版App.html">
+          <div class="title">主文件</div>
+          <div class="desc">项目主入口文件（如需后续合并，可继续以此为基准）。</div>
+        </a>
+      </div>
+    </div>
   </body>
 </html>
