@@ -409,14 +409,17 @@
             <div class="channels-top-title">畅由积分</div>
             <div style="display: flex; align-items: center; justify-content: center; position: relative;">
               <div class="channels-circle" style="margin-bottom: 0;">
-                <div class="channels-circle-val">12,860<span>积分</span></div>
+                <div class="channels-circle-val" id="channelsPointsValue">12,860<span>积分</span></div>
               </div>
               <div class="channels-actions" style="position: absolute; right: 0; display: flex; flex-direction: column; gap: 12px; margin-right: 20px;">
                 <button onclick="location.href='https://m.changyoyo.com/jfmall/index.html#/hjfStrategy'">积分攻略</button>
                 <button onclick="location.href='https://m.changyoyo.com/jfmall/index.html#/points-detail'">积分明细</button>
               </div>
             </div>
-            <div class="channels-rmb" style="margin-top: 24px;">约合 ¥128.60 元</div>
+            <div class="channels-rmb" id="channelsRmbValue" style="margin-top: 24px;">约合 ¥128.60 元</div>
+            <div style="margin-top: 18px; display: flex; justify-content: center;">
+              <button id="btnExchangeRecords" class="mini-btn">兑换记录</button>
+            </div>
           </div>
 
           <div class="seg-new">
@@ -443,12 +446,12 @@
           <div class="top-bar-new">
             <a href="https://m.changyoyo.com/jfmall/index.html#/pageSearch?appId=Changyoyo_Life_Central" style="font-size: 18px; cursor: pointer; text-decoration: none; color: inherit; z-index: 100; position: relative;">🔍</a>
             <span>积分商城</span>
-            <span class="right" >分类</span>
+            <a class="right" href="https://m.changyoyo.com/jfmall/index.htm#/cymall" style="text-decoration:none;">分类</a>
           </div>
           
 
           
-          <div class="mall-banner" style="background: url(\'https://image.changyoyo.com/pic/admin/2026/03/18/png/034820781-895028.png\') no-repeat center/cover; cursor: pointer;" onclick="location.href=\'https://www.sh.10086.cn/h5/common/doBusiness/llb.html?busicode=22022216&id=2601123121&WT.mc_id=260114_JBB_QYWX_01&assistantUserInfo=YEiq5vodeOvWW9qDI1fCxlq%2BKEtey%2FYtrNHgxhjdJ3KQT8aK9HQIEebNOON94fjjVapkrOh6Jb9NCpsQB4Z7v82VdB8dpRPfaDL0vgceJWQ%3D&forwardapp=WXYYT&vvTick=5912733\'">
+          <div class="mall-banner" style="background: url(\'https://image.changyoyo.com/pic/admin/2026/03/18/png/034820781-895028.png\') no-repeat center/cover; cursor: pointer;" onclick="location.href=\'https://m.changyoyo.com/sale/#/index?activityCode=2024042501&appId=Changyoyo_Life_Central\'">
             <!-- 活动海报 Banner 位 -->
           </div>
           
@@ -618,6 +621,7 @@
         recordFilter: "all",
         balanceHidden: false,
         fxCurrency: "CNY",
+        points: 12860,
       };
 
       const data = {
@@ -686,8 +690,12 @@
         segIn: document.getElementById("segIn"),
         segOut: document.getElementById("segOut"),
         balanceValue: document.getElementById("balanceValue"),
+        rmbValue: document.getElementById("rmbValue"),
+        channelsPointsValue: document.getElementById("channelsPointsValue"),
+        channelsRmbValue: document.getElementById("channelsRmbValue"),
         btnRefreshBalance: document.getElementById("btnRefreshBalance"),
         btnQuickExchange: document.getElementById("btnQuickExchange"),
+        btnExchangeRecords: document.getElementById("btnExchangeRecords"),
         channelFilters: document.getElementById("channelFilters"),
         
         recordFilters: document.getElementById("recordFilters"),
@@ -827,14 +835,25 @@
         return { rateText: "100 = ￥1.00", rmbRate: 0.01 };
       }
 
+      function formatPoints(n) {
+        return (n || 0).toLocaleString("en-US");
+      }
+
       function applyFx(currency) {
         state.fxCurrency = currency;
         const f = fxFor(currency);
         if (els.fxRate) els.fxRate.textContent = f.rateText;
-        const points = 12860;
-        const cny = points * 0.01;
+        const cny = state.points * 0.01;
         const show = currency === "CNY" ? `≈ ￥${cny.toFixed(2)}` : `≈ ￥${cny.toFixed(2)}（参考）`;
         if (els.rmbValue) els.rmbValue.textContent = show;
+        if (els.channelsRmbValue) els.channelsRmbValue.textContent = `约合 ¥${cny.toFixed(2)} 元`;
+      }
+
+      function renderBalance() {
+        const v = formatPoints(state.points);
+        if (els.balanceValue) els.balanceValue.textContent = v;
+        if (els.channelsPointsValue) els.channelsPointsValue.innerHTML = `${v}<span>积分</span>`;
+        applyFx(state.fxCurrency);
       }
 
       function buildQuickExchangeForm(preset) {
@@ -988,8 +1007,13 @@
 
         els.btnRefreshBalance.addEventListener("click", () => {
           els.btnRefreshBalance.textContent = "刷新中";
+          els.btnRefreshBalance.disabled = true;
           setTimeout(() => {
+            const delta = Math.floor(Math.random() * 401) - 200;
+            state.points = Math.max(0, state.points + delta);
+            renderBalance();
             els.btnRefreshBalance.textContent = "刷新";
+            els.btnRefreshBalance.disabled = false;
           }, 500);
         });
 
@@ -999,6 +1023,8 @@
           openModal("快捷兑换", buildQuickExchangeForm());
           bindQuickExchangeEvents();
         });
+
+        if (els.btnExchangeRecords) els.btnExchangeRecords.addEventListener("click", () => setActiveScreen("records"));
 
         els.modalClose.addEventListener("click", closeModal);
         els.modalMask.addEventListener("click", closeModal);
@@ -1023,7 +1049,7 @@
         renderProducts();
         
         renderRecords();
-        applyFx(state.fxCurrency);
+        renderBalance();
         initEvents();
       }
 
