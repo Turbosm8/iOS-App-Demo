@@ -256,145 +256,186 @@
       .hint { margin-top: 14px; font-size: 14px; color: var(--muted); line-height: 1.5; font-weight: 600; }
 
     
+      
       /* ========================================================= */
-      /* ACETERNITY UI / LIGHT LUXURY TECH THEME OVERRIDES         */
+      /* LIGHT TECH LUXURY THEME OVERRIDES                         */
       /* ========================================================= */
       :root {
-        --bg: #FAFAFA !important;
-        --card: rgba(255, 255, 255, 0.8) !important;
-        --text: #111111 !important;
-        --muted: #71717A !important;
-        --line: rgba(0, 0, 0, 0.06) !important;
+        --bg: #F5F5F7 !important;
+        --card: #FFFFFF !important;
+        --text: #1D1D1F !important;
+        --muted: #86868B !important;
+        --line: rgba(0, 0, 0, 0.05) !important;
+        --radius: 16px !important;
+        --radius-sm: 8px !important;
+        --shadow-soft: 0 4px 24px rgba(0, 0, 0, 0.04) !important;
       }
 
       body {
-        background-color: #FAFAFA !important;
-        background-image: 
-          radial-gradient(circle at 15% 50%, rgba(56, 189, 248, 0.08), transparent 30%),
-          radial-gradient(circle at 85% 30%, rgba(139, 92, 246, 0.06), transparent 30%),
-          radial-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 1px) !important;
-        background-size: 100% 100%, 100% 100%, 24px 24px !important;
-        color: #111111 !important;
+        background-color: var(--bg) !important;
+        background-image: none !important;
+        color: var(--text) !important;
       }
 
-      /* Glassmorphism Cards */
-      .balance, .member-card, .channels-circle, .product, .mall-section, .modal {
-        background: rgba(255, 255, 255, 0.6) !important;
-        backdrop-filter: blur(24px) !important;
-        border: 1px solid rgba(255, 255, 255, 0.9) !important;
-        box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.05), 
-                    inset 0 1px 0 rgba(255, 255, 255, 1),
-                    0 0 0 1px rgba(0, 0, 0, 0.02) !important;
+      /* Clean pure white cards with microscopic borders */
+      .card, .product, .balance, .member-card, .mall-section, .modal {
+        background: var(--card) !important;
+        border-radius: var(--radius) !important;
+        box-shadow: var(--shadow-soft) !important;
+        border: 1px solid var(--line) !important;
+      }
+      
+      .modal {
+        border-radius: 24px 24px 0 0 !important;
       }
 
-      /* Aceternity Moving Metallic Border Effect */
-      .balance, .mall-banner, .member-card {
-        position: relative;
-        overflow: hidden;
-        border: none !important;
-        box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.08) !important;
-      }
-      .balance::before, .mall-banner::before, .member-card::before {
-        content: "";
-        position: absolute;
-        top: -50%; left: -50%; width: 200%; height: 200%;
-        background: conic-gradient(from 0deg at 50% 50%, transparent 0%, rgba(0, 0, 0, 0.08) 15%, transparent 30%);
-        animation: rotate-border 6s linear infinite;
-        z-index: 0;
-        pointer-events: none;
-      }
-      .balance::after, .mall-banner::after, .member-card::after {
-        content: "";
-        position: absolute;
-        inset: 1px;
-        background: rgba(255, 255, 255, 0.85);
-        backdrop-filter: blur(24px);
-        border-radius: inherit;
-        z-index: 1;
-      }
-      .balance > *, .mall-banner > *, .member-card > * {
-        position: relative;
-        z-index: 2;
-      }
-      @keyframes rotate-border {
-        100% { transform: rotate(360deg); }
-      }
-
-      /* Channels Circle Enhancement */
-      .channels-circle {
-        border-radius: 50% !important;
-        box-shadow: inset 0 10px 30px rgba(0,0,0,0.03), 0 20px 40px -10px rgba(0,0,0,0.08) !important;
-      }
-
-      /* Product Grid Cards */
+      /* Product Grid - Minimalist luxury */
       .product {
-        transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1) !important;
+        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease !important;
+        padding: 12px !important;
       }
       .product:hover {
         transform: translateY(-4px) !important;
-        box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.1), 
-                    inset 0 1px 0 rgba(255, 255, 255, 1),
-                    0 0 0 1px rgba(0, 0, 0, 0.04) !important;
+        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08) !important;
       }
-
-      /* Text Gradients (Luxury Platinum) */
-      .brand-title, .balance-value, .channels-circle-val {
-        background: linear-gradient(135deg, #111111 0%, #666666 100%) !important;
-        -webkit-background-clip: text !important;
-        -webkit-text-fill-color: transparent !important;
-      }
-
-      /* Image Containers */
       .product-thumb-new, #productCarousel > div, .mall-cat-icon {
-        background: #F4F4F5 !important; 
-        border-radius: 12px !important;
-        box-shadow: inset 0 2px 10px rgba(0,0,0,0.02) !important;
+        background: #F5F5F7 !important;
+        border-radius: 10px !important;
+        box-shadow: none !important;
+        border: 1px solid rgba(0,0,0,0.02) !important;
       }
 
-      /* Buttons & Interactive Elements */
+      /* Balance Card - High-end Platinum/Silver look */
+      .balance {
+        background: linear-gradient(135deg, #FFFFFF 0%, #F0F0F5 100%) !important;
+        border: 1px solid rgba(255,255,255,0.8) !important;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.05), inset 0 0 0 1px rgba(255,255,255,0.5) !important;
+        position: relative;
+        overflow: hidden;
+      }
+      /* subtle metallic shine */
+      .balance::after {
+        content: "";
+        position: absolute;
+        top: 0; left: -100%; width: 50%; height: 100%;
+        background: linear-gradient(to right, transparent, rgba(255,255,255,0.8), transparent);
+        transform: skewX(-25deg);
+        animation: shine 6s infinite;
+        pointer-events: none;
+        z-index: 10;
+      }
+      @keyframes shine {
+        0% { left: -100%; }
+        20% { left: 200%; }
+        100% { left: 200%; }
+      }
+      .balance::before { display: none !important; }
+
+      /* Text Colors */
+      .brand-title, .balance-value, .channels-circle-val {
+        background: none !important;
+        -webkit-text-fill-color: #1D1D1F !important;
+        color: #1D1D1F !important;
+        letter-spacing: -0.5px !important;
+      }
+
+      /* Buttons - Deep Charcoal / High Contrast */
       button#buyBtn, button#verifyBtn, button#viewOrderBtn {
-        background: linear-gradient(135deg, #18181B, #27272A) !important;
+        background: #1D1D1F !important;
         color: #FFFFFF !important;
-        box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255,255,255,0.1) !important;
-        border: none !important;
-        text-shadow: 0 1px 2px rgba(0,0,0,0.2) !important;
-      }
-      
-      .spec-option.active {
-        border-color: #111111 !important;
-        color: #111111 !important;
-        background: rgba(0, 0, 0, 0.03) !important;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
+        border-radius: var(--radius-sm) !important;
+        font-weight: 500 !important;
+        letter-spacing: 0.5px !important;
+        box-shadow: 0 8px 16px rgba(0,0,0,0.1) !important;
+        text-shadow: none !important;
       }
 
-      .otp-input {
+      .mini-btn, .pill, .qty-btn {
         background: #FFFFFF !important;
-        border: 1px solid rgba(0, 0, 0, 0.1) !important;
-        box-shadow: inset 0 2px 4px rgba(0,0,0,0.02) !important;
+        color: #1D1D1F !important;
+        border: 1px solid rgba(0,0,0,0.1) !important;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.02) !important;
       }
-      .otp-input:focus {
-        border-color: #111111 !important;
-        box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.08) !important;
-        outline: none !important;
+      .spec-option.active {
+        border-color: #1D1D1F !important;
+        color: #1D1D1F !important;
+        background: #F5F5F7 !important;
+        box-shadow: none !important;
       }
 
-      /* Navigation */
+      /* Top Header & Bottom Nav - Clean Frosted Glass */
       header.top, .nav {
-        background: rgba(250, 250, 250, 0.7) !important;
-        backdrop-filter: blur(24px) !important;
+        background: rgba(255, 255, 255, 0.8) !important;
+        backdrop-filter: saturate(180%) blur(20px) !important;
+        -webkit-backdrop-filter: saturate(180%) blur(20px) !important;
         border-color: rgba(0, 0, 0, 0.05) !important;
       }
       .nav-item.active {
-        color: #111111 !important;
-        font-weight: 700 !important;
+        color: #1D1D1F !important;
+        font-weight: 600 !important;
+      }
+      .nav-item svg {
+        opacity: 0.5;
+      }
+      .nav-item.active svg {
+        opacity: 1;
+        fill: #1D1D1F !important;
       }
 
-      /* Override inline dark grays from earlier steps */
+      /* Member Card - Deep Space Black with Gold/Silver text */
+      .member-card {
+        background: linear-gradient(135deg, #1C1C1E 0%, #000000 100%) !important;
+        color: #F5F5F7 !important;
+        border: 1px solid #333 !important;
+        box-shadow: 0 16px 32px rgba(0,0,0,0.15) !important;
+      }
+      .member-card::before, .member-card::after { display: none !important; }
+      .member-card .text-muted {
+        color: #86868B !important;
+      }
+      .member-card .title {
+        background: linear-gradient(135deg, #E5E5EA 0%, #B4B4BB 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      /* Channels Circle - Apple Activity Ring style */
+      .channels-circle {
+        border-radius: 50% !important;
+        border: 6px solid #F5F5F7 !important;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.04), inset 0 4px 12px rgba(0,0,0,0.02) !important;
+        background: #FFFFFF !important;
+      }
+      .channels-circle::before, .channels-circle::after {
+        display: none !important;
+      }
+      
+      /* Mall Banner */
+      .mall-banner::before, .mall-banner::after { display: none !important; }
+
+      /* Override inline grays from earlier steps */
       div[style*="background: #222"], div[style*="background: #222222"] {
-        background: #111111 !important;
+        background: #1D1D1F !important;
+      }
+      div[style*="color: #222"], div[style*="color: #222222"] {
+        color: #1D1D1F !important;
+      }
+      div[style*="color: #555"], div[style*="color: #666"] {
+        color: #86868B !important;
       }
       div[style*="background: #F8F8F8"], div[style*="background: #F4F4F4"] {
-        background: rgba(0,0,0,0.02) !important;
+        background: #F5F5F7 !important;
+      }
+      div[style*="border: 1px solid #EEE"] {
+        border-color: rgba(0,0,0,0.05) !important;
+      }
+      .otp-input {
+        background: #FFFFFF !important;
+        border: 1px solid rgba(0,0,0,0.1) !important;
+      }
+      .otp-input:focus {
+        border-color: #1D1D1F !important;
+        box-shadow: 0 0 0 2px rgba(0,0,0,0.1) !important;
       }
 
 </style>
