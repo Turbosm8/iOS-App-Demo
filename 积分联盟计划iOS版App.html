@@ -692,7 +692,6 @@
         channelsRmbValue: document.getElementById("channelsRmbValue"),
         btnRefreshBalance: document.getElementById("btnRefreshBalance"),
         btnQuickExchange: document.getElementById("btnQuickExchange"),
-        btnExchangeRecords: document.getElementById("btnExchangeRecords"),
         channelFilters: document.getElementById("channelFilters"),
         
         recordFilters: document.getElementById("recordFilters"),
@@ -949,28 +948,130 @@
       function openProductModal(productId) {
         const p = data.products.find((x) => x.id === productId);
         if (!p) return;
-        const payBadge = p.pay === "mix" ? "<span class='badge green'>积分+现金</span>" : "<span class='badge blue'>纯积分</span>";
-        const hotBadge = p.hot ? "<span class='badge warn'>HOT</span>" : "";
+
+        const imgs = Array.isArray(p.imgs) && p.imgs.length ? p.imgs : [p.img];
+        const slides = imgs
+          .map(
+            (src) => `
+              <div style="flex: 0 0 100%; scroll-snap-align: start; display: flex; align-items: center; justify-content: center; position: relative;">
+                <img src="${src}" style="max-width: 82%; max-height: 82%; object-fit: contain; mix-blend-mode: multiply;">
+              </div>`
+          )
+          .join("");
+        const dots = imgs
+          .map((_, i) => {
+            const w = i === 0 ? 12 : 4;
+            const h = 4;
+            const bg = i === 0 ? "#222" : "#CCC";
+            return `<div data-dot="${i}" style="width:${w}px;height:${h}px;border-radius:2px;background:${bg};transition: all 0.2s;"></div>`;
+          })
+          .join("");
+
+        const specs = Array.isArray(p.specs) && p.specs.length ? p.specs : ["标准版", "升级版", "尊享版"];
+        let selectedSpec = specs[0];
+        let qty = 1;
+
         openModal(
           "商品详情",
           `
-            <div class="card" style="padding:14px;border:1px solid rgba(15,23,42,.08);background:rgba(255,255,255,.72)">
-              <div style="display:flex;gap:10px;align-items:center">
-                <div style="width:54px;height:54px;border-radius:16px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,rgba(22,119,255,.14),rgba(16,185,129,.12));border:1px solid rgba(15,23,42,.08);font-size:26px">${p.icon}</div>
-                <div style="flex:1;min-width:0">
-                  <div style="font-weight:900;font-size:14px;line-height:1.35">${p.name}</div>
-                  <div style="margin-top:6px;display:flex;gap:6px;flex-wrap:wrap">${payBadge}${hotBadge}</div>
+            <div style="padding: 0; font-family: var(--sans);">
+              <div id="productCarousel" style="display: flex; overflow-x: auto; scroll-snap-type: x mandatory; width: calc(100% + 48px); height: 360px; background: #F8F8F8; margin-top: -20px; margin-left: -24px; margin-bottom: 24px; -webkit-overflow-scrolling: touch; scrollbar-width: none;">
+                ${slides}
+              </div>
+              <div id="carouselDots" style="display: flex; justify-content: center; gap: 6px; margin-top: -40px; margin-bottom: 32px; position: relative; z-index: 2;">${dots}</div>
+
+              <div>
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 24px;">
+                  <div>
+                    <div style="font-size: 32px; font-weight: 600; color: #222; margin-bottom: 8px;">${p.price.replace("积分", '<span style="font-size:16px; margin-left: 4px;">积分</span>')}</div>
+                    <div style="font-size: 16px; color: #555; font-weight: 500; line-height: 1.4;">${p.name}</div>
+                  </div>
+                </div>
+
+                <div style="margin-bottom: 32px;">
+                  <div style="font-size: 14px; color: #222; font-weight: 600; margin-bottom: 16px;">规格</div>
+                  <div class="spec-row">
+                    ${specs
+                      .map((s, i) => `<button type="button" class="spec-option${i === 0 ? " active" : ""}" data-spec="${s}">${s}</button>`)
+                      .join("")}
+                  </div>
+                </div>
+
+                <div style="margin-bottom: 40px; display: flex; justify-content: space-between; align-items: center;">
+                  <div style="font-size: 14px; color: #222; font-weight: 600;">数量</div>
+                  <div style="display: flex; align-items: center; gap: 10px;">
+                    <button id="qtyMinus" class="qty-btn" type="button">-</button>
+                    <div id="qtyValue" class="qty-value">1</div>
+                    <button id="qtyPlus" class="qty-btn" type="button">+</button>
+                  </div>
+                </div>
+
+                <div style="margin-bottom: 24px;">
+                  <div style="font-size: 16px; color: #222; font-weight: 600; margin-bottom: 16px; padding-bottom: 16px; border-bottom: 1px solid #EEE;">图文详情</div>
+                  <div style="font-size: 14px; color: #666; line-height: 1.8;">
+                    ${p.detail}
+                    <br><br>
+                    <div style="width: 100%; height: 200px; background: #F4F4F4; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #999; margin-bottom: 16px;">详情长图 1</div>
+                    <div style="width: 100%; height: 200px; background: #F4F4F4; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #999; margin-bottom: 16px;">详情长图 2</div>
+                    <div style="width: 100%; height: 200px; background: #F4F4F4; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #999; margin-bottom: 16px;">详情长图 3</div>
+                  </div>
                 </div>
               </div>
-              <div style="margin-top:10px;font-family:var(--mono);color:rgba(15,23,42,.78);font-size:13px">${p.price}</div>
-              <div class="hint">${p.detail}</div>
-              <div style="display: flex; justify-content: flex-end; margin-top: 24px;">
-                <button id="buyBtn" class="btn-primary" style="margin-top: 0; padding: 12px 32px; border-radius: 999px;">立即下单</button>
-              </div>
+            </div>
+
+            <div style="position: sticky; bottom: 0; left: 0; right: 0; display: flex; background: #FFF; border-top: 1px solid #EEE; margin: 0 -24px; padding-bottom: env(safe-area-inset-bottom); z-index: 10;">
+              <button class="close" style="flex: 1; height: 64px; background: #FFF; border: none; font-size: 16px; font-weight: 500; color: #555; cursor: pointer; border-radius: 0;" onclick="closeModal()">取消</button>
+              <button id="buyBtn" style="flex: 2; height: 64px; background: #222; border: none; font-size: 16px; font-weight: 600; color: #FFF; cursor: pointer; border-radius: 0;">立即兑换</button>
             </div>
           `
         );
+
+        const carousel = document.getElementById("productCarousel");
+        const dotsWrap = document.getElementById("carouselDots");
+        const updateDots = (index) => {
+          if (!dotsWrap) return;
+          Array.from(dotsWrap.querySelectorAll("[data-dot]")).forEach((d) => {
+            const i = Number(d.getAttribute("data-dot"));
+            d.style.width = i === index ? "12px" : "4px";
+            d.style.background = i === index ? "#222" : "#CCC";
+          });
+        };
+        if (carousel) {
+          carousel.addEventListener("scroll", () => {
+            const idx = Math.round(carousel.scrollLeft / carousel.clientWidth);
+            updateDots(Math.max(0, Math.min(imgs.length - 1, idx)));
+          });
+        }
+
+        const qtyMinus = document.getElementById("qtyMinus");
+        const qtyPlus = document.getElementById("qtyPlus");
+        const qtyValue = document.getElementById("qtyValue");
+        const renderQty = () => {
+          if (qtyValue) qtyValue.textContent = String(qty);
+          if (qtyMinus) qtyMinus.disabled = qty <= 1;
+        };
+        renderQty();
+        qtyMinus?.addEventListener("click", () => {
+          qty = Math.max(1, qty - 1);
+          renderQty();
+        });
+        qtyPlus?.addEventListener("click", () => {
+          qty = Math.min(99, qty + 1);
+          renderQty();
+        });
+
+        Array.from(document.querySelectorAll(".spec-option")).forEach((el) => {
+          el.addEventListener("click", () => {
+            const v = el.getAttribute("data-spec") || specs[0];
+            selectedSpec = v;
+            Array.from(document.querySelectorAll(".spec-option")).forEach((x) => x.classList.toggle("active", x === el));
+          });
+        });
+
         document.getElementById("buyBtn")?.addEventListener("click", () => {
+          const m = String(p.price).match(/([\d,]+)\s*积分/);
+          const pointsCost = m ? parseInt(m[1].replace(/,/g, ""), 10) : 0;
+          const totalPoints = pointsCost * qty;
           closeModal();
           setTimeout(() => {
             openModal(
@@ -978,18 +1079,54 @@
               `
                 <div style="padding: 20px 24px; font-family: var(--sans); text-align: center;">
                   <div style="font-size: 15px; color: #555; margin-bottom: 24px;">验证码已发送至您绑定的手机号 138****8888</div>
-                  <div style="display: flex; gap: 12px; justify-content: center; margin-bottom: 32px;">
-                    <input type="text" maxlength="1" style="width: 48px; height: 56px; border: 1px solid #EEE; border-radius: 8px; text-align: center; font-size: 24px; font-weight: 600; background: #F8F8F8;">
-                    <input type="text" maxlength="1" style="width: 48px; height: 56px; border: 1px solid #EEE; border-radius: 8px; text-align: center; font-size: 24px; font-weight: 600; background: #F8F8F8;">
-                    <input type="text" maxlength="1" style="width: 48px; height: 56px; border: 1px solid #EEE; border-radius: 8px; text-align: center; font-size: 24px; font-weight: 600; background: #F8F8F8;">
-                    <input type="text" maxlength="1" style="width: 48px; height: 56px; border: 1px solid #EEE; border-radius: 8px; text-align: center; font-size: 24px; font-weight: 600; background: #F8F8F8;">
+                  <div id="otpFields" class="otp-wrap">
+                    <input class="otp-input" inputmode="numeric" pattern="\d*" maxlength="1" />
+                    <input class="otp-input" inputmode="numeric" pattern="\d*" maxlength="1" />
+                    <input class="otp-input" inputmode="numeric" pattern="\d*" maxlength="1" />
+                    <input class="otp-input" inputmode="numeric" pattern="\d*" maxlength="1" />
                   </div>
                   <button id="verifyBtn" style="width: 100%; height: 50px; background: #222; border: none; font-size: 16px; font-weight: 600; color: #FFF; cursor: pointer; border-radius: 8px;">确认兑换</button>
+                  <div style="margin-top: 12px; font-size: 12px; color: #999;">兑换：${p.name} · ${selectedSpec} · x${qty}</div>
                 </div>
               `
             );
+
+            const otpInputs = Array.from(document.querySelectorAll("#otpFields input"));
+            otpInputs[0]?.focus();
+            otpInputs.forEach((inp, i) => {
+              inp.addEventListener("input", () => {
+                inp.value = String(inp.value || "").replace(/\D/g, "").slice(-1);
+                if (inp.value && otpInputs[i + 1]) otpInputs[i + 1].focus();
+              });
+              inp.addEventListener("keydown", (e) => {
+                if (e.key === "Backspace" && !inp.value && otpInputs[i - 1]) otpInputs[i - 1].focus();
+              });
+            });
+
             document.getElementById("verifyBtn")?.addEventListener("click", () => {
               closeModal();
+
+              const now = new Date();
+              const hh = String(now.getHours()).padStart(2, "0");
+              const mm = String(now.getMinutes()).padStart(2, "0");
+              const time = `今天 ${hh}:${mm}`;
+              data.records.unshift({
+                id: `r${Date.now()}`,
+                type: "exchange",
+                status: "success",
+                name: `联盟积分 → ${p.name}`,
+                meta: `-${totalPoints.toLocaleString("en-US")}`,
+                time,
+              });
+              data.orders.unshift({
+                id: `o${Date.now()}`,
+                name: `${p.name}（${selectedSpec}）x${qty}`,
+                status: "兑换成功",
+                meta: `${totalPoints.toLocaleString("en-US")} 分`,
+                time,
+              });
+              if (typeof renderRecords === "function") renderRecords();
+
               setTimeout(() => {
                 openModal(
                   "兑换成功",
@@ -997,7 +1134,7 @@
                     <div style="padding: 30px 24px; font-family: var(--sans); text-align: center;">
                       <div style="width: 64px; height: 64px; border-radius: 50%; background: #222; color: #FFF; display: flex; align-items: center; justify-content: center; font-size: 32px; margin: 0 auto 20px;">✓</div>
                       <div style="font-size: 20px; font-weight: 600; color: #222; margin-bottom: 12px;">兑换成功</div>
-                      <div style="font-size: 14px; color: #666; margin-bottom: 32px;">您已成功兑换 ${p.name}</div>
+                      <div style="font-size: 14px; color: #666; margin-bottom: 32px;">${p.name} · ${selectedSpec} · x${qty}</div>
                       <button id="viewOrderBtn" style="width: 100%; height: 50px; background: #222; border: none; font-size: 16px; font-weight: 600; color: #FFF; cursor: pointer; border-radius: 8px;">查看订单</button>
                     </div>
                   `
@@ -1008,7 +1145,7 @@
                 });
               }, 300);
             });
-          }, 300);
+          }, 240);
         });
       }
 
@@ -1056,8 +1193,6 @@
           openModal("快捷兑换", buildQuickExchangeForm());
           bindQuickExchangeEvents();
         });
-
-        if (els.btnExchangeRecords) els.btnExchangeRecords.addEventListener("click", () => setActiveScreen("records"));
 
         els.modalClose.addEventListener("click", closeModal);
         els.modalMask.addEventListener("click", closeModal);
