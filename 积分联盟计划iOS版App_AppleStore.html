@@ -273,207 +273,179 @@
 
     
       
+      
       /* ========================================================= */
-      /* NEO-BRUTALISM / POP ART TRENDY THEME                      */
+      /* CLEAN & MINIMALIST THEME OVERRIDES (FARFETCH / APPLE)     */
       /* ========================================================= */
       :root {
-        --bg: #F4F0EA !important;
+        --bg: #FFFFFF !important;
         --card: #FFFFFF !important;
         --text: #111111 !important;
-        --muted: #555555 !important;
-        --line: #111111 !important;
-        --blue: #4361EE !important;
-        --yellow: #FFBE0B !important;
-        --pink: #FF006E !important;
-        --green: #06D6A0 !important;
+        --muted: #888888 !important;
+        --line: #EAEAEA !important;
         --radius: 12px !important;
         --radius-sm: 8px !important;
-        --border-thick: 3px solid #111111 !important;
-        --shadow-brutal: 4px 4px 0px #111111 !important;
-        --shadow-sm: 2px 2px 0px #111111 !important;
+        --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.03) !important;
+        --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.02) !important;
+        --blue: #111111 !important; /* Replaced with minimalist black */
       }
 
       body {
         background-color: var(--bg) !important;
-        background-image: none !important;
         color: var(--text) !important;
-        font-family: "JetBrains Mono", var(--sans) !important;
       }
-      
-      .noise { opacity: 0 !important; }
+      .noise { display: none !important; }
 
-      /* Cards & Layout */
+      /* Cards & Grid - Micro borders, extremely soft shadows */
       .card, .product, .balance, .member-card, .mall-section, .modal, .card-block, .row {
         background: var(--card) !important;
         border-radius: var(--radius) !important;
-        border: var(--border-thick) !important;
-        box-shadow: var(--shadow-brutal) !important;
-        transition: transform 0.2s, box-shadow 0.2s !important;
+        box-shadow: var(--shadow-soft) !important;
+        border: 1px solid var(--line) !important;
+        transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+      }
+      
+      .product:hover {
+        transform: translateY(-2px) !important;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06) !important;
+      }
+      .product-thumb-new, .mall-cat-icon {
+        background: #F9F9F9 !important;
+        border-radius: var(--radius-sm) !important;
+        border: none !important;
+        box-shadow: inset 0 0 0 1px rgba(0,0,0,0.02) !important;
       }
 
-      /* Balance Card */
+      /* Balance Card - Pure & Clean */
       .balance {
-        background: var(--yellow) !important;
+        background: #F9F9F9 !important;
         color: var(--text) !important;
         padding: 32px 24px !important;
       }
       .balance-value {
         font-size: 48px !important;
-        font-weight: 900 !important;
+        font-weight: 300 !important; /* Elegant thin font */
         background: none !important;
         -webkit-text-fill-color: var(--text) !important;
-        letter-spacing: -2px !important;
-        text-shadow: 2px 2px 0px #FFF !important;
+        letter-spacing: -1.5px !important;
       }
       .balance::after, .balance::before { display: none !important; }
 
-      /* Buttons */
-      button#buyBtn, button#verifyBtn, button#viewOrderBtn, .btn-primary, .mini-btn, .pill, .channels-actions button {
-        background: var(--blue) !important;
-        color: #FFFFFF !important;
-        border: var(--border-thick) !important;
-        box-shadow: var(--shadow-sm) !important;
-        font-weight: 800 !important;
-        border-radius: var(--radius-sm) !important;
-        text-transform: uppercase !important;
+      /* Typography - High-end editorial feel */
+      .brand-title {
+        font-size: 22px !important;
+        font-weight: 600 !important;
+        letter-spacing: -0.5px !important;
       }
-      .mini-btn {
-        background: var(--pink) !important;
-        color: #FFF !important;
+      .section-title h3 {
+        font-size: 20px !important;
+        font-weight: 600 !important;
+        letter-spacing: -0.3px !important;
+      }
+
+      /* Buttons - Sharp and precise */
+      button#buyBtn, button#verifyBtn, button#viewOrderBtn, .btn-primary, .channels-actions button {
+        background: #111111 !important;
+        color: #FFFFFF !important;
+        border: none !important;
+        border-radius: var(--radius-sm) !important;
+        font-weight: 500 !important;
+        box-shadow: none !important;
+        transition: opacity 0.2s ease !important;
+      }
+      button#buyBtn:active, button#verifyBtn:active, button#viewOrderBtn:active {
+        opacity: 0.8 !important;
       }
       
-      /* Hover/Active states */
-      button#buyBtn:active, button#verifyBtn:active, button#viewOrderBtn:active, 
-      .btn-primary:active, .mini-btn:active, .pill:active, .product:active, .row:active {
-        transform: translate(2px, 2px) !important;
-        box-shadow: 0px 0px 0px #111111 !important;
-      }
-
-      /* Pills */
-      .pill {
-        background: #FFF !important;
-        color: var(--text) !important;
+      .mini-btn, .pill {
+        background: #FFFFFF !important;
+        color: #111111 !important;
+        border: 1px solid #111111 !important;
+        box-shadow: none !important;
+        font-weight: 500 !important;
+        border-radius: 99px !important;
       }
       .pill.active {
-        background: var(--green) !important;
-        color: var(--text) !important;
+        background: #111111 !important;
+        color: #FFFFFF !important;
       }
 
-      /* Product Grid */
-      .product {
-        background: #FFF !important;
-      }
-      .product:hover {
-        transform: translate(-2px, -2px) !important;
-        box-shadow: 6px 6px 0px #111111 !important;
-      }
-      .product-thumb-new, .mall-cat-icon {
-        background: #F4F0EA !important;
-        border: var(--border-thick) !important;
-        border-radius: var(--radius-sm) !important;
-        box-shadow: none !important;
-      }
-
-      /* Header & Nav */
+      /* Header & Nav - Clean glass */
       header.top, .nav {
-        background: #FFFFFF !important;
-        backdrop-filter: none !important;
-        -webkit-backdrop-filter: none !important;
-        border-bottom: var(--border-thick) !important;
+        background: rgba(255, 255, 255, 0.85) !important;
+        backdrop-filter: blur(24px) !important;
+        -webkit-backdrop-filter: blur(24px) !important;
+        border-color: var(--line) !important;
       }
-      .nav {
-        border-top: var(--border-thick) !important;
-        border-bottom: none !important;
-      }
-      .nav-item {
-        color: var(--text) !important;
-      }
-      .nav-item.active {
-        color: var(--pink) !important;
-      }
-      .nav-item svg {
-        opacity: 1 !important;
-        fill: var(--text) !important;
-        stroke: var(--text) !important;
-        stroke-width: 1px !important;
-      }
+      .nav-item { color: var(--muted) !important; }
+      .nav-item.active { color: #111111 !important; }
+      .nav-item svg { opacity: 0.5 !important; }
       .nav-item.active svg {
-        fill: var(--pink) !important;
+        opacity: 1 !important;
+        fill: #111111 !important;
       }
 
-      /* Member Card */
+      /* Member Card - Deep Charcoal */
       .member-card {
-        background: var(--green) !important;
-        color: var(--text) !important;
+        background: #1A1A1A !important;
+        color: #FFFFFF !important;
+        border: none !important;
       }
       .member-card .title, .member-card .member-title {
         background: none !important;
-        -webkit-text-fill-color: var(--text) !important;
-        text-shadow: 2px 2px 0px #FFF !important;
+        -webkit-text-fill-color: #FFFFFF !important;
+        font-weight: 400 !important;
       }
       .member-card .text-muted, .member-card .member-hint {
-        color: #111111 !important;
-        font-weight: 800 !important;
+        color: #999999 !important;
       }
 
-      /* Channels Circle */
+      /* Channels Circle - Minimalist ring */
       .channels-circle {
-        border: var(--border-thick) !important;
-        box-shadow: var(--shadow-brutal) !important;
-        background: var(--yellow) !important;
-        width: 180px !important;
-        height: 180px !important;
+        border: 2px solid var(--line) !important;
+        box-shadow: none !important;
+        background: #FFFFFF !important;
+        width: 160px !important;
+        height: 160px !important;
       }
       .channels-circle::after, .channels-circle::before { display: none !important; }
+      .channels-circle-val {
+        font-weight: 300 !important;
+        font-size: 36px !important;
+        letter-spacing: -1px !important;
+      }
 
       /* Grid Entries */
       .entry-icon {
-        background: #FFF !important;
-        border: var(--border-thick) !important;
-        box-shadow: var(--shadow-sm) !important;
+        background: #F9F9F9 !important;
+        border: 1px solid var(--line) !important;
+        color: #111111 !important;
         border-radius: var(--radius-sm) !important;
-        color: var(--text) !important;
       }
 
-      /* Mall Banner */
+      /* Mall Banner - Clean Typography focused */
       .mall-banner {
-        background: var(--blue) !important;
-        border: var(--border-thick) !important;
-        box-shadow: var(--shadow-brutal) !important;
-        border-radius: var(--radius) !important;
-        color: #FFF !important;
-        text-shadow: 2px 2px 0px #111 !important;
+        background: #F9F9F9 !important;
+        border: 1px solid var(--line) !important;
+        color: #111111 !important;
+        box-shadow: none !important;
       }
       .mall-banner::before, .mall-banner::after { display: none !important; }
 
       /* Modals & Inputs */
       .modal {
-        border: var(--border-thick) !important;
-        border-bottom: none !important;
+        border-radius: 24px 24px 0 0 !important;
+        border: 1px solid var(--line) !important;
       }
       .otp-input {
-        background: #FFF !important;
-        border: var(--border-thick) !important;
-        box-shadow: var(--shadow-sm) !important;
+        background: #FFFFFF !important;
+        border: 1px solid var(--line) !important;
+        border-radius: var(--radius-sm) !important;
+        box-shadow: none !important;
       }
       .otp-input:focus {
-        background: var(--yellow) !important;
-        box-shadow: var(--shadow-brutal) !important;
-        transform: translate(-2px, -2px) !important;
+        border-color: #111111 !important;
         outline: none !important;
-      }
-      
-      /* Typography Overrides */
-      .brand-title {
-        font-weight: 900 !important;
-        text-transform: uppercase !important;
-      }
-      .section-title h3 {
-        font-weight: 900 !important;
-        text-transform: uppercase !important;
-      }
-      .product-price, .asset-val, .channels-circle-val {
-        font-weight: 900 !important;
       }
 
 </style>
