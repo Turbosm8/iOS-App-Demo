@@ -10,8 +10,8 @@
       .wrap { max-width: 920px; margin: 0 auto; padding: 40px 20px; }
       h1 { font-size: 22px; margin: 0 0 10px; font-weight: 700; }
       p { margin: 0 0 18px; color: #666; line-height: 1.6; }
-      .cards { display: grid; grid-template-columns: repeat(1, minmax(0, 1fr)); gap: 12px; margin-top: 18px; }
-      @media (min-width: 720px) { .cards { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+      
+      
       a.card { display: block; text-decoration: none; color: inherit; border: 1px solid #eee; border-radius: 16px; padding: 16px; transition: transform 0.15s ease, border-color 0.15s ease; }
       a.card:hover { transform: translateY(-2px); border-color: #ddd; }
       .title { font-weight: 700; font-size: 16px; margin-bottom: 8px; }
@@ -22,22 +22,22 @@
     <div class="wrap">
       <h1>积分联盟计划 Demo</h1>
       <p>选择要预览的前端页面（GitHub Pages 发布后可直接访问）。</p>
-      <div class="cards">
-        <a class="card" href="./积分联盟计划iOS版App_DribbbleLux.html">
-          <div class="title">DribbbleLux（极简电商风格）</div>
-          <div class="desc">Clean Commerce 白底线条风格 + 商品详情页轮播/规格/数量/吸底按钮。</div>
-        </a>
-        <a class="card" href="./积分联盟计划iOS版App_AppleStore.html">
-          <div class="title">Bento Box（治愈系便当盒）</div>
-          <div class="desc">高级奶油风配色，无边框高圆角（28px），模块化布局，带来温暖治愈的现代感。</div>
-        </a>
+      <div class="cards" style="display: flex; flex-direction: column; gap: 16px; margin-top: 24px;">
         <a class="card" href="./积分联盟计划iOS版App.html">
-          <div class="title">主文件</div>
-          <div class="desc">项目主入口文件（如需后续合并，可继续以此为基准）。</div>
+          <div class="title">主文件（天蓝色风格）</div>
+          <div class="desc">项目主入口文件（如需后续合并，可继续以此为基准）。采用了优化版的天蓝色清新视觉。</div>
         </a>
         <a class="card" href="./积分联盟计划iOS版App_AceternityLux.html">
           <div class="title">AceternityLux（明亮科技奢华）</div>
           <div class="desc">Aceternity UI 风格，金属拉丝边框光效与极致纯粹的排版质感。</div>
+        </a>
+        <a class="card" href="./积分联盟计划iOS版App_AppleStore.html">
+          <div class="title">Bento Box（高级奶油便当盒风）</div>
+          <div class="desc">高级奶油风配色，无边框高圆角（28px），模块化布局，带来温暖治愈的现代感。</div>
+        </a>
+        <a class="card" href="./积分联盟计划iOS版App_DribbbleLux.html">
+          <div class="title">DribbbleLux（极简电商风格）</div>
+          <div class="desc">Clean Commerce 白底线条风格 + 商品详情页轮播/规格/数量/吸底按钮。</div>
         </a>
       </div>
     </div>
