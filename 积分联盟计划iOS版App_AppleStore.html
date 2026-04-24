@@ -275,163 +275,179 @@
       
       
       
+      
       /* ========================================================= */
-      /* GLASSMORPHISM / FROSTED GLASS THEME OVERRIDES             */
+      /* DEEP OCEAN GLASSMORPHISM (DARK AURORA GLASS)              */
       /* ========================================================= */
       :root {
-        --bg: #e0c3fc; 
-        --glass-bg: rgba(255, 255, 255, 0.45) !important;
-        --glass-border: rgba(255, 255, 255, 0.6) !important;
-        --glass-shadow: 0 8px 32px rgba(31, 38, 135, 0.1) !important;
-        --text: #1a1a2e !important;
-        --muted: #4a4a68 !important;
-        --line: rgba(255, 255, 255, 0.4) !important;
-        --radius: 20px !important;
-        --radius-sm: 12px !important;
+        --bg: #090B14; 
+        --glass-bg: rgba(16, 25, 53, 0.45) !important;
+        --glass-border: rgba(0, 242, 254, 0.25) !important;
+        --glass-shadow: 0 12px 40px rgba(0, 0, 0, 0.6), inset 0 1px 1px rgba(0, 242, 254, 0.3) !important;
+        --text: #F8FAFC !important;
+        --muted: #94A3B8 !important;
+        --line: rgba(0, 242, 254, 0.15) !important;
+        --radius: 24px !important;
+        --radius-sm: 14px !important;
+        --accent-start: #00F2FE !important;
+        --accent-end: #4FACFE !important;
       }
 
       body {
-        background: linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%) !important;
+        background: #090B14 !important;
         background-attachment: fixed !important;
         color: var(--text) !important;
       }
       
       /* Animated Background Blobs */
       body::before, body::after {
-        content: ""; position: fixed; border-radius: 50%; filter: blur(60px); z-index: -2; animation: float 10s infinite ease-in-out alternate;
+        content: ""; position: fixed; border-radius: 50%; filter: blur(80px); z-index: -2; animation: float 12s infinite ease-in-out alternate;
       }
       body::before {
-        width: 300px; height: 300px; background: rgba(255, 105, 180, 0.4); top: -50px; left: -50px;
+        width: 350px; height: 350px; background: rgba(0, 242, 254, 0.25); top: -100px; left: -100px;
       }
       body::after {
-        width: 400px; height: 400px; background: rgba(0, 255, 255, 0.3); bottom: -100px; right: -50px; animation-delay: -5s;
+        width: 450px; height: 450px; background: rgba(139, 92, 246, 0.2); bottom: -150px; right: -100px; animation-delay: -6s;
       }
       @keyframes float {
         0% { transform: translate(0, 0) scale(1); }
-        100% { transform: translate(30px, 50px) scale(1.1); }
+        100% { transform: translate(40px, 60px) scale(1.15); }
       }
 
       .noise { display: none !important; }
 
-      /* Glass Cards */
+      /* Glass Cards - Enhanced Glowing Borders */
       .card, .product, .balance, .member-card, .mall-section, .modal, .card-block, .row {
         background: var(--glass-bg) !important;
-        backdrop-filter: blur(16px) saturate(180%) !important;
-        -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
+        backdrop-filter: blur(20px) saturate(150%) !important;
+        -webkit-backdrop-filter: blur(20px) saturate(150%) !important;
         border-radius: var(--radius) !important;
         box-shadow: var(--glass-shadow) !important;
         border: 1px solid var(--glass-border) !important;
-        transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+        border-top: 1px solid rgba(0, 242, 254, 0.5) !important; /* Prominent top border glow */
+        border-left: 1px solid rgba(0, 242, 254, 0.3) !important;
+        transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.3s ease !important;
       }
       
       .product:hover {
-        transform: translateY(-4px) !important;
-        box-shadow: 0 12px 40px rgba(31, 38, 135, 0.15) !important;
-        background: rgba(255, 255, 255, 0.55) !important;
+        transform: translateY(-5px) !important;
+        box-shadow: 0 15px 45px rgba(0, 0, 0, 0.7), 0 0 20px rgba(0, 242, 254, 0.15), inset 0 1px 1px rgba(0, 242, 254, 0.4) !important;
+        border-color: rgba(0, 242, 254, 0.6) !important;
+        background: rgba(16, 25, 53, 0.6) !important;
       }
       
       /* Product Thumbnails */
-      .product-thumb-new, .mall-cat-icon {
-        background: rgba(255, 255, 255, 0.6) !important;
+      .product-thumb-new, .mall-cat-icon, #productCarousel > div {
+        background: rgba(0, 0, 0, 0.3) !important;
         border-radius: var(--radius-sm) !important;
-        border: 1px solid rgba(255, 255, 255, 0.8) !important;
-        box-shadow: inset 0 2px 10px rgba(255,255,255,0.5) !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        box-shadow: inset 0 2px 15px rgba(0,0,0,0.5) !important;
       }
 
       /* Balance Card */
       .balance {
         padding: 32px 24px !important;
-        background: linear-gradient(135deg, rgba(255,255,255,0.7), rgba(255,255,255,0.3)) !important;
-        border-top: 1px solid rgba(255,255,255,0.9) !important;
-        border-left: 1px solid rgba(255,255,255,0.9) !important;
+        background: linear-gradient(135deg, rgba(0, 242, 254, 0.15), rgba(16, 25, 53, 0.4)) !important;
       }
       .balance-value {
         font-size: 48px !important;
-        font-weight: 700 !important;
-        background: linear-gradient(135deg, #1a1a2e 0%, #4a4a68 100%) !important;
+        font-weight: 800 !important;
+        background: linear-gradient(135deg, #FFFFFF 0%, #00F2FE 100%) !important;
         -webkit-background-clip: text !important;
         -webkit-text-fill-color: transparent !important;
         letter-spacing: -1px !important;
+        text-shadow: 0 0 30px rgba(0, 242, 254, 0.4) !important;
       }
 
-      /* Buttons */
+      /* Buttons - Cyan Neon Gradient */
       button#buyBtn, button#verifyBtn, button#viewOrderBtn, .btn-primary, .channels-actions button {
-        background: rgba(255, 255, 255, 0.7) !important;
-        color: #1a1a2e !important;
-        backdrop-filter: blur(10px) !important;
-        -webkit-backdrop-filter: blur(10px) !important;
-        border: 1px solid rgba(255, 255, 255, 0.8) !important;
+        background: linear-gradient(135deg, var(--accent-start) 0%, var(--accent-end) 100%) !important;
+        color: #090B14 !important;
+        border: none !important;
         border-radius: var(--radius-sm) !important;
-        font-weight: 600 !important;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05) !important;
-        transition: all 0.2s ease !important;
+        font-weight: 800 !important;
+        box-shadow: 0 8px 20px rgba(0, 242, 254, 0.3), inset 0 1px 1px rgba(255,255,255,0.6) !important;
+        transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1) !important;
       }
       button#buyBtn:active, button#verifyBtn:active, button#viewOrderBtn:active {
-        background: rgba(255, 255, 255, 0.9) !important;
-        transform: scale(0.98) !important;
+        transform: scale(0.96) !important;
+        box-shadow: 0 4px 10px rgba(0, 242, 254, 0.2) !important;
       }
       
-      .mini-btn, .pill {
-        background: rgba(255, 255, 255, 0.5) !important;
-        color: #1a1a2e !important;
-        border: 1px solid rgba(255, 255, 255, 0.6) !important;
+      .mini-btn, .pill, .qty-btn, .spec-option {
+        background: rgba(16, 25, 53, 0.6) !important;
+        color: var(--text) !important;
+        border: 1px solid rgba(0, 242, 254, 0.3) !important;
         backdrop-filter: blur(8px) !important;
         font-weight: 600 !important;
         border-radius: 99px !important;
       }
-      .pill.active {
-        background: rgba(255, 255, 255, 0.9) !important;
-        border-color: #fff !important;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.05) !important;
+      .qty-btn, .spec-option { border-radius: 8px !important; }
+      
+      .pill.active, .spec-option.active {
+        background: rgba(0, 242, 254, 0.2) !important;
+        border-color: #00F2FE !important;
+        color: #00F2FE !important;
+        box-shadow: 0 0 15px rgba(0, 242, 254, 0.2) !important;
       }
 
       /* Header & Nav */
       header.top, .nav {
-        background: rgba(255, 255, 255, 0.4) !important;
-        backdrop-filter: blur(20px) saturate(180%) !important;
-        -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
-        border-color: rgba(255,255,255,0.5) !important;
+        background: rgba(9, 11, 20, 0.6) !important;
+        backdrop-filter: blur(24px) saturate(150%) !important;
+        -webkit-backdrop-filter: blur(24px) saturate(150%) !important;
+        border-color: rgba(0, 242, 254, 0.15) !important;
       }
       .nav-item { color: var(--muted) !important; }
-      .nav-item.active { color: #1a1a2e !important; font-weight: 700 !important; }
+      .nav-item.active { color: #00F2FE !important; font-weight: 700 !important; }
       .nav-item svg { opacity: 0.6 !important; }
-      .nav-item.active svg { opacity: 1 !important; fill: #1a1a2e !important; }
+      .nav-item.active svg { opacity: 1 !important; fill: #00F2FE !important; filter: drop-shadow(0 0 8px rgba(0, 242, 254, 0.5)) !important; }
 
       /* Member Card */
       .member-card {
-        background: linear-gradient(135deg, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0.2) 100%) !important;
-        border-top: 1px solid rgba(255,255,255,0.8) !important;
-        border-left: 1px solid rgba(255,255,255,0.8) !important;
-        color: #1a1a2e !important;
+        background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.02) 100%) !important;
+        border-top: 1px solid rgba(255,255,255,0.3) !important;
+        border-left: 1px solid rgba(255,255,255,0.2) !important;
       }
       .member-card .title, .member-card .member-title {
         background: none !important;
-        -webkit-text-fill-color: #1a1a2e !important;
-        font-weight: 600 !important;
+        -webkit-text-fill-color: #FFFFFF !important;
       }
 
       /* Channels Circle */
       .channels-circle {
-        background: rgba(255, 255, 255, 0.3) !important;
-        border: 1px solid rgba(255, 255, 255, 0.6) !important;
+        background: rgba(0, 0, 0, 0.3) !important;
+        border: 2px solid rgba(0, 242, 254, 0.4) !important;
         backdrop-filter: blur(12px) !important;
         -webkit-backdrop-filter: blur(12px) !important;
-        box-shadow: inset 0 0 20px rgba(255,255,255,0.5), 0 8px 32px rgba(31,38,135,0.1) !important;
+        box-shadow: inset 0 0 30px rgba(0, 242, 254, 0.15), 0 8px 32px rgba(0,0,0,0.5) !important;
       }
       .channels-circle::after, .channels-circle::before { display: none !important; }
       
       /* Inputs */
       .otp-input {
-        background: rgba(255, 255, 255, 0.5) !important;
-        border: 1px solid rgba(255, 255, 255, 0.8) !important;
+        background: rgba(0, 0, 0, 0.4) !important;
+        border: 1px solid rgba(0, 242, 254, 0.3) !important;
         backdrop-filter: blur(8px) !important;
         border-radius: var(--radius-sm) !important;
-        color: #1a1a2e !important;
+        color: #00F2FE !important;
       }
       .otp-input:focus {
-        background: rgba(255, 255, 255, 0.8) !important;
-        box-shadow: 0 0 0 3px rgba(255,255,255,0.5) !important;
+        background: rgba(0, 242, 254, 0.1) !important;
+        border-color: #00F2FE !important;
+        box-shadow: 0 0 15px rgba(0, 242, 254, 0.3) !important;
         outline: none !important;
+      }
+
+      /* Override inline dark colors */
+      div[style*="background: #F8F8F8"], div[style*="background: #F4F4F4"], div[style*="background: #F5F5F7"], div[style*="background: #FFF"], div[style*="background: #FFFFFF"] {
+        background: rgba(0,0,0,0.3) !important;
+      }
+      div[style*="color: #222"], div[style*="color: #111"] {
+        color: var(--text) !important;
+      }
+      div[style*="color: #555"], div[style*="color: #666"] {
+        color: var(--muted) !important;
       }
 
 </style>
