@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh-CN" data-theme="apple">
+<html lang="zh-CN" data-theme="bento">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -13,55 +13,40 @@
     <style>
 
       :root {
-        --bg: #F2F2F7;
+        --bg: #FFFFFF;
         --card: #FFFFFF;
         --card-strong: #FFFFFF;
-        --text: #1D1D1F;
-        --muted: #6E6E73;
-        --line: rgba(60, 60, 67, 0.14);
-        --blue: #007AFF;
-        --blue-2: #0056B3;
-        --blue-light: rgba(0, 122, 255, 0.12);
-        --purple: #5856D6;
-        --teal: #34C759;
-        --warn: #FF9500;
-        --radius: 18px;
-        --radius-sm: 14px;
-        --shadow-soft: 0 1px 10px rgba(0, 0, 0, 0.06);
-        --shadow-sm: 0 4px 14px rgba(0, 0, 0, 0.06);
+        --text: #222222;
+        --muted: #888888;
+        --line: #EEEEEE;
+        --blue: #222222;
+        --blue-2: #000000;
+        --blue-light: #F5F5F5;
+        --purple: #222222;
+        --teal: #222222;
+        --warn: #FF8A65;
+        --radius: 16px;
+        --radius-sm: 8px;
+        --shadow-soft: none;
+        --shadow-sm: none;
         --mono: "SF Mono", ui-monospace, Menlo, Monaco, Consolas, monospace;
         --sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
       }
 
       * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
       html, body { height: 100%; font-family: var(--sans); color: var(--text); background: var(--bg); }
-      body::before {
-        content: "";
-        position: fixed;
-        inset: 0;
-        background: var(--bg);
-        pointer-events: none;
-        z-index: -2;
-      }
-      .noise {
-        position: fixed;
-        inset: 0;
-        pointer-events: none;
-        opacity: 0.05;
-        mix-blend-mode: soft-light;
-        z-index: -1;
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='260' height='260' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
-      }
-      .app { min-height: 100vh; padding-bottom: calc(90px + env(safe-area-inset-bottom)); overflow-x: hidden; }
+      .noise { display: none; }
+      .app { min-height: 100vh; padding-bottom: calc(120px + env(safe-area-inset-bottom)); overflow-x: hidden; }
 
       /* Top Header */
       .top {
         position: sticky; top: 0; z-index: 50; padding-top: env(safe-area-inset-top);
-        background: rgba(242, 242, 247, 0.78); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+        background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--line);
       }
       .top-inner { display: flex; align-items: center; justify-content: space-between; padding: 12px 20px; }
       .brand-title { font-weight: 700; font-size: 22px; letter-spacing: -0.5px; color: var(--text); }
-      .mini-btn { border: 1px solid rgba(0, 122, 255, 0.18); background: rgba(255, 255, 255, 0.72); box-shadow: var(--shadow-sm); padding: 8px 14px; border-radius: 999px; font-size: 13px; font-weight: 700; color: var(--blue); cursor: pointer; transition: transform 0.2s, background 0.2s, border-color 0.2s; }
+      .mini-btn { border: 1px solid #EEE; background: #FFF; box-shadow: none; padding: 8px 16px; border-radius: 999px; font-size: 13px; font-weight: 600; color: #222; cursor: pointer; transition: transform 0.2s; }
       .mini-btn:active { transform: scale(0.95); }
 
       /* Screens */
@@ -75,10 +60,10 @@
       /* Home - Balance */
       .hero { padding: 0; margin-bottom: 24px; background: transparent; box-shadow: none; border: none; }
       .balance {
-        padding: 28px 24px; position: relative; overflow: hidden;
+        padding: 32px 28px; position: relative; overflow: hidden;
         background: var(--card);
         box-shadow: 0 22px 70px rgba(15, 23, 42, 0.10), inset 0 1px 0 rgba(255,255,255,1);
-        border-radius: 32px;
+        border-radius: 40px;
         border: none;
       }
       .balance::after {
@@ -98,22 +83,24 @@
 
       /* Home - 4 Grid */
       .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 36px; }
-      .entry.center { padding: 16px 8px; text-align: center; border-radius: 20px; transition: transform 0.2s; border: none; }
+      .entry.center { padding: 16px 8px; text-align: center; border-radius: 16px; transition: transform 0.2s; border: none; }
       .entry.center:active { transform: scale(0.96); }
-      .entry-icon { width: 52px; height: 52px; border-radius: 18px; margin: 0 auto; display: flex; align-items: center; justify-content: center; font-size: 24px; background: linear-gradient(135deg, rgba(0, 122, 255, 0.10), rgba(88, 86, 214, 0.08)); color: var(--blue); border: none; }
+      .entry-icon { width: 52px; height: 52px; border-radius: 16px; margin: 0 auto; display: flex; align-items: center; justify-content: center; font-size: 24px; background: #F4F4F4; color: #222; border: none; }
       .entry-title { font-size: 13px; font-weight: 700; margin-top: 12px; color: var(--text); }
       .entry-sub { display: none; }
 
       /* Section Titles */
-      .section-title { margin: 28px 4px 16px; display: flex; align-items: baseline; justify-content: space-between; }
-      .section-title h3 { font-size: 20px; font-weight: 700; letter-spacing: -0.3px; color: var(--text); }
-      .section-title span { font-size: 13px; color: var(--muted); font-weight: 600; }
+      .section-title { margin: 36px 4px 20px; text-align: center; }
+      .section-title h3 { font-size: 16px; font-weight: 500; letter-spacing: 1px; color: var(--text); display: inline-block; position: relative; }
+      .section-title h3::before, .section-title h3::after { content: "•"; color: var(--muted); margin: 0 10px; font-size: 14px; }
+      .section-title span { display: none; }
 
       /* Products Grid */
-      .product-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
-      .product { padding: 14px; border-radius: 24px; border: none; transition: transform 0.2s; background: #FFFFFF; box-shadow: var(--shadow-sm); }
-      .product:active { transform: scale(0.98); }
-      .product-thumb-new { height: 140px; border-radius: 16px; background: linear-gradient(135deg, rgba(0, 122, 255, 0.10), rgba(88, 86, 214, 0.08)); border: none; display: flex; align-items: center; justify-content: center; font-size: 56px; margin-bottom: 14px; }
+      .product-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; border: none; margin: 0; }
+      .product { padding: 16px; border-radius: 16px; border: 1px solid var(--line); transition: transform 0.2s; background: #FFFFFF; box-shadow: none; display: flex; flex-direction: column; }
+      .product:active { transform: scale(0.98); background: #F9F9F9; }
+      .product-thumb-new { width: calc(100% + 32px); height: 140px; background: transparent; display: flex; align-items: center; justify-content: center; overflow: hidden; margin: -16px -16px 16px -16px; border-radius: 16px 16px 0 0; }
+      .product-thumb-new img { width: 100%; height: 100%; object-fit: cover; mix-blend-mode: normal; }
       .product-tags { display: flex; gap: 6px; margin-bottom: 10px; }
       .badge-pure, .badge-mix { font-size: 10px; padding: 4px 8px; border-radius: 6px; font-weight: 700; }
       .badge-pure { background: rgba(0, 122, 255, 0.12); color: var(--blue); }
@@ -123,13 +110,11 @@
 
       /* Lists (Games, Channels, Records) */
       .list { display: flex; flex-direction: column; gap: 14px; margin-bottom: 24px; }
-      .row { padding: 18px; display: flex; align-items: center; justify-content: space-between; border-radius: 24px; border: none; transition: transform 0.2s; background: #FFFFFF; box-shadow: var(--shadow-sm); }
+      .row { padding: 18px; display: flex; align-items: center; justify-content: space-between; border-radius: 16px; border: none; transition: transform 0.2s; background: #FFFFFF; box-shadow: var(--shadow-sm); }
       .row:active { transform: scale(0.98); }
       .row-left { display: flex; align-items: center; gap: 16px; min-width: 0; }
-      .logo { width: 48px; height: 48px; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 18px; color: #FFF; flex: 0 0 auto; box-shadow: var(--shadow-sm); }
-      .logo.blue { background: linear-gradient(135deg, var(--blue), var(--purple)); }
-      .logo.green { background: linear-gradient(135deg, var(--teal), #30B0C7); }
-      .logo.dark { background: linear-gradient(135deg, #0B1220, rgba(11, 18, 32, 0.72)); }
+      .logo { width: 48px; height: 48px; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 18px; color: #222; flex: 0 0 auto; box-shadow: none; background: #F4F4F4; }
+      .logo.blue, .logo.green, .logo.dark { background: #F4F4F4; color: #222; }
       .row-main { min-width: 0; }
       .row-title { font-size: 16px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--text); }
       .row-sub { margin-top: 6px; font-size: 13px; color: var(--muted); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
@@ -142,34 +127,29 @@
 
       /* Channels Screen */
       .channels-top { text-align: center; padding: 20px 0 40px; }
-      .channels-top-title { font-size: 20px; font-weight: 700; margin-bottom: 30px; color: var(--text); }
-      @keyframes breathe {
-        0% { box-shadow: 0 16px 40px rgba(0, 122, 255, 0.1), 0 0 0 0 rgba(0, 122, 255, 0.1); transform: scale(1); }
-        50% { box-shadow: 0 16px 40px rgba(0, 122, 255, 0.15), 0 0 0 20px rgba(0, 122, 255, 0); transform: scale(1.02); }
-        100% { box-shadow: 0 16px 40px rgba(0, 122, 255, 0.1), 0 0 0 0 rgba(0, 122, 255, 0); transform: scale(1); }
-      }
+      .channels-top-title { font-size: 20px; font-weight: 700; margin-bottom: 40px; color: var(--text); }
       .channels-circle {
-        width: 170px; height: 170px; border-radius: 50%; border: 6px solid var(--blue-light); margin: 0 auto 24px;
+        width: 200px; height: 200px; border-radius: 50%; border: 3px solid #2F6BFF; margin: 0 auto 24px;
         display: flex; flex-direction: column; align-items: center; justify-content: center;
-        background: #FFF; animation: breathe 4s ease-in-out infinite; position: relative;
+        background: #FFF; position: relative; box-shadow: 0 10px 40px rgba(47, 107, 255, 0.1);
       }
-      .channels-circle::after { content: ""; position: absolute; inset: -6px; border-radius: 50%; border: 3px solid rgba(47, 107, 255, 0.95); }
-      .channels-circle-val { font-family: var(--mono); font-size: 32px; font-weight: 700; color: var(--text); }
-      .channels-circle-val span { font-size: 14px; font-weight: 600; margin-left: 2px; color: var(--muted); }
-      .channels-rmb { font-size: 15px; color: var(--muted); font-weight: 600; margin-bottom: 28px; }
-      .channels-actions { display: flex; justify-content: center; gap: 16px; }
-      .channels-actions button { border: none; background: #FFF; box-shadow: var(--shadow-sm); color: var(--text); padding: 12px 24px; border-radius: 999px; font-size: 14px; font-weight: 700; cursor: pointer; transition: transform 0.2s; }
+      .channels-circle::after { display: none; }
+      .channels-circle-val { font-family: var(--mono); font-size: 40px; font-weight: 700; color: #222; text-align: center; display: flex; flex-direction: column; align-items: center; line-height: 1.1; }
+      .channels-circle-val span { font-size: 14px; font-weight: 600; color: #888; margin-top: 8px; }
+      .channels-rmb { font-size: 16px; color: #888; font-weight: 500; margin-bottom: 28px; }
+      .channels-actions { display: flex; flex-direction: column; gap: 16px; position: absolute; right: -40px; top: 50%; transform: translateY(-50%); z-index: 10; }
+      .channels-actions button { border: none; background: #FFF; box-shadow: 0 4px 12px rgba(0,0,0,0.05); color: #222; padding: 12px 20px 12px 30px; border-radius: 0 999px 999px 0; font-size: 14px; font-weight: 600; cursor: pointer; transition: transform 0.2s; white-space: nowrap; position: relative; }
       .channels-actions button:active { transform: scale(0.95); }
 
       /* Segments & Pills */
-      .seg-new { display: flex; background: rgba(0,0,0,0.04); padding: 4px; border-radius: 16px; margin-bottom: 24px; }
-      .seg-new button { flex: 1; border: none; background: transparent; padding: 14px; font-size: 15px; font-weight: 700; color: var(--muted); border-radius: 12px; cursor: pointer; transition: all 0.2s; }
-      .seg-new button.active { background: #FFF; color: var(--text); box-shadow: var(--shadow-sm); }
+      .seg-new { display: flex; background: #F4F4F4; padding: 4px; border-radius: 16px; margin-bottom: 32px; }
+      .seg-new button { flex: 1; border: none; background: transparent; padding: 14px; font-size: 16px; font-weight: 500; color: #888; border-radius: 12px; cursor: pointer; transition: all 0.2s; }
+      .seg-new button.active { background: #FFF; color: #222; box-shadow: 0 2px 8px rgba(0,0,0,0.04); font-weight: 600; }
       
       .pill-row { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 10px; margin-bottom: 10px; scrollbar-width: none; }
       .pill-row::-webkit-scrollbar { display: none; }
-      .pill { padding: 10px 20px; border-radius: 999px; background: #FFF; font-size: 14px; font-weight: 700; color: var(--muted); cursor: pointer; white-space: nowrap; box-shadow: var(--shadow-sm); border: 2px solid transparent; transition: all 0.2s; }
-      .pill.active { border-color: var(--blue); color: var(--blue); }
+      .pill { padding: 10px 16px; border-radius: 999px; background: transparent; font-size: 15px; font-weight: 500; color: #888; cursor: pointer; white-space: nowrap; box-shadow: none; border: 1px solid transparent; transition: all 0.2s; }
+      .pill.active { border-color: #222; color: #222; font-weight: 600; }
 
       /* Mall Screen */
       .top-bar-new { display: flex; align-items: center; justify-content: space-between; padding: 10px 0 24px; font-size: 20px; font-weight: 700; color: var(--text); }
@@ -178,11 +158,12 @@
       .mall-search { display: flex; align-items: center; background: #FFF; border-radius: 20px; padding: 14px 20px; margin-bottom: 24px; box-shadow: var(--shadow-sm); }
       .mall-search input { border: none; background: transparent; outline: none; flex: 1; margin-left: 12px; font-size: 15px; font-weight: 600; color: var(--text); }
       .mall-search input::placeholder { color: #A1A1AA; font-weight: 500; }
-      .mall-banner { background: linear-gradient(135deg, #00C6FF, #0072FF); border-radius: 28px; height: 160px; display: flex; align-items: center; justify-content: center; color: #FFF; font-size: 18px; font-weight: 700; margin-bottom: 28px; box-shadow: 0 18px 50px rgba(47, 107, 255, 0.30); }
-      .mall-categories { display: grid; grid-template-columns: repeat(5, 1fr); text-align: center; gap: 8px; margin-bottom: 36px; }
-      .mall-cat { font-size: 13px; color: var(--text); font-weight: 700; }
-      .mall-cat-icon { font-size: 32px; width: 64px; height: 64px; background: rgba(255, 255, 255, 0.72); border-radius: 20px; display: flex; align-items: center; justify-content: center; margin: 0 auto 10px; box-shadow: var(--shadow-sm); border: none; }
-      .mall-section { background: rgba(255, 255, 255, 0.78); border-radius: 36px 36px 0 0; padding: 28px 24px; margin: 0 -20px; box-shadow: 0 -18px 60px rgba(15,23,42,0.10); min-height: 500px; border: none; }
+      .mall-banner { background: linear-gradient(135deg, #00C6FF, #0072FF); border-radius: 16px; height: 180px; display: flex; align-items: center; justify-content: center; color: #FFF; font-size: 18px; font-weight: 700; margin-bottom: 32px; box-shadow: none; overflow: hidden; }
+      .mall-categories { display: grid; grid-template-columns: repeat(5, 1fr); text-align: center; gap: 8px; margin-bottom: 40px; }
+      .mall-cat { font-size: 13px; color: #222; font-weight: 600; }
+      .mall-cat-icon { font-size: 32px; width: 60px; height: 60px; background: #F8F8F8; border-radius: 16px; display: flex; align-items: center; justify-content: center; margin: 0 auto 10px; box-shadow: none; border: none; overflow: hidden; }
+      .mall-cat-icon img { width: 60%; height: 60%; object-fit: contain; }
+      .mall-section { background: #FFFFFF; border-radius: 16px 16px 0 0; padding: 32px 24px; margin: 0 -20px; box-shadow: 0 -4px 20px rgba(0,0,0,0.03); min-height: 500px; border: none; border-top: 1px solid #EEE; }
 
       /* Me Screen */
       .profile-user-new { display: flex; align-items: center; gap: 20px; margin-bottom: 30px; padding: 10px 0; }
@@ -190,55 +171,59 @@
       .profile-name-new { font-size: 24px; font-weight: 700; color: var(--text); }
       .profile-phone-new { font-size: 15px; color: var(--muted); margin-top: 6px; font-weight: 600; }
       
-      .member-card { background: linear-gradient(135deg, rgba(47, 107, 255, 0.96), rgba(124, 92, 255, 0.96)); border-radius: 28px; padding: 28px; color: #F5F7FF; margin-bottom: 28px; box-shadow: 0 20px 50px rgba(47, 107, 255, 0.26); position: relative; overflow: hidden; }
+      .member-card { background: #222222; border-radius: 16px; padding: 28px; color: #FFFFFF; margin-bottom: 28px; box-shadow: none; position: relative; overflow: hidden; }
       .member-card::after { content: ""; position: absolute; right: -30px; top: -30px; width: 120px; height: 120px; background: radial-gradient(circle, rgba(255,255,255,0.1), transparent); border-radius: 50%; }
       .member-level { font-size: 14px; opacity: 0.8; font-weight: 600; }
       .member-title { font-size: 28px; font-weight: 700; margin: 10px 0 14px; color: #FFFFFF; }
       .member-hint { font-size: 14px; opacity: 0.8; font-weight: 500; }
 
       .asset-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 28px; }
-      .asset-item { background: #FFF; border-radius: 24px; padding: 18px 0; text-align: center; box-shadow: var(--shadow-sm); }
+      .asset-item { background: #FFF; border-radius: 16px; padding: 18px 0; text-align: center; box-shadow: var(--shadow-sm); }
       .asset-val { font-size: 20px; font-weight: 700; font-family: var(--mono); color: var(--text); }
       .asset-label { font-size: 13px; color: var(--muted); margin-top: 8px; font-weight: 600; }
 
-      .card-block { background: #FFF; border-radius: 28px; padding: 24px; margin-bottom: 24px; box-shadow: var(--shadow-sm); }
-      .card-block-title { font-size: 18px; font-weight: 700; margin-bottom: 24px; color: var(--text); }
-      .order-grid { display: grid; grid-template-columns: repeat(5, 1fr); text-align: center; }
-      .order-item { font-size: 13px; color: var(--text); text-decoration: none; font-weight: 600; }
-      .order-icon { font-size: 28px; margin-bottom: 12px; }
-      .logistic-wrap { background: var(--bg); border-radius: 20px; padding: 18px; margin-top: 24px; }
-      .logistic-title { font-size: 14px; font-weight: 700; margin-bottom: 14px; color: var(--text); }
-      .progress-track { height: 8px; background: rgba(0,0,0,0.05); border-radius: 4px; margin-bottom: 12px; overflow: hidden; }
-      .progress-fill { height: 100%; background: var(--blue); border-radius: 4px; width: 70%; }
-      .logistic-desc { font-size: 13px; color: var(--muted); font-weight: 600; }
+      .card-block { background: transparent; border-radius: 0; padding: 0; margin-bottom: 40px; padding-top: 40px; border-top: 1px solid #EEE; box-shadow: none; }
+      .card-block-title { font-size: 20px; font-weight: 700; margin-bottom: 32px; color: #222; }
+      .order-grid { display: grid; grid-template-columns: repeat(5, 1fr); text-align: center; gap: 16px 0; }
+      .order-item { font-size: 14px; color: var(--text); text-decoration: none; font-weight: 600; }
+      .order-icon { font-size: 32px; margin-bottom: 12px; }
+      .logistic-wrap { background: transparent; border-radius: 0; padding: 0; margin-top: 36px; }
+      .logistic-title { font-size: 15px; font-weight: 700; margin-bottom: 16px; color: var(--text); }
+      .progress-track { height: 6px; background: #F0F0F0; border-radius: 3px; margin-bottom: 16px; overflow: hidden; display: flex; }
+      .progress-fill { height: 100%; background: #222; border-radius: 3px; width: 60%; }
+      .logistic-desc { font-size: 14px; color: #999; font-weight: 500; }
 
-      .coupon-item { background: var(--bg); border-radius: 20px; padding: 18px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+      .coupon-item { background: transparent; border-radius: 0; padding: 16px 0; display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
       .coupon-item:last-child { margin-bottom: 0; }
-      .coupon-name { font-size: 16px; font-weight: 700; color: var(--text); }
-      .coupon-actions { display: flex; gap: 10px; }
-      .btn-sm { padding: 10px 16px; border-radius: 12px; font-size: 14px; border: none; cursor: pointer; font-weight: 700; transition: transform 0.2s; }
+      .coupon-name { font-size: 18px; font-weight: 700; color: var(--text); }
+      .coupon-actions { display: flex; gap: 24px; align-items: center; }
+      .btn-sm { padding: 12px 24px; border-radius: 16px; font-size: 15px; border: none; cursor: pointer; font-weight: 600; transition: transform 0.2s; }
       .btn-sm:active { transform: scale(0.96); }
-      .btn-sm.outline { background: #FFF; color: var(--text); box-shadow: var(--shadow-sm); }
-      .btn-sm.primary { background: linear-gradient(135deg, var(--blue), var(--purple)); color: #FFF; box-shadow: var(--shadow-sm); }
+      .btn-sm.outline { background: transparent; color: #222; box-shadow: none; padding: 12px 0; }
+      .btn-sm.primary { background: #222; color: #FFF; box-shadow: none; }
 
-      .service-grid { display: grid; grid-template-columns: repeat(4, 1fr); text-align: center; gap: 24px 0; }
-      .service-item { font-size: 13px; color: var(--text); font-weight: 600; }
-      .service-icon { font-size: 28px; margin-bottom: 12px; }
+      .service-grid { display: grid; grid-template-columns: repeat(4, 1fr); text-align: center; gap: 32px 0; }
+      .service-item { font-size: 14px; color: var(--text); font-weight: 600; }
+      .service-icon { font-size: 32px; margin-bottom: 12px; }
 
       /* Nav Bottom */
       .nav {
-        position: fixed; left: 0; right: 0; bottom: 0; height: 90px; padding-bottom: env(safe-area-inset-bottom);
-        background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(24px) saturate(180%); -webkit-backdrop-filter: blur(24px) saturate(180%);
-        display: grid; grid-template-columns: repeat(4, 1fr); z-index: 60; border-top: 1px solid var(--line);
+        position: fixed; left: 0; right: 0; bottom: 0; height: 84px; padding-bottom: env(safe-area-inset-bottom);
+        background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+        display: grid; grid-template-columns: repeat(4, 1fr); z-index: 60; 
+        border-top: 1px solid var(--line); border-radius: 0;
+        box-shadow: none;
       }
-      .nav a { text-decoration: none; color: var(--muted); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; font-size: 12px; font-weight: 700; cursor: pointer; transition: color 0.2s; }
+      .nav a { text-decoration: none; color: #999; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; font-size: 10px; font-weight: 500; cursor: pointer; transition: color 0.2s; text-transform: uppercase; letter-spacing: 0.5px; }
+      .nav a.active { color: #222; }
+      .nav a.active span { transform: translateY(0); filter: grayscale(0); opacity: 1; }
       .nav a span { font-size: 24px; transition: transform 0.2s; filter: grayscale(1); opacity: 0.5; }
       .nav a.active { color: var(--blue); }
       .nav a.active span { transform: translateY(-2px) scale(1.1); filter: grayscale(0); opacity: 1; }
 
       /* Modals */
       .modal-mask { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); display: none; z-index: 80; opacity: 0; transition: opacity 0.3s; }
-      .modal { position: fixed; left: 0; right: 0; bottom: 0; z-index: 90; border-radius: 36px 36px 0 0; background: #FFFFFF; box-shadow: 0 -20px 50px rgba(0, 0, 0, 0.1); transform: translateY(100%); transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1); max-height: calc(100vh - 80px); display: flex; flex-direction: column; }
+      .modal { position: fixed; left: 0; right: 0; bottom: 0; z-index: 90; border-radius: 16px 16px 0 0; background: #FFFFFF; box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.06); transform: translateY(100%); transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1); max-height: calc(100vh - 40px); display: flex; flex-direction: column; }
       .modal.open { transform: translateY(0); }
       .modal-mask.open { display: block; opacity: 1; }
       .modal-head { padding: 20px 24px 12px; }
@@ -248,206 +233,223 @@
       .close { background: #F2F4F7; border: none; border-radius: 16px; padding: 10px 14px; font-size: 14px; font-weight: 700; color: var(--muted); cursor: pointer; }
       .modal-body { padding: 0 24px 32px; overflow-y: auto; flex: 1; }
       .form { display: flex; flex-direction: column; gap: 14px; }
-      .field { padding: 18px; border-radius: 24px; background: var(--bg); display: flex; align-items: center; justify-content: space-between; }
+      .field { padding: 18px; border-radius: 16px; background: var(--bg); display: flex; align-items: center; justify-content: space-between; }
       .field label { font-size: 15px; font-weight: 700; color: var(--text); }
       .field input, .field select { border: none; background: transparent; outline: none; font-size: 16px; color: var(--blue); font-weight: 700; text-align: right; width: 60%; font-family: var(--mono); }
-      .btn-primary { margin-top: 16px; border: none; border-radius: 24px; padding: 18px; font-weight: 700; font-size: 17px; color: #FFF; cursor: pointer; background: var(--blue); box-shadow: 0 12px 24px rgba(0, 122, 255, 0.2); transition: transform 0.2s; }
+      .btn-primary { margin-top: 16px; border: none; border-radius: 16px; padding: 16px; font-weight: 600; font-size: 16px; color: #FFF; cursor: pointer; background: var(--blue); box-shadow: none; transition: background 0.2s; letter-spacing: 1px; }
       .btn-primary:active { transform: scale(0.98); }
       .hint { margin-top: 14px; font-size: 14px; color: var(--muted); line-height: 1.5; font-weight: 600; }
 
-      html[data-theme="apple"] .noise { opacity: 0.015; }
-      html[data-theme="apple"] .top { background: rgba(242, 242, 247, 0.92); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); }
-      html[data-theme="apple"] .nav { background: rgba(255, 255, 255, 0.92); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); border-top: 1px solid var(--line); }
-      html[data-theme="apple"] .card { box-shadow: none; border: 1px solid var(--line); }
-      html[data-theme="apple"] .row, html[data-theme="apple"] .product { box-shadow: none; border: 1px solid var(--line); }
-      html[data-theme="apple"] .entry-icon { background: var(--bg); border: 1px solid var(--line); }
-      html[data-theme="apple"] .product-thumb-new { background: var(--bg); border: 1px solid var(--line); }
-      html[data-theme="apple"] .balance { box-shadow: none; border: 1px solid var(--line); }
-      html[data-theme="apple"] .balance-value { background: none; -webkit-text-fill-color: var(--text); color: var(--text); }
-      html[data-theme="apple"] .balance::after { background: radial-gradient(circle, rgba(0, 122, 255, 0.10) 0%, transparent 70%); }
-      html[data-theme="apple"] .btn-primary { background: var(--blue); box-shadow: none; }
-      html[data-theme="apple"] .member-card { background: var(--card); color: var(--text); box-shadow: none; border: 1px solid var(--line); }
-      html[data-theme="apple"] .member-title { color: var(--text); }
-      html[data-theme="apple"] .member-hint { color: var(--muted); opacity: 1; }
-      html[data-theme="apple"] .mall-banner { background: url('https://image.changyoyo.com/pic/admin/2026/03/18/png/034820781-895028.png') no-repeat center/cover !important; box-shadow: none; }
 
-    
-      
-      
+      a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(34,34,34,.18); }
+      button, a { touch-action: manipulation; }
+      @media (prefers-reduced-motion: reduce) {
+        * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+      }
+
+      .spec-row { display: flex; gap: 12px; flex-wrap: wrap; }
+      .spec-option { padding: 8px 20px; border: 1px solid var(--line); border-radius: var(--radius-sm); background: #FFF; font-size: 14px; color: #555; font-weight: 500; cursor: pointer; transition: transform 0.2s; }
+      .spec-option:active { transform: scale(0.98); }
+      .spec-option.active { border-color: #222; color: #222; font-weight: 600; }
+
+      .qty-btn { width: 36px; height: 36px; border: 1px solid var(--line); background: #FFF; font-size: 18px; color: #222; cursor: pointer; border-radius: var(--radius-sm); transition: transform 0.2s; }
+      .qty-btn:active { transform: scale(0.98); }
+      .qty-btn:disabled { color: #CCC; cursor: default; transform: none; }
+      .qty-value { width: 48px; height: 36px; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 600; color: #222; background: #F8F8F8; border-radius: var(--radius-sm); }
+
+      .otp-wrap { display: flex; gap: 12px; justify-content: center; margin-bottom: 32px; }
+      .otp-input { width: 48px; height: 56px; border: 1px solid var(--line); border-radius: var(--radius-sm); text-align: center; font-size: 24px; font-weight: 600; background: #F8F8F8; }
+
+
       
       
       /* ========================================================= */
-      /* DEEP OCEAN GLASSMORPHISM (DARK AURORA GLASS)              */
+      /* WARM PASTEL BENTO BOX THEME (治愈系便当盒/高级奶油风)   */
       /* ========================================================= */
       :root {
-        --bg: #090B14; 
-        --glass-bg: rgba(16, 25, 53, 0.45) !important;
-        --glass-border: rgba(0, 242, 254, 0.25) !important;
-        --glass-shadow: 0 12px 40px rgba(0, 0, 0, 0.6), inset 0 1px 1px rgba(0, 242, 254, 0.3) !important;
-        --text: #F8FAFC !important;
-        --muted: #94A3B8 !important;
-        --line: rgba(0, 242, 254, 0.15) !important;
-        --radius: 24px !important;
-        --radius-sm: 14px !important;
-        --accent-start: #00F2FE !important;
-        --accent-end: #4FACFE !important;
+        --bg: #F7F5F0 !important;
+        --card: #FFFFFF !important;
+        --text: #2C2A29 !important;
+        --muted: #8A7D72 !important;
+        --line: rgba(138, 125, 114, 0.1) !important;
+        --radius: 28px !important;
+        --radius-sm: 16px !important;
+        --shadow-soft: 0 12px 40px rgba(138, 125, 114, 0.08) !important;
+        --shadow-sm: 0 4px 16px rgba(138, 125, 114, 0.05) !important;
+        --accent: #E87A5D !important; /* Warm Terracotta */
+        --accent-hover: #D46A4F !important;
       }
 
       body {
-        background: #090B14 !important;
-        background-attachment: fixed !important;
+        background-color: var(--bg) !important;
+        background-image: none !important;
         color: var(--text) !important;
+        font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", sans-serif !important;
       }
-      
-      /* Animated Background Blobs */
-      body::before, body::after {
-        content: ""; position: fixed; border-radius: 50%; filter: blur(80px); z-index: -2; animation: float 12s infinite ease-in-out alternate;
-      }
-      body::before {
-        width: 350px; height: 350px; background: rgba(0, 242, 254, 0.25); top: -100px; left: -100px;
-      }
-      body::after {
-        width: 450px; height: 450px; background: rgba(139, 92, 246, 0.2); bottom: -150px; right: -100px; animation-delay: -6s;
-      }
-      @keyframes float {
-        0% { transform: translate(0, 0) scale(1); }
-        100% { transform: translate(40px, 60px) scale(1.15); }
-      }
-
       .noise { display: none !important; }
 
-      /* Glass Cards - Enhanced Glowing Borders */
+      /* Cards & Layout (Bento Style) */
       .card, .product, .balance, .member-card, .mall-section, .modal, .card-block, .row {
-        background: var(--glass-bg) !important;
-        backdrop-filter: blur(20px) saturate(150%) !important;
-        -webkit-backdrop-filter: blur(20px) saturate(150%) !important;
+        background: var(--card) !important;
         border-radius: var(--radius) !important;
-        box-shadow: var(--glass-shadow) !important;
-        border: 1px solid var(--glass-border) !important;
-        border-top: 1px solid rgba(0, 242, 254, 0.5) !important; /* Prominent top border glow */
-        border-left: 1px solid rgba(0, 242, 254, 0.3) !important;
+        box-shadow: var(--shadow-soft) !important;
+        border: none !important;
         transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.3s ease !important;
       }
       
-      .product:hover {
-        transform: translateY(-5px) !important;
-        box-shadow: 0 15px 45px rgba(0, 0, 0, 0.7), 0 0 20px rgba(0, 242, 254, 0.15), inset 0 1px 1px rgba(0, 242, 254, 0.4) !important;
-        border-color: rgba(0, 242, 254, 0.6) !important;
-        background: rgba(16, 25, 53, 0.6) !important;
-      }
-      
-      /* Product Thumbnails */
-      .product-thumb-new, .mall-cat-icon, #productCarousel > div {
-        background: rgba(0, 0, 0, 0.3) !important;
-        border-radius: var(--radius-sm) !important;
-        border: 1px solid rgba(255, 255, 255, 0.1) !important;
-        box-shadow: inset 0 2px 15px rgba(0,0,0,0.5) !important;
-      }
-
       /* Balance Card */
       .balance {
+        background: linear-gradient(135deg, #FFFFFF 0%, #FFFDF9 100%) !important;
         padding: 32px 24px !important;
-        background: linear-gradient(135deg, rgba(0, 242, 254, 0.15), rgba(16, 25, 53, 0.4)) !important;
+        border: 1px solid rgba(255,255,255,0.8) !important;
       }
       .balance-value {
-        font-size: 48px !important;
+        font-size: 52px !important;
         font-weight: 800 !important;
-        background: linear-gradient(135deg, #FFFFFF 0%, #00F2FE 100%) !important;
-        -webkit-background-clip: text !important;
-        -webkit-text-fill-color: transparent !important;
+        color: var(--text) !important;
+        background: none !important;
+        -webkit-text-fill-color: var(--text) !important;
         letter-spacing: -1px !important;
-        text-shadow: 0 0 30px rgba(0, 242, 254, 0.4) !important;
+      }
+      .balance::after, .balance::before { display: none !important; }
+
+      /* Product Grid */
+      .product {
+        padding: 16px !important;
+      }
+      .product:hover {
+        transform: translateY(-4px) !important;
+        box-shadow: 0 16px 40px rgba(138, 125, 114, 0.12) !important;
+      }
+      .product-thumb-new, .mall-cat-icon {
+        background: #F2EFE9 !important;
+        border-radius: 18px !important;
+        border: none !important;
       }
 
-      /* Buttons - Cyan Neon Gradient */
+      /* Buttons - Warm Accent */
       button#buyBtn, button#verifyBtn, button#viewOrderBtn, .btn-primary, .channels-actions button {
-        background: linear-gradient(135deg, var(--accent-start) 0%, var(--accent-end) 100%) !important;
-        color: #090B14 !important;
+        background: var(--accent) !important;
+        color: #FFFFFF !important;
         border: none !important;
-        border-radius: var(--radius-sm) !important;
-        font-weight: 800 !important;
-        box-shadow: 0 8px 20px rgba(0, 242, 254, 0.3), inset 0 1px 1px rgba(255,255,255,0.6) !important;
-        transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1) !important;
+        border-radius: 20px !important;
+        font-weight: 600 !important;
+        font-size: 16px !important;
+        box-shadow: 0 8px 24px rgba(232, 122, 93, 0.3) !important;
+        transition: transform 0.2s ease, background 0.2s ease !important;
       }
       button#buyBtn:active, button#verifyBtn:active, button#viewOrderBtn:active {
         transform: scale(0.96) !important;
-        box-shadow: 0 4px 10px rgba(0, 242, 254, 0.2) !important;
+        background: var(--accent-hover) !important;
       }
       
-      .mini-btn, .pill, .qty-btn, .spec-option {
-        background: rgba(16, 25, 53, 0.6) !important;
+      .mini-btn, .pill {
+        background: #F7F5F0 !important;
         color: var(--text) !important;
-        border: 1px solid rgba(0, 242, 254, 0.3) !important;
-        backdrop-filter: blur(8px) !important;
-        font-weight: 600 !important;
+        border: none !important;
         border-radius: 99px !important;
+        font-weight: 600 !important;
+        box-shadow: var(--shadow-sm) !important;
       }
-      .qty-btn, .spec-option { border-radius: 8px !important; }
-      
-      .pill.active, .spec-option.active {
-        background: rgba(0, 242, 254, 0.2) !important;
-        border-color: #00F2FE !important;
-        color: #00F2FE !important;
-        box-shadow: 0 0 15px rgba(0, 242, 254, 0.2) !important;
+      .pill.active {
+        background: var(--text) !important;
+        color: #FFFFFF !important;
+      }
+
+      /* Typography Overrides */
+      .brand-title {
+        font-size: 24px !important;
+        font-weight: 800 !important;
+        letter-spacing: -0.5px !important;
+        color: var(--text) !important;
+      }
+      .section-title h3 {
+        font-size: 20px !important;
+        font-weight: 700 !important;
+        color: var(--text) !important;
       }
 
       /* Header & Nav */
       header.top, .nav {
-        background: rgba(9, 11, 20, 0.6) !important;
-        backdrop-filter: blur(24px) saturate(150%) !important;
-        -webkit-backdrop-filter: blur(24px) saturate(150%) !important;
-        border-color: rgba(0, 242, 254, 0.15) !important;
+        background: rgba(247, 245, 240, 0.85) !important;
+        backdrop-filter: blur(20px) !important;
+        -webkit-backdrop-filter: blur(20px) !important;
+        border: none !important;
       }
       .nav-item { color: var(--muted) !important; }
-      .nav-item.active { color: #00F2FE !important; font-weight: 700 !important; }
-      .nav-item svg { opacity: 0.6 !important; }
-      .nav-item.active svg { opacity: 1 !important; fill: #00F2FE !important; filter: drop-shadow(0 0 8px rgba(0, 242, 254, 0.5)) !important; }
+      .nav-item.active { color: var(--accent) !important; font-weight: 700 !important; }
+      .nav-item svg { opacity: 0.8 !important; fill: var(--muted) !important; }
+      .nav-item.active svg { fill: var(--accent) !important; }
 
-      /* Member Card */
+      /* Member Card - Soft Coffee */
       .member-card {
-        background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.02) 100%) !important;
-        border-top: 1px solid rgba(255,255,255,0.3) !important;
-        border-left: 1px solid rgba(255,255,255,0.2) !important;
+        background: linear-gradient(135deg, #4A4036 0%, #2C2A29 100%) !important;
+        color: #FFFFFF !important;
+        border: none !important;
+        box-shadow: 0 16px 40px rgba(44, 42, 41, 0.2) !important;
       }
       .member-card .title, .member-card .member-title {
         background: none !important;
         -webkit-text-fill-color: #FFFFFF !important;
+        font-weight: 600 !important;
+      }
+      .member-card .text-muted, .member-card .member-hint {
+        color: rgba(255,255,255,0.6) !important;
       }
 
-      /* Channels Circle */
+      /* Channels Circle - Bento style */
       .channels-circle {
-        background: rgba(0, 0, 0, 0.3) !important;
-        border: 2px solid rgba(0, 242, 254, 0.4) !important;
-        backdrop-filter: blur(12px) !important;
-        -webkit-backdrop-filter: blur(12px) !important;
-        box-shadow: inset 0 0 30px rgba(0, 242, 254, 0.15), 0 8px 32px rgba(0,0,0,0.5) !important;
+        background: #FFFFFF !important;
+        border: none !important;
+        box-shadow: inset 0 0 0 6px #F7F5F0, 0 12px 30px rgba(138, 125, 114, 0.1) !important;
+        width: 170px !important;
+        height: 170px !important;
+        border-radius: 50% !important;
       }
       .channels-circle::after, .channels-circle::before { display: none !important; }
-      
-      /* Inputs */
+      .channels-circle-val {
+        font-weight: 800 !important;
+        font-size: 32px !important;
+        color: var(--text) !important;
+      }
+
+      /* Modals & Inputs */
+      .modal {
+        border-radius: 32px 32px 0 0 !important;
+        background: #FFFFFF !important;
+        border: none !important;
+      }
       .otp-input {
-        background: rgba(0, 0, 0, 0.4) !important;
-        border: 1px solid rgba(0, 242, 254, 0.3) !important;
-        backdrop-filter: blur(8px) !important;
-        border-radius: var(--radius-sm) !important;
-        color: #00F2FE !important;
+        background: #F7F5F0 !important;
+        border: 2px solid transparent !important;
+        border-radius: 18px !important;
+        box-shadow: none !important;
+        color: var(--text) !important;
+        font-weight: 700 !important;
       }
       .otp-input:focus {
-        background: rgba(0, 242, 254, 0.1) !important;
-        border-color: #00F2FE !important;
-        box-shadow: 0 0 15px rgba(0, 242, 254, 0.3) !important;
+        border-color: var(--accent) !important;
+        background: #FFFFFF !important;
+        box-shadow: 0 8px 20px rgba(232, 122, 93, 0.15) !important;
         outline: none !important;
       }
 
-      /* Override inline dark colors */
-      div[style*="background: #F8F8F8"], div[style*="background: #F4F4F4"], div[style*="background: #F5F5F7"], div[style*="background: #FFF"], div[style*="background: #FFFFFF"] {
-        background: rgba(0,0,0,0.3) !important;
-      }
-      div[style*="color: #222"], div[style*="color: #111"] {
+      /* Inline color overrides */
+      div[style*="background: #222"], div[style*="background: #222222"] { background: var(--text) !important; }
+      div[style*="color: #222"], div[style*="color: #111"] { color: var(--text) !important; }
+      div[style*="color: #555"], div[style*="color: #666"] { color: var(--muted) !important; }
+      div[style*="background: #F8F8F8"], div[style*="background: #F4F4F4"], div[style*="background: #F5F5F7"] { background: #F7F5F0 !important; }
+      
+      .qty-btn, .spec-option {
+        background: #F7F5F0 !important;
         color: var(--text) !important;
+        border: none !important;
+        border-radius: 12px !important;
+        font-weight: 600 !important;
       }
-      div[style*="color: #555"], div[style*="color: #666"] {
-        color: var(--muted) !important;
+      .spec-option.active {
+        background: var(--text) !important;
+        color: #FFFFFF !important;
       }
 
 </style>
@@ -519,22 +521,22 @@
           </div>
           <div class="product-grid">
             <div class="card product" data-open="product" data-product-id="v1">
-              <div class="product-thumb-new">🎬</div>
+              <div class="product-thumb-new"><img src="https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=A%20professional%20and%20modern%20digital%20gift%20card%20for%20a%20video%20streaming%20VIP%20membership%2C%20vibrant%20colors%2C%20premium%20design%2C%20isolated%20on%20white%20background%2C%20highly%20detailed%2C%203d%20render&image_size=square" alt=""></div>
               <div class="product-name">视频会员月卡</div>
               <div class="product-price">2,900 积分</div>
             </div>
             <div class="card product" data-open="product" data-product-id="v2">
-              <div class="product-thumb-new">🧧</div>
+              <div class="product-thumb-new"><img src="https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=A%20digital%20red%20envelope%20icon%20for%20Alipay%2C%20festive%20red%20and%20gold%2C%20Chinese%20style%2C%20high%20quality%203d%20render%2C%20isolated%20on%20white%20background&image_size=square" alt=""></div>
               <div class="product-name">支付宝红包</div>
               <div class="product-price">1,000 积分</div>
             </div>
             <div class="card product" data-open="product" data-product-id="v3">
-              <div class="product-thumb-new">💳</div>
+              <div class="product-thumb-new"><img src="https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=A%20physical%20JD%20E-Card%20gift%20card%2C%20premium%20red%20and%20silver%20design%2C%20100%20RMB%20value%2C%20isolated%20on%20white%20background%2C%20studio%20lighting&image_size=square" alt=""></div>
               <div class="product-name">京东E卡 100元</div>
               <div class="product-price">8,000 + ¥19.9</div>
             </div>
             <div class="card product" data-open="product" data-product-id="v4">
-              <div class="product-thumb-new">📱</div>
+              <div class="product-thumb-new"><img src="https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=A%20modern%20digital%20voucher%20for%20mobile%20phone%20top-up%2C%20telecom%20concept%2C%20colorful%20gradient%2C%203d%20icon%20style%2C%20isolated%20on%20white%20background&image_size=square" alt=""></div>
               <div class="product-name">话费充值券</div>
               <div class="product-price">5,000 积分</div>
             </div>
@@ -546,22 +548,22 @@
           </div>
           <div class="product-grid">
             <div class="card product" data-open="product" data-product-id="p1">
-              <div class="product-thumb-new">🧻</div>
+              <div class="product-thumb-new"><img src="https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=A%20pack%20of%20premium%20cotton%20face%20towels%2C%20clean%20white%20packaging%2C%20minimalist%20design%2C%20soft%20lighting%2C%20product%20photography%2C%20isolated%20on%20white%20background&image_size=square" alt=""></div>
               <div class="product-name">纯棉擦脸巾 80抽</div>
               <div class="product-price">3,200 积分</div>
             </div>
             <div class="card product" data-open="product" data-product-id="p2">
-              <div class="product-thumb-new">🧴</div>
+              <div class="product-thumb-new"><img src="https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=A%20travel%20size%20toiletry%20set%20with%20small%20bottles%20of%20shampoo%20and%20body%20wash%2C%20transparent%20bottles%2C%20fresh%20and%20clean%2C%20product%20photography%2C%20isolated%20on%20white%20background&image_size=square" alt=""></div>
               <div class="product-name">旅行洗护套装</div>
               <div class="product-price">4,900 积分</div>
             </div>
             <div class="card product" data-open="product" data-product-id="p3">
-              <div class="product-thumb-new">🍚</div>
+              <div class="product-thumb-new"><img src="https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=A%20premium%205kg%20bag%20of%20Northeast%20Wuchang%20rice%2C%20elegant%20packaging%2C%20agricultural%20product%2C%20studio%20lighting%2C%20isolated%20on%20white%20background&image_size=square" alt=""></div>
               <div class="product-name">东北五常大米 5kg</div>
               <div class="product-price">8,800 积分</div>
             </div>
             <div class="card product" data-open="product" data-product-id="p4">
-              <div class="product-thumb-new">🧸</div>
+              <div class="product-thumb-new"><img src="https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=A%20cute%20and%20soft%20plush%20teddy%20bear%20toy%20for%20children%2C%20high%20quality%2C%20fluffy%20texture%2C%20studio%20lighting%2C%20isolated%20on%20white%20background&image_size=square" alt=""></div>
               <div class="product-name">儿童毛绒玩具</div>
               <div class="product-price">6,600 积分</div>
             </div>
@@ -604,14 +606,14 @@
             <div class="channels-top-title">畅由积分</div>
             <div style="display: flex; align-items: center; justify-content: center; position: relative;">
               <div class="channels-circle" style="margin-bottom: 0;">
-                <div class="channels-circle-val">12,860<span>积分</span></div>
+                <div class="channels-circle-val" id="channelsPointsValue">12,860<span>积分</span></div>
               </div>
               <div class="channels-actions" style="position: absolute; right: 0; display: flex; flex-direction: column; gap: 12px; margin-right: 20px;">
                 <button onclick="location.href='https://m.changyoyo.com/jfmall/index.html#/hjfStrategy'">积分攻略</button>
-                <button onclick="location.href='https://m.changyoyo.com/jfmall/index.html#/points-detail'">积分明细</button>
+                <button onclick="setActiveScreen('records')">积分明细</button>
               </div>
             </div>
-            <div class="channels-rmb" style="margin-top: 24px;">约合 ¥128.60 元</div>
+            <div class="channels-rmb" id="channelsRmbValue" style="margin-top: 24px;">约合 ¥128.60 元</div>
           </div>
 
           <div class="seg-new">
@@ -631,6 +633,7 @@
             <span></span>
           </div>
 
+          <div style="height: 1px; background: #EEE; margin: 24px -20px 24px -20px;"></div>
           <div class="list" id="channelList"></div>
         </section>
 
@@ -638,12 +641,12 @@
           <div class="top-bar-new">
             <a href="https://m.changyoyo.com/jfmall/index.html#/pageSearch?appId=Changyoyo_Life_Central" style="font-size: 18px; cursor: pointer; text-decoration: none; color: inherit; z-index: 100; position: relative;">🔍</a>
             <span>积分商城</span>
-            <span class="right" >分类</span>
+            <a class="right" href="https://m.changyoyo.com/jfmall/index.htm#/cymall" style="text-decoration:none;">分类</a>
           </div>
           
 
           
-          <div class="mall-banner" style="background: url('https://image.changyoyo.com/pic/admin/2026/03/18/png/034820781-895028.png') no-repeat center/cover; cursor: pointer;" onclick="location.href='https://www.sh.10086.cn/h5/common/doBusiness/llb.html?busicode=22022216&id=2601123121&WT.mc_id=260114_JBB_QYWX_01&assistantUserInfo=YEiq5vodeOvWW9qDI1fCxlq%2BKEtey%2FYtrNHgxhjdJ3KQT8aK9HQIEebNOON94fjjVapkrOh6Jb9NCpsQB4Z7v82VdB8dpRPfaDL0vgceJWQ%3D&forwardapp=WXYYT&vvTick=5912733'">
+          <div class="mall-banner" style="background: url('https://image.changyoyo.com/pic/admin/2026/03/18/png/034820781-895028.png') no-repeat center/cover; cursor: pointer;" onclick="location.href='https://m.changyoyo.com/sale/#/index?activityCode=2024042501&appId=Changyoyo_Life_Central'">
             <!-- 活动海报 Banner 位 -->
           </div>
           
@@ -792,7 +795,7 @@
     <div id="modalMask" class="modal-mask"></div>
 
     <div id="modal" class="modal" role="dialog" aria-modal="true" aria-label="详情弹窗">
-      <div class="modal-head">
+      <div class="modal-head" style="display: none;">
         <div class="handle"></div>
         <div class="modal-title">
           <h4 id="modalTitle">快捷兑换</h4>
@@ -813,6 +816,7 @@
         recordFilter: "all",
         balanceHidden: false,
         fxCurrency: "CNY",
+        points: 12860,
       };
 
       const data = {
@@ -833,16 +837,16 @@
           { id: "c14", name: "联盟积分 → 华润通积分", type: "life", mode: "out", rate: "49联盟积分 → 100华润通积分", status: "可兑换", logo: "润", color: "blue" },
         ],
         products: [
-          { id: "v1", name: "视频会员月卡", tag: "pure", hot: true, icon: "🎬", price: "2,900 积分", detail: "【权益说明】<br/>1. 适用于爱奇艺、腾讯视频、优酷视频、芒果TV等主流视频平台。<br/>2. 支付成功后自动充值到您绑定的手机号，或发放电子兑换码。<br/>3. 本权益为虚拟商品，一经兑换成功，不支持退换，请确认充值账号无误。<br/><br/>【使用规则】<br/>1. 爱奇艺/腾讯/优酷月卡支持电视端以外的移动端、Pad端及PC端使用。<br/>2. 若账号为第三方联合账号，请先绑定手机号后再进行充值。<br/>3. 如遇系统高峰期，充值可能存在1-10分钟延迟，请耐心等待。<br/><br/>【常见问题】<br/>Q：充值失败积分会退回吗？<br/>A：若因系统原因导致充值失败，系统将在24小时内自动退还消耗的积分及现金。<br/>Q：可以给朋友充值吗？<br/>A：支持，请在下单时填写正确的充值手机号。", pay: "pure" },
-          { id: "v2", name: "支付宝红包", tag: "pure", hot: true, icon: "🧧", price: "1,000 积分", detail: "自动存入支付宝余额，支付时直接抵扣。", pay: "pure" },
-          { id: "v3", name: "京东E卡 100元", tag: "mix", hot: true, icon: "💳", price: "8,000 积分 + ¥19.9", detail: "电子码即时发放，可用于指定电商平台。", pay: "mix" },
-          { id: "v4", name: "话费充值券", tag: "pure", hot: true, icon: "📱", price: "5,000 积分", detail: "充值成功后立即到账，三大运营商通用。", pay: "pure" },
-          { id: "p1", name: "纯棉擦脸巾 80抽", tag: "pure", hot: false, icon: "🧻", price: "3,200 积分", detail: "亲肤柔软，包邮到家。", pay: "pure" },
-          { id: "p2", name: "旅行洗护套装", tag: "pure", hot: false, icon: "🧴", price: "4,900 积分", detail: "实物商品，支持物流跟踪与售后。", pay: "pure" },
-          { id: "p3", name: "东北五常大米 5kg", tag: "mix", hot: false, icon: "🍚", price: "8,800 积分", detail: "产地直供，香糯可口。", pay: "mix" },
-          { id: "p4", name: "儿童毛绒玩具", tag: "pure", hot: false, icon: "🧸", price: "6,600 积分", detail: "亲肤材质，送礼佳品。", pay: "pure" },
-          { id: "m1", name: "Apple iPhone 15 Pro", tag: "mix", hot: true, icon: "📱", price: "100,000 积分 + ¥4999", detail: "全新原装正品，享全国联保。", pay: "mix" },
-          { id: "m2", name: "AirPods Pro (第二代)", tag: "pure", hot: false, icon: "🎧", price: "28,900 积分", detail: "主动降噪，沉浸式音质体验。", pay: "pure" },
+          { id: "v1", name: "视频会员月卡", tag: "pure", hot: true, img: "https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=A%20professional%20and%20modern%20digital%20gift%20card%20for%20a%20video%20streaming%20VIP%20membership%2C%20vibrant%20colors%2C%20premium%20design%2C%20isolated%20on%20white%20background%2C%20highly%20detailed%2C%203d%20render&image_size=square", price: "2,900 积分", detail: "【权益说明】<br/>1. 适用于爱奇艺、腾讯视频、优酷视频、芒果TV等主流视频平台。<br/>2. 支付成功后自动充值到您绑定的手机号，或发放电子兑换码。<br/>3. 本权益为虚拟商品，一经兑换成功，不支持退换，请确认充值账号无误。<br/><br/>【使用规则】<br/>1. 爱奇艺/腾讯/优酷月卡支持电视端以外的移动端、Pad端及PC端使用。<br/>2. 若账号为第三方联合账号，请先绑定手机号后再进行充值。<br/>3. 如遇系统高峰期，充值可能存在1-10分钟延迟，请耐心等待。<br/><br/>【常见问题】<br/>Q：充值失败积分会退回吗？<br/>A：若因系统原因导致充值失败，系统将在24小时内自动退还消耗的积分及现金。<br/>Q：可以给朋友充值吗？<br/>A：支持，请在下单时填写正确的充值手机号。", pay: "pure" },
+          { id: "v2", name: "支付宝红包", tag: "pure", hot: true, img: "https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=A%20digital%20red%20envelope%20icon%20for%20Alipay%2C%20festive%20red%20and%20gold%2C%20Chinese%20style%2C%20high%20quality%203d%20render%2C%20isolated%20on%20white%20background&image_size=square", price: "1,000 积分", detail: "自动存入支付宝余额，支付时直接抵扣。", pay: "pure" },
+          { id: "v3", name: "京东E卡 100元", tag: "mix", hot: true, img: "https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=A%20physical%20JD%20E-Card%20gift%20card%2C%20premium%20red%20and%20silver%20design%2C%20100%20RMB%20value%2C%20isolated%20on%20white%20background%2C%20studio%20lighting&image_size=square", price: "8,000 积分 + ¥19.9", detail: "电子码即时发放，可用于指定电商平台。", pay: "mix" },
+          { id: "v4", name: "话费充值券", tag: "pure", hot: true, img: "https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=A%20modern%20digital%20voucher%20for%20mobile%20phone%20top-up%2C%20telecom%20concept%2C%20colorful%20gradient%2C%203d%20icon%20style%2C%20isolated%20on%20white%20background&image_size=square", price: "5,000 积分", detail: "充值成功后立即到账，三大运营商通用。", pay: "pure" },
+          { id: "p1", name: "纯棉擦脸巾 80抽", tag: "pure", hot: false, img: "https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=A%20pack%20of%20premium%20cotton%20face%20towels%2C%20clean%20white%20packaging%2C%20minimalist%20design%2C%20soft%20lighting%2C%20product%20photography%2C%20isolated%20on%20white%20background&image_size=square", price: "3,200 积分", detail: "亲肤柔软，包邮到家。", pay: "pure" },
+          { id: "p2", name: "旅行洗护套装", tag: "pure", hot: false, img: "https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=A%20travel%20size%20toiletry%20set%20with%20small%20bottles%20of%20shampoo%20and%20body%20wash%2C%20transparent%20bottles%2C%20fresh%20and%20clean%2C%20product%20photography%2C%20isolated%20on%20white%20background&image_size=square", price: "4,900 积分", detail: "实物商品，支持物流跟踪与售后。", pay: "pure" },
+          { id: "p3", name: "东北五常大米 5kg", tag: "mix", hot: false, img: "https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=A%20premium%205kg%20bag%20of%20Northeast%20Wuchang%20rice%2C%20elegant%20packaging%2C%20agricultural%20product%2C%20studio%20lighting%2C%20isolated%20on%20white%20background&image_size=square", price: "8,800 积分", detail: "产地直供，香糯可口。", pay: "mix" },
+          { id: "p4", name: "儿童毛绒玩具", tag: "pure", hot: false, img: "https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=A%20cute%20and%20soft%20plush%20teddy%20bear%20toy%20for%20children%2C%20high%20quality%2C%20fluffy%20texture%2C%20studio%20lighting%2C%20isolated%20on%20white%20background&image_size=square", price: "6,600 积分", detail: "亲肤材质，送礼佳品。", pay: "pure" },
+          { id: "m1", name: "Apple iPhone 15 Pro", tag: "mix", hot: true, img: "https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=A%20brand%20new%20Apple%20iPhone%2015%20Pro%2C%20titanium%20finish%2C%20standing%20upright%2C%20studio%20lighting%2C%20product%20photography%2C%20isolated%20on%20white%20background&image_size=square", price: "100,000 积分 + ¥4999", detail: "全新原装正品，享全国联保。", pay: "mix" },
+          { id: "m2", name: "AirPods Pro (第二代)", tag: "pure", hot: false, img: "https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=Apple%20AirPods%20Pro%202nd%20generation%20with%20wireless%20charging%20case%2C%20studio%20lighting%2C%20product%20photography%2C%20isolated%20on%20white%20background&image_size=square", price: "28,900 积分", detail: "主动降噪，沉浸式音质体验。", pay: "pure" },
         ],
         orders: [
           { id: "o1", name: "电商礼品卡 100 元", status: "支付成功", meta: "8,000 + ¥19.9", time: "今天 10:12" },
@@ -881,6 +885,9 @@
         segIn: document.getElementById("segIn"),
         segOut: document.getElementById("segOut"),
         balanceValue: document.getElementById("balanceValue"),
+        rmbValue: document.getElementById("rmbValue"),
+        channelsPointsValue: document.getElementById("channelsPointsValue"),
+        channelsRmbValue: document.getElementById("channelsRmbValue"),
         btnRefreshBalance: document.getElementById("btnRefreshBalance"),
         btnQuickExchange: document.getElementById("btnQuickExchange"),
         channelFilters: document.getElementById("channelFilters"),
@@ -922,9 +929,7 @@
       }
 
       function formatLogoClass(color) {
-        if (color === "green") return "logo green";
-        if (color === "dark") return "logo dark";
-        return "logo blue";
+        return "logo";
       }
 
       function renderChannels() {
@@ -970,7 +975,7 @@
             if (p.pay === "pure") badges.push("<span class='badge-pure'>纯积分兑</span>");
             return `
               <div class="card product" data-open="product" data-product-id="${p.id}">
-                <div class="product-thumb-new">${p.icon}</div>
+                <div class="product-thumb-new"><img src="${p.img}" alt="${p.name}"></div>
                 <div class="product-tags">${badges.join("")}</div>
                 <div class="product-name">${p.name}</div>
                 <div class="product-price-new">${p.price}</div>
@@ -1022,14 +1027,25 @@
         return { rateText: "100 = ￥1.00", rmbRate: 0.01 };
       }
 
+      function formatPoints(n) {
+        return (n || 0).toLocaleString("en-US");
+      }
+
       function applyFx(currency) {
         state.fxCurrency = currency;
         const f = fxFor(currency);
         if (els.fxRate) els.fxRate.textContent = f.rateText;
-        const points = 12860;
-        const cny = points * 0.01;
+        const cny = state.points * 0.01;
         const show = currency === "CNY" ? `≈ ￥${cny.toFixed(2)}` : `≈ ￥${cny.toFixed(2)}（参考）`;
         if (els.rmbValue) els.rmbValue.textContent = show;
+        if (els.channelsRmbValue) els.channelsRmbValue.textContent = `约合 ¥${cny.toFixed(2)} 元`;
+      }
+
+      function renderBalance() {
+        const v = formatPoints(state.points);
+        if (els.balanceValue) els.balanceValue.textContent = v;
+        if (els.channelsPointsValue) els.channelsPointsValue.innerHTML = `${v}<span>积分</span>`;
+        applyFx(state.fxCurrency);
       }
 
       function buildQuickExchangeForm(preset) {
@@ -1128,30 +1144,204 @@
       function openProductModal(productId) {
         const p = data.products.find((x) => x.id === productId);
         if (!p) return;
-        const payBadge = p.pay === "mix" ? "<span class='badge green'>积分+现金</span>" : "<span class='badge blue'>纯积分</span>";
-        const hotBadge = p.hot ? "<span class='badge warn'>HOT</span>" : "";
+
+        const imgs = Array.isArray(p.imgs) && p.imgs.length ? p.imgs : [p.img];
+        const slides = imgs
+          .map(
+            (src) => `
+              <div style="flex: 0 0 100%; scroll-snap-align: start; display: flex; align-items: center; justify-content: center; position: relative;">
+                <img src="${src}" style="max-width: 82%; max-height: 82%; object-fit: contain; mix-blend-mode: multiply;">
+              </div>`
+          )
+          .join("");
+        const dots = imgs
+          .map((_, i) => {
+            const w = i === 0 ? 12 : 4;
+            const h = 4;
+            const bg = i === 0 ? "#222" : "#CCC";
+            return `<div data-dot="${i}" style="width:${w}px;height:${h}px;border-radius:2px;background:${bg};transition: all 0.2s;"></div>`;
+          })
+          .join("");
+
+        const specs = Array.isArray(p.specs) && p.specs.length ? p.specs : ["标准版", "升级版", "尊享版"];
+        let selectedSpec = specs[0];
+        let qty = 1;
+
         openModal(
           "商品详情",
           `
-            <div class="card" style="padding:14px;border:1px solid rgba(15,23,42,.08);background:rgba(255,255,255,.72)">
-              <div style="display:flex;gap:10px;align-items:center">
-                <div style="width:54px;height:54px;border-radius:16px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,rgba(22,119,255,.14),rgba(16,185,129,.12));border:1px solid rgba(15,23,42,.08);font-size:26px">${p.icon}</div>
-                <div style="flex:1;min-width:0">
-                  <div style="font-weight:900;font-size:14px;line-height:1.35">${p.name}</div>
-                  <div style="margin-top:6px;display:flex;gap:6px;flex-wrap:wrap">${payBadge}${hotBadge}</div>
+            <div style="padding: 0; font-family: var(--sans);">
+              <div id="productCarousel" style="display: flex; overflow-x: auto; scroll-snap-type: x mandatory; width: calc(100% + 48px); height: 360px; background: #F8F8F8; margin-top: -20px; margin-left: -24px; margin-bottom: 24px; -webkit-overflow-scrolling: touch; scrollbar-width: none;">
+                ${slides}
+              </div>
+              <div id="carouselDots" style="display: flex; justify-content: center; gap: 6px; margin-top: -40px; margin-bottom: 32px; position: relative; z-index: 2;">${dots}</div>
+
+              <div>
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 24px;">
+                  <div>
+                    <div style="font-size: 32px; font-weight: 600; color: #222; margin-bottom: 8px;">${p.price.replace("积分", '<span style="font-size:16px; margin-left: 4px;">积分</span>')}</div>
+                    <div style="font-size: 16px; color: #555; font-weight: 500; line-height: 1.4;">${p.name}</div>
+                  </div>
+                </div>
+
+                <div style="margin-bottom: 32px;">
+                  <div style="font-size: 14px; color: #222; font-weight: 600; margin-bottom: 16px;">规格</div>
+                  <div class="spec-row">
+                    ${specs
+                      .map((s, i) => `<button type="button" class="spec-option${i === 0 ? " active" : ""}" data-spec="${s}">${s}</button>`)
+                      .join("")}
+                  </div>
+                </div>
+
+                <div style="margin-bottom: 40px; display: flex; justify-content: space-between; align-items: center;">
+                  <div style="font-size: 14px; color: #222; font-weight: 600;">数量</div>
+                  <div style="display: flex; align-items: center; gap: 10px;">
+                    <button id="qtyMinus" class="qty-btn" type="button">-</button>
+                    <div id="qtyValue" class="qty-value">1</div>
+                    <button id="qtyPlus" class="qty-btn" type="button">+</button>
+                  </div>
+                </div>
+
+                <div style="margin-bottom: 24px;">
+                  <div style="font-size: 16px; color: #222; font-weight: 600; margin-bottom: 16px; padding-bottom: 16px; border-bottom: 1px solid #EEE;">图文详情</div>
+                  <div style="font-size: 14px; color: #666; line-height: 1.8;">
+                    ${p.detail}
+                    <br><br>
+                    <div style="width: 100%; height: 200px; background: #F4F4F4; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #999; margin-bottom: 16px;">详情长图 1</div>
+                    <div style="width: 100%; height: 200px; background: #F4F4F4; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #999; margin-bottom: 16px;">详情长图 2</div>
+                    <div style="width: 100%; height: 200px; background: #F4F4F4; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #999; margin-bottom: 16px;">详情长图 3</div>
+                  </div>
                 </div>
               </div>
-              <div style="margin-top:10px;font-family:var(--mono);color:rgba(15,23,42,.78);font-size:13px">${p.price}</div>
-              <div class="hint">${p.detail}</div>
-              <div style="display: flex; justify-content: flex-end; margin-top: 24px;">
-                <button id="buyBtn" class="btn-primary" style="margin-top: 0; padding: 12px 32px; border-radius: 999px;">立即下单</button>
-              </div>
+            </div>
+
+            <div style="position: sticky; bottom: 0; left: 0; right: 0; display: flex; background: #FFF; border-top: 1px solid #EEE; margin: 0 -24px; padding-bottom: env(safe-area-inset-bottom); z-index: 10;">
+              <button class="close" style="flex: 1; height: 64px; background: #FFF; border: none; font-size: 16px; font-weight: 500; color: #555; cursor: pointer; border-radius: 0;" onclick="closeModal()">取消</button>
+              <button id="buyBtn" style="flex: 2; height: 64px; background: #222; border: none; font-size: 16px; font-weight: 600; color: #FFF; cursor: pointer; border-radius: 0;">立即兑换</button>
             </div>
           `
         );
+
+        const carousel = document.getElementById("productCarousel");
+        const dotsWrap = document.getElementById("carouselDots");
+        const updateDots = (index) => {
+          if (!dotsWrap) return;
+          Array.from(dotsWrap.querySelectorAll("[data-dot]")).forEach((d) => {
+            const i = Number(d.getAttribute("data-dot"));
+            d.style.width = i === index ? "12px" : "4px";
+            d.style.background = i === index ? "#222" : "#CCC";
+          });
+        };
+        if (carousel) {
+          carousel.addEventListener("scroll", () => {
+            const idx = Math.round(carousel.scrollLeft / carousel.clientWidth);
+            updateDots(Math.max(0, Math.min(imgs.length - 1, idx)));
+          });
+        }
+
+        const qtyMinus = document.getElementById("qtyMinus");
+        const qtyPlus = document.getElementById("qtyPlus");
+        const qtyValue = document.getElementById("qtyValue");
+        const renderQty = () => {
+          if (qtyValue) qtyValue.textContent = String(qty);
+          if (qtyMinus) qtyMinus.disabled = qty <= 1;
+        };
+        renderQty();
+        qtyMinus?.addEventListener("click", () => {
+          qty = Math.max(1, qty - 1);
+          renderQty();
+        });
+        qtyPlus?.addEventListener("click", () => {
+          qty = Math.min(99, qty + 1);
+          renderQty();
+        });
+
+        Array.from(document.querySelectorAll(".spec-option")).forEach((el) => {
+          el.addEventListener("click", () => {
+            const v = el.getAttribute("data-spec") || specs[0];
+            selectedSpec = v;
+            Array.from(document.querySelectorAll(".spec-option")).forEach((x) => x.classList.toggle("active", x === el));
+          });
+        });
+
         document.getElementById("buyBtn")?.addEventListener("click", () => {
+          const m = String(p.price).match(/([\d,]+)\s*积分/);
+          const pointsCost = m ? parseInt(m[1].replace(/,/g, ""), 10) : 0;
+          const totalPoints = pointsCost * qty;
           closeModal();
-          setActiveScreen("me");
+          setTimeout(() => {
+            openModal(
+              "短信验证",
+              `
+                <div style="padding: 20px 24px; font-family: var(--sans); text-align: center;">
+                  <div style="font-size: 15px; color: #555; margin-bottom: 24px;">验证码已发送至您绑定的手机号 138****8888</div>
+                  <div id="otpFields" class="otp-wrap">
+                    <input class="otp-input" inputmode="numeric" pattern="\d*" maxlength="1" />
+                    <input class="otp-input" inputmode="numeric" pattern="\d*" maxlength="1" />
+                    <input class="otp-input" inputmode="numeric" pattern="\d*" maxlength="1" />
+                    <input class="otp-input" inputmode="numeric" pattern="\d*" maxlength="1" />
+                  </div>
+                  <button id="verifyBtn" style="width: 100%; height: 50px; background: #222; border: none; font-size: 16px; font-weight: 600; color: #FFF; cursor: pointer; border-radius: 8px;">确认兑换</button>
+                  <div style="margin-top: 12px; font-size: 12px; color: #999;">兑换：${p.name} · ${selectedSpec} · x${qty}</div>
+                </div>
+              `
+            );
+
+            const otpInputs = Array.from(document.querySelectorAll("#otpFields input"));
+            otpInputs[0]?.focus();
+            otpInputs.forEach((inp, i) => {
+              inp.addEventListener("input", () => {
+                inp.value = String(inp.value || "").replace(/\D/g, "").slice(-1);
+                if (inp.value && otpInputs[i + 1]) otpInputs[i + 1].focus();
+              });
+              inp.addEventListener("keydown", (e) => {
+                if (e.key === "Backspace" && !inp.value && otpInputs[i - 1]) otpInputs[i - 1].focus();
+              });
+            });
+
+            document.getElementById("verifyBtn")?.addEventListener("click", () => {
+              closeModal();
+
+              const now = new Date();
+              const hh = String(now.getHours()).padStart(2, "0");
+              const mm = String(now.getMinutes()).padStart(2, "0");
+              const time = `今天 ${hh}:${mm}`;
+              data.records.unshift({
+                id: `r${Date.now()}`,
+                type: "exchange",
+                status: "success",
+                name: `联盟积分 → ${p.name}`,
+                meta: `-${totalPoints.toLocaleString("en-US")}`,
+                time,
+              });
+              data.orders.unshift({
+                id: `o${Date.now()}`,
+                name: `${p.name}（${selectedSpec}）x${qty}`,
+                status: "兑换成功",
+                meta: `${totalPoints.toLocaleString("en-US")} 分`,
+                time,
+              });
+              if (typeof renderRecords === "function") renderRecords();
+
+              setTimeout(() => {
+                openModal(
+                  "兑换成功",
+                  `
+                    <div style="padding: 30px 24px; font-family: var(--sans); text-align: center;">
+                      <div style="width: 64px; height: 64px; border-radius: 50%; background: #222; color: #FFF; display: flex; align-items: center; justify-content: center; font-size: 32px; margin: 0 auto 20px;">✓</div>
+                      <div style="font-size: 20px; font-weight: 600; color: #222; margin-bottom: 12px;">兑换成功</div>
+                      <div style="font-size: 14px; color: #666; margin-bottom: 32px;">${p.name} · ${selectedSpec} · x${qty}</div>
+                      <button id="viewOrderBtn" style="width: 100%; height: 50px; background: #222; border: none; font-size: 16px; font-weight: 600; color: #FFF; cursor: pointer; border-radius: 8px;">查看订单</button>
+                    </div>
+                  `
+                );
+                document.getElementById("viewOrderBtn")?.addEventListener("click", () => {
+                  closeModal();
+                  setActiveScreen("records");
+                });
+              }, 300);
+            });
+          }, 240);
         });
       }
 
@@ -1183,8 +1373,13 @@
 
         els.btnRefreshBalance.addEventListener("click", () => {
           els.btnRefreshBalance.textContent = "刷新中";
+          els.btnRefreshBalance.disabled = true;
           setTimeout(() => {
+            const delta = Math.floor(Math.random() * 401) - 200;
+            state.points = Math.max(0, state.points + delta);
+            renderBalance();
             els.btnRefreshBalance.textContent = "刷新";
+            els.btnRefreshBalance.disabled = false;
           }, 500);
         });
 
@@ -1218,7 +1413,7 @@
         renderProducts();
         
         renderRecords();
-        applyFx(state.fxCurrency);
+        renderBalance();
         initEvents();
       }
 
