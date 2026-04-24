@@ -1,0 +1,2546 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>积分联盟计划 · 全新奢华版</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700;900&display=swap" rel="stylesheet" />
+
+  <!-- Aceternity-inspired Icon Font (Phosphor Icons) -->
+  <script src="https://unpkg.com/@phosphor-icons/web@2.1.1/src/index.js"></script>
+
+  <style>
+    /* ═══════════════════════════════════════════════
+       DESIGN SYSTEM — ACETERNITY × LIQUID GLASS DARK
+       ═══════════════════════════════════════════════ */
+
+    :root {
+      /* Background layers */
+      --bg-void:     #020208;
+      --bg-deep:     #050614;
+      --bg-base:     #0A0D1F;
+      --bg-elevated: #0F1330;
+      --bg-surface:   #141930;
+
+      /* Aurora / Glow */
+      --aurora-1: #4F46E5;
+      --aurora-2: #06B6D4;
+      --aurora-3: #8B5CF6;
+      --aurora-4: #F59E0B;
+      --aurora-glow: rgba(79, 70, 229, 0.25);
+
+      /* Glass */
+      --glass-bg: rgba(255, 255, 255, 0.04);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --glass-border-active: rgba(255, 255, 255, 0.16);
+      --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), 0 1px 0 rgba(255,255,255,0.05) inset;
+      --glass-blur: blur(24px) saturate(180%);
+
+      /* Text */
+      --text-primary: #F1F5F9;
+      --text-secondary: rgba(241, 245, 249, 0.65);
+      --text-muted: rgba(241, 245, 249, 0.35);
+      --text-inverse: #020208;
+
+      /* Accent */
+      --accent: var(--aurora-1);
+      --accent-glow: 0 0 24px rgba(79, 70, 229, 0.5);
+      --accent-cyan: var(--aurora-2);
+      --accent-purple: var(--aurora-3);
+      --accent-gold: var(--aurora-4);
+
+      /* Status */
+      --status-green: #10B981;
+      --status-amber: #F59E0B;
+      --status-red: #EF4444;
+
+      /* Layout */
+      --radius-xl: 28px;
+      --radius-lg: 20px;
+      --radius-md: 14px;
+      --radius-sm: 10px;
+      --radius-pill: 999px;
+
+      /* Animation */
+      --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+      --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+      --dur-fast: 150ms;
+      --dur-base: 250ms;
+      --dur-slow: 400ms;
+
+      /* Spacing */
+      --space-xs: 4px;
+      --space-sm: 8px;
+      --space-md: 16px;
+      --space-lg: 24px;
+      --space-xl: 32px;
+      --space-2xl: 48px;
+
+      /* Nav */
+      --nav-h: 80px;
+      --header-h: 60px;
+      --safe-bottom: env(safe-area-inset-bottom, 20px);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+    html, body {
+      height: 100%;
+      font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+      background: var(--bg-deep);
+      color: var(--text-primary);
+      overflow-x: hidden;
+    }
+
+    /* ── Scrollbar ── */
+    ::-webkit-scrollbar { width: 0; height: 0; }
+
+    /* ── APP WRAPPER ── */
+    .app {
+      min-height: 100vh;
+      max-width: 430px;
+      margin: 0 auto;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* ═══════════════════════════════════════════════
+       AURORA BACKGROUND
+       ═══════════════════════════════════════════════ */
+
+    .aurora-bg {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .aurora-blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.35;
+      animation: blobFloat 12s ease-in-out infinite;
+    }
+
+    .aurora-blob-1 {
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(79, 70, 229, 0.8) 0%, transparent 70%);
+      top: -100px; left: -100px;
+      animation-delay: 0s;
+    }
+
+    .aurora-blob-2 {
+      width: 350px; height: 350px;
+      background: radial-gradient(circle, rgba(6, 182, 212, 0.7) 0%, transparent 70%);
+      top: 30%; right: -120px;
+      animation-delay: -4s;
+    }
+
+    .aurora-blob-3 {
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(139, 92, 246, 0.6) 0%, transparent 70%);
+      bottom: 10%; left: 20%;
+      animation-delay: -8s;
+    }
+
+    .aurora-blob-4 {
+      width: 200px; height: 200px;
+      background: radial-gradient(circle, rgba(245, 158, 11, 0.4) 0%, transparent 70%);
+      top: 50%; left: 50%;
+      animation-delay: -2s;
+      opacity: 0.2;
+    }
+
+    @keyframes blobFloat {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      25%       { transform: translate(30px, -40px) scale(1.08); }
+      50%       { transform: translate(-20px, 20px) scale(0.95); }
+      75%       { transform: translate(40px, 30px) scale(1.05); }
+    }
+
+    /* Scanlines overlay */
+    .scanlines {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0, 0, 0, 0.03) 2px,
+        rgba(0, 0, 0, 0.03) 4px
+      );
+    }
+
+    /* Grid pattern */
+    .grid-pattern {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      opacity: 0.03;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+
+    /* ═══════════════════════════════════════════════
+       HEADER
+       ═══════════════════════════════════════════════ */
+
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      padding-top: env(safe-area-inset-top, 0);
+      background: rgba(5, 6, 20, 0.7);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      border-bottom: 1px solid var(--glass-border);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px var(--space-lg);
+      height: var(--header-h);
+    }
+
+    .header-logo {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .header-logo-main {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      background: linear-gradient(135deg, var(--aurora-1), var(--aurora-2), var(--aurora-3));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .header-logo-sub {
+      font-size: 10px;
+      color: var(--text-muted);
+      font-weight: 400;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    /* Glass Icon Button */
+    .glass-btn {
+      width: 40px; height: 40px;
+      border-radius: var(--radius-md);
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all var(--dur-base) var(--ease-out-expo);
+      color: var(--text-secondary);
+      font-size: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .glass-btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.1), transparent);
+      opacity: 0;
+      transition: opacity var(--dur-fast);
+    }
+
+    .glass-btn:hover::before { opacity: 1; }
+    .glass-btn:hover {
+      border-color: var(--glass-border-active);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 16px rgba(79, 70, 229, 0.2);
+    }
+    .glass-btn:active { transform: scale(0.95); }
+
+    /* ═══════════════════════════════════════════════
+       SCREENS
+       ═══════════════════════════════════════════════ */
+
+    .screens-wrap {
+      position: relative;
+      z-index: 10;
+      padding-bottom: calc(var(--nav-h) + var(--safe-bottom) + 20px);
+    }
+
+    .screen {
+      display: none;
+      padding: var(--space-lg);
+      padding-top: var(--space-md);
+      min-height: calc(100vh - var(--nav-h) - var(--safe-bottom));
+      animation: screenIn var(--dur-slow) var(--ease-out-expo);
+    }
+
+    .screen.active { display: block; }
+
+    @keyframes screenIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ═══════════════════════════════════════════════
+       GLASS CARD BASE
+       ═══════════════════════════════════════════════ */
+
+    .glass-card {
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--glass-shadow);
+      transition: all var(--dur-base) var(--ease-out-expo);
+    }
+
+    .glass-card:hover {
+      border-color: var(--glass-border-active);
+    }
+
+    /* ═══════════════════════════════════════════════
+       HOME SCREEN — BALANCE HERO
+       ═══════════════════════════════════════════════ */
+
+    .balance-hero {
+      padding: var(--space-xl);
+      margin-bottom: var(--space-lg);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .balance-hero::before {
+      content: '';
+      position: absolute;
+      top: -50%; right: -30%;
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(79, 70, 229, 0.3), transparent 65%);
+      pointer-events: none;
+    }
+
+    .balance-hero::after {
+      content: '';
+      position: absolute;
+      bottom: -30%; left: -20%;
+      width: 200px; height: 200px;
+      background: radial-gradient(circle, rgba(6, 182, 212, 0.2), transparent 65%);
+      pointer-events: none;
+    }
+
+    .balance-label {
+      font-size: 13px;
+      color: var(--text-muted);
+      font-weight: 500;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: var(--space-xs);
+      position: relative;
+      z-index: 2;
+    }
+
+    .balance-amount {
+      font-size: 52px;
+      font-weight: 900;
+      letter-spacing: -2px;
+      line-height: 1;
+      margin-bottom: var(--space-xs);
+      position: relative;
+      z-index: 2;
+      background: linear-gradient(135deg, #fff 20%, rgba(255,255,255,0.6) 80%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .balance-amount span {
+      font-size: 24px;
+      font-weight: 500;
+      letter-spacing: 0;
+      opacity: 0.6;
+    }
+
+    .balance-cny {
+      font-size: 15px;
+      color: var(--accent-cyan);
+      font-weight: 600;
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .balance-cny::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--accent-cyan);
+      box-shadow: 0 0 8px var(--accent-cyan);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.5; transform: scale(0.8); }
+    }
+
+    /* ── Animated line ── */
+    .balance-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+      margin: var(--space-md) 0;
+      position: relative;
+      z-index: 2;
+    }
+
+    .balance-sub {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      z-index: 2;
+    }
+
+    .balance-sub-item {
+      text-align: center;
+    }
+
+    .balance-sub-val {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .balance-sub-label {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 2px;
+      letter-spacing: 0.5px;
+    }
+
+    /* ═══════════════════════════════════════════════
+       QUICK ACTION GRID
+       ═══════════════════════════════════════════════ */
+
+    .quick-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-sm);
+      margin-bottom: var(--space-xl);
+    }
+
+    .quick-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      padding: var(--space-md) var(--space-xs);
+      border-radius: var(--radius-lg);
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      cursor: pointer;
+      transition: all var(--dur-base) var(--ease-out-expo);
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .quick-item:hover {
+      border-color: var(--glass-border-active);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(79, 70, 229, 0.2);
+    }
+
+    .quick-item:active { transform: scale(0.96); }
+
+    .quick-icon {
+      width: 44px; height: 44px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      position: relative;
+    }
+
+    .quick-icon::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 14px;
+      background: currentColor;
+      opacity: 0.12;
+      filter: blur(8px);
+    }
+
+    .quick-icon.blue { color: var(--accent); }
+    .quick-icon.cyan { color: var(--accent-cyan); }
+    .quick-icon.purple { color: var(--accent-purple); }
+    .quick-icon.gold { color: var(--accent-gold); }
+
+    .quick-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      text-align: center;
+    }
+
+    /* ═══════════════════════════════════════════════
+       SECTION HEADER
+       ═══════════════════════════════════════════════ */
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: var(--space-md);
+    }
+
+    .section-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .section-title::before {
+      content: '';
+      width: 3px;
+      height: 18px;
+      border-radius: 2px;
+      background: linear-gradient(180deg, var(--aurora-1), var(--aurora-2));
+    }
+
+    .section-more {
+      font-size: 13px;
+      color: var(--text-muted);
+      font-weight: 500;
+      cursor: pointer;
+      transition: color var(--dur-fast);
+    }
+    .section-more:hover { color: var(--accent-cyan); }
+
+    /* ═══════════════════════════════════════════════
+       PRODUCT GRID
+       ═══════════════════════════════════════════════ */
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-md);
+      margin-bottom: var(--space-xl);
+    }
+
+    .product-card {
+      padding: var(--space-md);
+      border-radius: var(--radius-xl);
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      cursor: pointer;
+      transition: all var(--dur-base) var(--ease-out-expo);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .product-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    }
+
+    .product-card:hover {
+      border-color: var(--glass-border-active);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(79, 70, 229, 0.15);
+    }
+
+    .product-card:active { transform: scale(0.97); }
+
+    .product-thumb {
+      width: 100%;
+      aspect-ratio: 1;
+      border-radius: var(--radius-lg);
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--glass-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 48px;
+      margin-bottom: var(--space-sm);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .product-thumb::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(79,70,229,0.05), rgba(6,182,212,0.05));
+    }
+
+    .product-tag {
+      position: absolute;
+      top: 8px; left: 8px;
+      padding: 3px 8px;
+      border-radius: var(--radius-pill);
+      font-size: 10px;
+      font-weight: 700;
+      backdrop-filter: blur(8px);
+      z-index: 2;
+    }
+
+    .product-tag.hot {
+      background: rgba(245, 158, 11, 0.25);
+      color: var(--accent-gold);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+    }
+
+    .product-tag.mix {
+      background: rgba(16, 185, 129, 0.2);
+      color: var(--status-green);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+
+    .product-tag.pure {
+      background: rgba(79, 70, 229, 0.2);
+      color: var(--accent);
+      border: 1px solid rgba(79, 70, 229, 0.3);
+    }
+
+    .product-name {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-primary);
+      line-height: 1.4;
+      margin-bottom: 6px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      min-height: 38px;
+    }
+
+    .product-price {
+      font-size: 16px;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--accent-cyan), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ═══════════════════════════════════════════════
+       CHANNEL LIST
+       ═══════════════════════════════════════════════ */
+
+    .channel-circle-wrap {
+      text-align: center;
+      padding: var(--space-xl) 0 var(--space-lg);
+    }
+
+    .channel-ring {
+      width: 180px; height: 180px;
+      border-radius: 50%;
+      margin: 0 auto var(--space-md);
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .channel-ring-outer {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      border: 3px solid rgba(79, 70, 229, 0.3);
+      animation: ringPulse 3s ease-in-out infinite;
+    }
+
+    .channel-ring-inner {
+      position: absolute;
+      inset: 8px;
+      border-radius: 50%;
+      border: 2px solid rgba(6, 182, 212, 0.3);
+      animation: ringPulse 3s ease-in-out infinite 1.5s;
+    }
+
+    .channel-ring-core {
+      width: 100px; height: 100px;
+      border-radius: 50%;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: var(--glass-blur);
+      position: relative;
+      z-index: 2;
+    }
+
+    .channel-ring-val {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--text-primary);
+      letter-spacing: -1px;
+    }
+
+    .channel-ring-label {
+      font-size: 11px;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    @keyframes ringPulse {
+      0%, 100% { opacity: 0.5; transform: scale(1); }
+      50%       { opacity: 1; transform: scale(1.03); }
+    }
+
+    /* Segmented Control */
+    .seg-control {
+      display: flex;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-md);
+      padding: 3px;
+      margin-bottom: var(--space-md);
+    }
+
+    .seg-btn {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      background: transparent;
+      border-radius: calc(var(--radius-md) - 2px);
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all var(--dur-base) var(--ease-out-expo);
+    }
+
+    .seg-btn.active {
+      background: linear-gradient(135deg, var(--aurora-1), var(--aurora-3));
+      color: #fff;
+      box-shadow: 0 4px 16px rgba(79, 70, 229, 0.4);
+    }
+
+    /* Pill Row */
+    .pill-row {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+      margin-bottom: var(--space-md);
+      scrollbar-width: none;
+    }
+    .pill-row::-webkit-scrollbar { display: none; }
+
+    .pill {
+      padding: 8px 18px;
+      border-radius: var(--radius-pill);
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all var(--dur-base) var(--ease-out-expo);
+      flex-shrink: 0;
+    }
+
+    .pill.active {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: rgba(79, 70, 229, 0.15);
+      box-shadow: 0 0 12px rgba(79, 70, 229, 0.3);
+    }
+
+    .pill:hover:not(.active) {
+      border-color: var(--glass-border-active);
+      color: var(--text-secondary);
+    }
+
+    /* Channel Row */
+    .channel-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .channel-row {
+      display: flex;
+      align-items: center;
+      padding: var(--space-md);
+      border-radius: var(--radius-lg);
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      cursor: pointer;
+      transition: all var(--dur-base) var(--ease-out-expo);
+      gap: var(--space-md);
+    }
+
+    .channel-row:hover {
+      border-color: var(--glass-border-active);
+      transform: translateX(4px);
+    }
+
+    .channel-row:active { transform: scale(0.98); }
+
+    .channel-logo {
+      width: 48px; height: 48px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      font-weight: 800;
+      color: #fff;
+      flex-shrink: 0;
+      position: relative;
+    }
+
+    .channel-logo::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 14px;
+      filter: blur(8px);
+      opacity: 0.4;
+    }
+
+    .channel-logo.blue { background: linear-gradient(135deg, #3B82F6, #6366F1); }
+    .channel-logo.blue::after { background: #3B82F6; }
+    .channel-logo.cyan { background: linear-gradient(135deg, #06B6D4, #0891B2); }
+    .channel-logo.cyan::after { background: #06B6D4; }
+    .channel-logo.purple { background: linear-gradient(135deg, #8B5CF6, #7C3AED); }
+    .channel-logo.purple::after { background: #8B5CF6; }
+    .channel-logo.gold { background: linear-gradient(135deg, #F59E0B, #D97706); }
+    .channel-logo.gold::after { background: #F59E0B; }
+    .channel-logo.green { background: linear-gradient(135deg, #10B981, #059669); }
+    .channel-logo.green::after { background: #10B981; }
+
+    .channel-info { flex: 1; min-width: 0; }
+
+    .channel-name {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-primary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .channel-rate {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 3px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .channel-right {
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    .channel-status {
+      font-size: 12px;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: var(--radius-pill);
+    }
+
+    .channel-status.ok {
+      background: rgba(16, 185, 129, 0.15);
+      color: var(--status-green);
+      border: 1px solid rgba(16, 185, 129, 0.25);
+    }
+
+    .channel-status.pending {
+      background: rgba(245, 158, 11, 0.15);
+      color: var(--status-amber);
+      border: 1px solid rgba(245, 158, 11, 0.25);
+    }
+
+    .channel-status.soon {
+      background: rgba(255,255,255,0.05);
+      color: var(--text-muted);
+      border: 1px solid var(--glass-border);
+    }
+
+    .channel-arrow {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 3px;
+    }
+
+    /* ═══════════════════════════════════════════════
+       MALL SCREEN
+       ═══════════════════════════════════════════════ */
+
+    .mall-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: var(--space-md) 0;
+      margin-bottom: var(--space-md);
+    }
+
+    .mall-title {
+      font-size: 22px;
+      font-weight: 800;
+      background: linear-gradient(135deg, #fff, rgba(255,255,255,0.7));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .mall-search {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      padding: 14px var(--space-md);
+      border-radius: var(--radius-lg);
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      margin-bottom: var(--space-md);
+      transition: border-color var(--dur-base);
+    }
+
+    .mall-search:focus-within {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+    }
+
+    .mall-search input {
+      flex: 1;
+      border: none;
+      background: transparent;
+      outline: none;
+      font-size: 15px;
+      color: var(--text-primary);
+      font-family: inherit;
+    }
+
+    .mall-search input::placeholder { color: var(--text-muted); }
+
+    /* Hero Banner — Aceternity Style */
+    .hero-banner {
+      border-radius: var(--radius-xl);
+      height: 160px;
+      margin-bottom: var(--space-lg);
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .hero-banner-bg {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, #1e1b4b 0%, #312e81 30%, #4c1d95 60%, #6d28d9 100%);
+    }
+
+    .hero-banner::after {
+      content: '';
+      position: absolute;
+      inset: 1px;
+      border-radius: calc(var(--radius-xl) - 1px);
+      background: linear-gradient(135deg, rgba(255,255,255,0.15), transparent 50%);
+      pointer-events: none;
+    }
+
+    .hero-banner-content {
+      position: relative;
+      z-index: 2;
+      padding: var(--space-xl);
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .hero-banner-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      border-radius: var(--radius-pill);
+      background: rgba(245, 158, 11, 0.25);
+      border: 1px solid rgba(245, 158, 11, 0.4);
+      color: var(--accent-gold);
+      font-size: 11px;
+      font-weight: 700;
+      width: fit-content;
+      margin-bottom: var(--space-sm);
+    }
+
+    .hero-banner-title {
+      font-size: 22px;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.3;
+      margin-bottom: 4px;
+    }
+
+    .hero-banner-sub {
+      font-size: 13px;
+      color: rgba(255,255,255,0.6);
+    }
+
+    /* Category Grid */
+    .cat-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: var(--space-sm);
+      margin-bottom: var(--space-lg);
+    }
+
+    .cat-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      transition: transform var(--dur-base) var(--ease-spring);
+    }
+
+    .cat-item:hover { transform: translateY(-3px); }
+    .cat-item:active { transform: scale(0.95); }
+
+    .cat-icon {
+      width: 52px; height: 52px;
+      border-radius: 16px;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      transition: all var(--dur-base);
+    }
+
+    .cat-item:hover .cat-icon {
+      border-color: var(--accent);
+      box-shadow: 0 4px 20px rgba(79, 70, 229, 0.3);
+    }
+
+    .cat-label {
+      font-size: 11px;
+      color: var(--text-secondary);
+      font-weight: 500;
+      text-align: center;
+    }
+
+    /* Mall Section */
+    .mall-section {
+      background: rgba(255,255,255,0.02);
+      border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+      border: 1px solid var(--glass-border);
+      border-bottom: none;
+      padding: var(--space-xl) var(--space-md);
+      margin: 0 calc(-1 * var(--space-lg));
+    }
+
+    /* ═══════════════════════════════════════════════
+       PROFILE / ME SCREEN
+       ═══════════════════════════════════════════════ */
+
+    .profile-header {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      padding: var(--space-xl);
+      margin-bottom: var(--space-md);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .profile-avatar {
+      width: 72px; height: 72px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--aurora-1), var(--aurora-3));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      font-weight: 800;
+      color: #fff;
+      flex-shrink: 0;
+      border: 2px solid rgba(255,255,255,0.15);
+      box-shadow: 0 0 24px rgba(79, 70, 229, 0.4);
+      position: relative;
+    }
+
+    .profile-avatar::after {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      border: 1px solid rgba(79, 70, 229, 0.3);
+      animation: ringPulse 3s ease-in-out infinite;
+    }
+
+    .profile-name {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .profile-phone {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 3px;
+    }
+
+    /* Member Card */
+    .member-card {
+      padding: var(--space-xl);
+      margin-bottom: var(--space-md);
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, rgba(79, 70, 229, 0.3), rgba(139, 92, 246, 0.2));
+      border: 1px solid rgba(139, 92, 246, 0.3);
+    }
+
+    .member-card::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 200px; height: 200px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(139, 92, 246, 0.3), transparent 60%);
+    }
+
+    .member-card::after {
+      content: '';
+      position: absolute;
+      bottom: -40px; left: -20px;
+      width: 150px; height: 150px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(79, 70, 229, 0.3), transparent 60%);
+    }
+
+    .member-level {
+      font-size: 12px;
+      color: rgba(255,255,255,0.6);
+      font-weight: 500;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      position: relative;
+      z-index: 2;
+    }
+
+    .member-title {
+      font-size: 28px;
+      font-weight: 800;
+      color: #fff;
+      margin: 6px 0 8px;
+      position: relative;
+      z-index: 2;
+      background: linear-gradient(135deg, #fff, rgba(245, 158, 11, 0.8));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .member-hint {
+      font-size: 13px;
+      color: rgba(255,255,255,0.5);
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Asset Grid */
+    .asset-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-sm);
+      margin-bottom: var(--space-lg);
+    }
+
+    .asset-item {
+      padding: var(--space-md) var(--space-xs);
+      border-radius: var(--radius-lg);
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      text-align: center;
+    }
+
+    .asset-val {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--text-primary);
+    }
+
+    .asset-label {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    /* Order Grid */
+    .order-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      text-align: center;
+    }
+
+    .order-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      transition: transform var(--dur-base) var(--ease-spring);
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .order-item:hover { transform: translateY(-2px); }
+    .order-icon {
+      font-size: 28px;
+    }
+    .order-label {
+      font-size: 12px;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    /* Service Grid */
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-sm);
+    }
+
+    .service-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      padding: var(--space-md) var(--space-xs);
+      border-radius: var(--radius-lg);
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      cursor: pointer;
+      transition: all var(--dur-base) var(--ease-out-expo);
+    }
+
+    .service-item:hover {
+      border-color: var(--glass-border-active);
+      transform: translateY(-2px);
+    }
+
+    .service-icon {
+      font-size: 28px;
+    }
+
+    .service-label {
+      font-size: 11px;
+      color: var(--text-secondary);
+      font-weight: 500;
+      text-align: center;
+    }
+
+    /* ═══════════════════════════════════════════════
+       MODAL
+       ═══════════════════════════════════════════════ */
+
+    .modal-mask {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      z-index: 80;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity var(--dur-base) var(--ease-smooth);
+    }
+
+    .modal-mask.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal {
+      position: fixed;
+      left: 0; right: 0;
+      bottom: 0;
+      z-index: 90;
+      border-radius: 32px 32px 0 0;
+      background: var(--bg-elevated);
+      border: 1px solid var(--glass-border);
+      border-bottom: none;
+      transform: translateY(100%);
+      transition: transform var(--dur-slow) var(--ease-out-expo);
+      max-height: calc(100vh - 80px);
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 -20px 60px rgba(0, 0, 0, 0.6);
+    }
+
+    .modal.open { transform: translateY(0); }
+
+    .modal-head {
+      padding: 20px 24px 12px;
+      flex-shrink: 0;
+    }
+
+    .modal-handle {
+      width: 44px; height: 4px;
+      border-radius: 2px;
+      background: rgba(255,255,255,0.15);
+      margin: 0 auto 16px;
+    }
+
+    .modal-title-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .modal-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .modal-close {
+      padding: 8px 14px;
+      border-radius: var(--radius-md);
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all var(--dur-fast);
+    }
+
+    .modal-close:hover {
+      border-color: var(--glass-border-active);
+      color: var(--text-primary);
+    }
+
+    .modal-body {
+      padding: 0 24px 40px;
+      overflow-y: auto;
+      flex: 1;
+    }
+
+    /* Form Elements */
+    .form-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .form-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px;
+      border-radius: var(--radius-lg);
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+    }
+
+    .form-row label {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+
+    .form-row input,
+    .form-row select {
+      border: none;
+      background: transparent;
+      outline: none;
+      font-size: 15px;
+      color: var(--accent-cyan);
+      font-weight: 700;
+      text-align: right;
+      width: 55%;
+      font-family: inherit;
+    }
+
+    .form-row select {
+      -webkit-appearance: none;
+      appearance: none;
+      color: var(--text-primary);
+    }
+
+    /* Primary Button */
+    .btn-primary {
+      width: 100%;
+      padding: 16px;
+      border: none;
+      border-radius: var(--radius-lg);
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all var(--dur-base) var(--ease-out-expo);
+      background: linear-gradient(135deg, var(--aurora-1), var(--aurora-3));
+      color: #fff;
+      box-shadow: 0 8px 24px rgba(79, 70, 229, 0.4);
+      position: relative;
+      overflow: hidden;
+      font-family: inherit;
+    }
+
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.2), transparent);
+      opacity: 0;
+      transition: opacity var(--dur-fast);
+    }
+
+    .btn-primary:hover::before { opacity: 1; }
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 12px 32px rgba(79, 70, 229, 0.5);
+    }
+    .btn-primary:active { transform: scale(0.98); }
+
+    /* ═══════════════════════════════════════════════
+       RECORDS SCREEN
+       ═══════════════════════════════════════════════ */
+
+    .record-row {
+      display: flex;
+      align-items: center;
+      padding: var(--space-md);
+      border-radius: var(--radius-lg);
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      gap: var(--space-md);
+      margin-bottom: 10px;
+      transition: all var(--dur-base) var(--ease-out-expo);
+    }
+
+    .record-row:hover {
+      border-color: var(--glass-border-active);
+    }
+
+    .record-logo {
+      width: 44px; height: 44px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 800;
+      color: #fff;
+      flex-shrink: 0;
+    }
+
+    .record-logo.success { background: linear-gradient(135deg, #10B981, #059669); }
+    .record-logo.process { background: linear-gradient(135deg, #F59E0B, #D97706); }
+    .record-logo.earn { background: linear-gradient(135deg, var(--aurora-1), var(--aurora-3)); }
+
+    .record-info { flex: 1; min-width: 0; }
+
+    .record-name {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-primary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .record-time {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .record-right { text-align: right; flex-shrink: 0; }
+
+    .record-status {
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .record-status.success { color: var(--status-green); }
+    .record-status.process { color: var(--status-amber); }
+
+    .record-meta {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-top: 2px;
+    }
+
+    /* ═══════════════════════════════════════════════
+       BOTTOM NAVIGATION
+       ═══════════════════════════════════════════════ */
+
+    .nav {
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: 430px;
+      height: calc(var(--nav-h) + var(--safe-bottom));
+      padding-bottom: var(--safe-bottom);
+      background: rgba(5, 6, 20, 0.85);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      border-top: 1px solid var(--glass-border);
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      z-index: 60;
+    }
+
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      cursor: pointer;
+      color: var(--text-muted);
+      font-size: 11px;
+      font-weight: 600;
+      transition: all var(--dur-base) var(--ease-out-expo);
+      text-decoration: none;
+      position: relative;
+    }
+
+    .nav-item i {
+      font-size: 24px;
+      transition: transform var(--dur-base) var(--ease-spring);
+    }
+
+    .nav-item.active {
+      color: var(--accent);
+    }
+
+    .nav-item.active::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 50%; transform: translateX(-50%);
+      width: 24px; height: 3px;
+      border-radius: 0 0 3px 3px;
+      background: linear-gradient(90deg, var(--aurora-1), var(--aurora-3));
+      box-shadow: 0 0 12px var(--aurora-glow);
+    }
+
+    .nav-item.active i {
+      transform: translateY(-2px);
+    }
+
+    /* ═══════════════════════════════════════════════
+       MISC UTILITIES
+       ═══════════════════════════════════════════════ */
+
+    .text-gradient {
+      background: linear-gradient(135deg, var(--aurora-1), var(--aurora-2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .text-cyan {
+      color: var(--accent-cyan);
+    }
+
+    .text-muted {
+      color: var(--text-muted);
+    }
+
+    .divider {
+      height: 1px;
+      background: var(--glass-border);
+      margin: var(--space-md) 0;
+    }
+
+    /* Loading shimmer */
+    @keyframes shimmer {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+
+    .skeleton {
+      background: linear-gradient(90deg,
+        rgba(255,255,255,0.04) 25%,
+        rgba(255,255,255,0.08) 50%,
+        rgba(255,255,255,0.04) 75%
+      );
+      background-size: 200% 100%;
+      animation: shimmer 1.5s ease-in-out infinite;
+      border-radius: var(--radius-md);
+    }
+
+    /* Glow border animation */
+    @keyframes glowBorder {
+      0%, 100% { border-color: rgba(79, 70, 229, 0.3); }
+      50%       { border-color: rgba(6, 182, 212, 0.5); }
+    }
+
+    .glow-border {
+      animation: glowBorder 3s ease-in-out infinite;
+    }
+
+    /* Focus mode */
+    .focus-glow {
+      box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.4), 0 0 20px rgba(79, 70, 229, 0.2);
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════
+     AURORA BACKGROUND
+     ═══════════════════════════════════════════════ -->
+<div class="aurora-bg" aria-hidden="true">
+  <div class="aurora-blob aurora-blob-1"></div>
+  <div class="aurora-blob aurora-blob-2"></div>
+  <div class="aurora-blob aurora-blob-3"></div>
+  <div class="aurora-blob aurora-blob-4"></div>
+</div>
+<div class="scanlines" aria-hidden="true"></div>
+<div class="grid-pattern" aria-hidden="true"></div>
+
+<!-- ═══════════════════════════════════════════════
+     APP WRAPPER
+     ═══════════════════════════════════════════════ -->
+<div class="app">
+
+  <!-- HEADER -->
+  <header class="header" id="mainHeader">
+    <div class="header-inner">
+      <div class="header-logo">
+        <div class="header-logo-main">积分联盟计划</div>
+        <div class="header-logo-sub">Alliance Points</div>
+      </div>
+      <div class="header-actions">
+        <button class="glass-btn" id="btnNotify" title="通知">
+          <i class="ph ph-bell"></i>
+        </button>
+        <button class="glass-btn" id="btnQuickExchange" title="快捷兑换">
+          <i class="ph ph-lightning"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- SCREENS -->
+  <div class="screens-wrap">
+
+    <!-- ╔═══════════════════════════════════╗ -->
+    <!-- ║   HOME SCREEN                      ║ -->
+    <!-- ╚═══════════════════════════════════╝ -->
+    <section id="screen-home" class="screen active">
+
+      <!-- Balance Hero Card -->
+      <div class="glass-card balance-hero glow-border">
+        <div class="balance-label">平台总积分</div>
+        <div class="balance-amount" id="balanceValue">12,860<span> 积分</span></div>
+        <div class="balance-cny" id="rmbValue">≈ ¥128.60 元</div>
+      </div>
+
+      <!-- Quick Action Grid -->
+      <div class="quick-grid">
+        <div class="quick-item" data-goto="channels">
+          <div class="quick-icon blue"><i class="ph-fill ph-arrows-split"></i></div>
+          <div class="quick-label">积分汇聚</div>
+        </div>
+        <div class="quick-item" data-goto="mall">
+          <div class="quick-icon cyan"><i class="ph-fill ph-storefront"></i></div>
+          <div class="quick-label">积分商城</div>
+        </div>
+        <div class="quick-item" onclick="window.open('https://m.changyoyo.com/activity/#/standard/index?appId=Changyoyo_Life_Central&activityCode=2024042601&channel_source=02000000','_blank')">
+          <div class="quick-icon gold"><i class="ph-fill ph-buildings"></i></div>
+          <div class="quick-label">企业付</div>
+        </div>
+        <div class="quick-item" onclick="window.open('https://m.changyoyo.com/oil/index.html?appId=Changyoyo_Life_Central_Gasoline&from=undefined','_blank')">
+          <div class="quick-icon purple"><i class="ph-fill ph-gas-pump"></i></div>
+          <div class="quick-label">积分加油</div>
+        </div>
+      </div>
+
+      <!-- Virtual Benefits -->
+      <div class="section-header">
+        <div class="section-title">虚拟权益</div>
+        <div class="section-more">更多 <i class="ph ph-caret-right" style="font-size:12px;"></i></div>
+      </div>
+      <div class="product-grid" id="virtualGrid"></div>
+
+      <!-- Physical Benefits -->
+      <div class="section-header">
+        <div class="section-title">实物优选</div>
+        <div class="section-more">全部 <i class="ph ph-caret-right" style="font-size:12px;"></i></div>
+      </div>
+      <div class="product-grid" id="physicalGrid"></div>
+
+      <!-- Mini Games -->
+      <div class="section-header">
+        <div class="section-title">互动任务</div>
+        <div class="section-more">赚积分 <i class="ph ph-caret-right" style="font-size:12px;"></i></div>
+      </div>
+      <div class="channel-list" id="miniGamesList">
+        <div class="channel-row" onclick="location.href='https://m.changyoyo.com/orchard/index.html'">
+          <div class="channel-logo green">果</div>
+          <div class="channel-info">
+            <div class="channel-name">畅由果园</div>
+            <div class="channel-rate">浇水种树，收获免费水果与积分</div>
+          </div>
+          <div class="channel-right">
+            <div class="channel-status ok">去种树</div>
+          </div>
+        </div>
+        <div class="channel-row">
+          <div class="channel-logo blue">签</div>
+          <div class="channel-info">
+            <div class="channel-name">每日签到</div>
+            <div class="channel-rate">连续签到赢取最高 1,000 积分</div>
+          </div>
+          <div class="channel-right">
+            <div class="channel-status pending">去签到</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ╔═══════════════════════════════════╗ -->
+    <!-- ║   CHANNELS SCREEN                 ║ -->
+    <!-- ╚═══════════════════════════════════╝ -->
+    <section id="screen-channels" class="screen">
+
+      <!-- Balance Circle + Side Tools -->
+      <div style="position:relative; padding:24px 0 32px; text-align:center;">
+        
+        <div style="position:absolute; right:0; top:24px; display:flex; flex-direction:column; gap:12px; align-items:flex-end;">
+          <div style="font-size:13px; font-weight:600; color:var(--text-secondary); cursor:pointer; padding:6px 0;" onclick="window.open('https://m.changyoyo.com/jfmall/index.html#/hjfStrategy','_blank')">
+            积分攻略
+          </div>
+          <div data-goto="records" style="font-size:13px; font-weight:600; color:var(--text-secondary); cursor:pointer; padding:6px 0;">
+            积分明细
+          </div>
+        </div>
+
+        <div class="channel-ring" style="margin:0 auto;">
+          <div class="channel-ring-outer"></div>
+          <div class="channel-ring-inner"></div>
+          <div class="channel-ring-core">
+            <div class="channel-ring-val" id="channelsPointsValue">12,860</div>
+            <div class="channel-ring-label">联盟积分</div>
+          </div>
+        </div>
+        <div class="text-cyan" style="font-size:14px; font-weight:600; margin-top:16px;" id="channelsRmbValue">约合 ¥128.60 元</div>
+      </div>
+
+      <!-- Segmented Control -->
+      <div class="seg-control">
+        <button class="seg-btn active" id="segIn" data-mode="in">兑入</button>
+        <button class="seg-btn" id="segOut" data-mode="out">兑出</button>
+      </div>
+
+      <!-- Filter Pills -->
+      <div class="pill-row" id="channelFilters">
+        <div class="pill active" data-filter="all">全部</div>
+        <div class="pill" data-filter="bank">银行</div>
+        <div class="pill" data-filter="air">航司</div>
+        <div class="pill" data-filter="life">生活</div>
+        <div class="pill" data-filter="soon">即将支持</div>
+      </div>
+
+      <!-- Channel List -->
+      <div class="channel-list" id="channelList"></div>
+    </section>
+
+    <!-- ╔═══════════════════════════════════╗ -->
+    <!-- ║   MALL SCREEN                    ║ -->
+    <!-- ╚═══════════════════════════════════╝ -->
+    <section id="screen-mall" class="screen">
+
+      <!-- Topbar -->
+      <div class="mall-topbar">
+        <div class="mall-title">积分商城</div>
+        <button class="glass-btn" style="width:36px;height:36px;font-size:18px;" onclick="window.open('https://m.changyoyo.com/jfmall/index.htm#/cymall','_blank')">
+          <i class="ph ph-dots-three"></i>
+        </button>
+      </div>
+
+      <!-- Search -->
+      <div class="mall-search">
+        <i class="ph ph-magnifying-glass" style="color:var(--text-muted);font-size:18px;"></i>
+        <input type="search" placeholder="搜索商品、品牌或分类..." />
+      </div>
+
+      <!-- Hero Banner -->
+      <div class="hero-banner" onclick="location.href='https://m.changyoyo.com/sale/'">
+        <div class="hero-banner-bg"></div>
+        <div class="hero-banner-content">
+          <div class="hero-banner-tag">
+            <i class="ph-fill ph-fire" style="font-size:12px;"></i>
+            限时活动
+          </div>
+          <div class="hero-banner-title">新用户首兑 积分翻倍</div>
+          <div class="hero-banner-sub">最高可得 500 联盟积分奖励</div>
+        </div>
+      </div>
+
+      <!-- Category Grid -->
+      <div class="cat-grid">
+        <div class="cat-item">
+          <div class="cat-icon">📱</div>
+          <div class="cat-label">手机数码</div>
+        </div>
+        <div class="cat-item">
+          <div class="cat-icon">🧴</div>
+          <div class="cat-label">生活家居</div>
+        </div>
+        <div class="cat-item">
+          <div class="cat-icon">🎁</div>
+          <div class="cat-label">积分礼券</div>
+        </div>
+        <div class="cat-item">
+          <div class="cat-icon">🥤</div>
+          <div class="cat-label">美食饮品</div>
+        </div>
+        <div class="cat-item">
+          <div class="cat-icon">🧳</div>
+          <div class="cat-label">出行旅游</div>
+        </div>
+      </div>
+
+      <!-- Product Grid -->
+      <div class="mall-section">
+        <div class="section-header" style="margin: 0 0 16px 8px;">
+          <div class="section-title">品牌优选</div>
+          <div class="section-more">查看全部 <i class="ph ph-caret-right" style="font-size:12px;"></i></div>
+        </div>
+        <div class="product-grid" id="mallProductGrid"></div>
+      </div>
+    </section>
+
+    <!-- ╔═══════════════════════════════════╗ -->
+    <!-- ║   RECORDS SCREEN                  ║ -->
+    <!-- ╚═══════════════════════════════════╝ -->
+    <section id="screen-records" class="screen">
+      <div class="section-header">
+        <div class="section-title">积分明细</div>
+        <div class="section-more"><i class="ph ph-funnel" style="font-size:14px;margin-right:4px;"></i>筛选</div>
+      </div>
+
+      <!-- Filter Pills -->
+      <div class="pill-row" id="recordFilters">
+        <div class="pill active" data-filter="all">全部</div>
+        <div class="pill" data-filter="exchange">兑换</div>
+        <div class="pill" data-filter="earn">获取</div>
+        <div class="pill" data-filter="success">成功</div>
+        <div class="pill" data-filter="processing">处理中</div>
+      </div>
+
+      <div class="channel-list" id="recordList"></div>
+    </section>
+
+    <!-- ╔═══════════════════════════════════╗ -->
+    <!-- ║   ME / PROFILE SCREEN             ║ -->
+    <!-- ╚═══════════════════════════════════╝ -->
+    <section id="screen-me" class="screen">
+
+      <!-- Profile Header -->
+      <div class="glass-card profile-header">
+        <div class="profile-avatar">J</div>
+        <div>
+          <div class="profile-name">Joker</div>
+          <div class="profile-phone">185 **** 2430</div>
+        </div>
+        <button class="glass-btn" style="margin-left:auto;">
+          <i class="ph ph-gear"></i>
+        </button>
+      </div>
+
+      <!-- Member Card -->
+      <div class="member-card glass-card">
+        <div class="member-level">联盟会员 · 当前等级</div>
+        <div class="member-title">黄金会员</div>
+        <div class="member-hint">再累计 3,000 积分升级钻石，享额外 9 折兑</div>
+      </div>
+
+      <!-- Asset Grid -->
+      <div class="asset-grid">
+        <div class="asset-item">
+          <div class="asset-val">12,860</div>
+          <div class="asset-label">畅由积分</div>
+        </div>
+        <div class="asset-item">
+          <div class="asset-val">0</div>
+          <div class="asset-label">权益包</div>
+        </div>
+        <div class="asset-item">
+          <div class="asset-val">4</div>
+          <div class="asset-label">卡券</div>
+        </div>
+        <div class="asset-item">
+          <div class="asset-val">0</div>
+          <div class="asset-label">优惠券</div>
+        </div>
+      </div>
+
+      <!-- Orders -->
+      <div class="glass-card" style="padding:var(--space-lg);margin-bottom:var(--space-md);">
+        <div class="section-header" style="margin-bottom:var(--space-md);">
+          <div class="section-title">我的订单</div>
+          <div class="section-more">全部 <i class="ph ph-caret-right" style="font-size:12px;"></i></div>
+        </div>
+        <div class="order-grid">
+          <div class="order-item"><div class="order-icon">💳</div><div class="order-label">待付款</div></div>
+          <div class="order-item"><div class="order-icon">📦</div><div class="order-label">待发货</div></div>
+          <div class="order-item"><div class="order-icon">🚚</div><div class="order-label">待收货</div></div>
+          <div class="order-item"><div class="order-icon">↩️</div><div class="order-label">售后</div></div>
+          <div class="order-item"><div class="order-icon">📋</div><div class="order-label">全部</div></div>
+        </div>
+      </div>
+
+      <!-- My Coupons -->
+      <div class="glass-card" style="padding:var(--space-lg);margin-bottom:var(--space-md);">
+        <div class="section-header" style="margin-bottom:var(--space-md);">
+          <div class="section-title">我的卡券</div>
+          <div class="section-more">全部 <i class="ph ph-caret-right" style="font-size:12px;"></i></div>
+        </div>
+        <div class="record-row" style="margin-bottom:var(--space-sm);">
+          <div class="channel-logo blue" style="width:40px;height:40px;font-size:14px;">卡</div>
+          <div class="channel-info">
+            <div class="channel-name">京东E卡 50元</div>
+            <div class="channel-rate">有效期至 2026-06-30</div>
+          </div>
+          <div>
+            <button class="glass-btn" style="width:32px;height:32px;font-size:14px;" title="复制">
+              <i class="ph ph-copy"></i>
+            </button>
+          </div>
+        </div>
+        <div class="record-row">
+          <div class="channel-logo purple" style="width:40px;height:40px;font-size:14px;">影</div>
+          <div class="channel-info">
+            <div class="channel-name">畅由电影月卡</div>
+            <div class="channel-rate">有效期至 2026-05-15</div>
+          </div>
+          <div>
+            <button class="glass-btn" style="width:32px;height:32px;font-size:14px;" title="复制">
+              <i class="ph ph-copy"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Services -->
+      <div class="glass-card" style="padding:var(--space-lg);">
+        <div class="section-header" style="margin-bottom:var(--space-md);">
+          <div class="section-title">更多服务</div>
+        </div>
+        <div class="service-grid">
+          <div class="service-item">
+            <div class="service-icon">📄</div>
+            <div class="service-label">我的账单</div>
+          </div>
+          <div class="service-item">
+            <div class="service-icon">☎️</div>
+            <div class="service-label">客服服务</div>
+          </div>
+          <div class="service-item">
+            <div class="service-icon">📨</div>
+            <div class="service-label">我的消息</div>
+          </div>
+          <div class="service-item">
+            <div class="service-icon">➕</div>
+            <div class="service-label">充积分</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div><!-- /screens-wrap -->
+
+</div><!-- /app -->
+
+<!-- ═══════════════════════════════════════════════
+     MODAL
+     ═══════════════════════════════════════════════ -->
+<div id="modalMask" class="modal-mask"></div>
+<div id="modal" class="modal" role="dialog" aria-modal="true">
+  <div class="modal-head">
+    <div class="modal-handle"></div>
+    <div class="modal-title-row">
+      <div class="modal-title" id="modalTitle">快捷兑换</div>
+      <button class="modal-close" id="modalClose">关闭</button>
+    </div>
+  </div>
+  <div class="modal-body">
+    <div id="modalContent"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     NAVIGATION
+     ═══════════════════════════════════════════════ -->
+<nav class="nav" aria-label="底部导航">
+  <a class="nav-item active" data-screen="home">
+    <i class="ph-fill ph-house"></i>
+    首页
+  </a>
+  <a class="nav-item" data-screen="channels">
+    <i class="ph ph-arrows-split"></i>
+    积分
+  </a>
+  <a class="nav-item" data-screen="mall">
+    <i class="ph ph-storefront"></i>
+    商城
+  </a>
+  <a class="nav-item" data-screen="me">
+    <i class="ph ph-user"></i>
+    我的
+  </a>
+</nav>
+
+<!-- ═══════════════════════════════════════════════
+     JAVASCRIPT
+     ═══════════════════════════════════════════════ -->
+<script>
+  /* ── VERIFICATION CODE ── */
+  function generateVCode() {
+    const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+    let code = '';
+    for (let i = 0; i < 4; i++) code += chars[Math.floor(Math.random() * chars.length)];
+    return code;
+  }
+
+  /* ── DATA ── */
+  const state = {
+    screen: 'home',
+    channelMode: 'in',
+    channelFilter: 'all',
+    recordFilter: 'all',
+    points: 12860,
+  };
+
+  const data = {
+    channels: [
+      { id:'c1', name:'支付宝积分', type:'life', mode:'in', rate:'100积分 → 110联盟积分', status:'ok', logo:'支', color:'blue' },
+      { id:'c2', name:'中国移动和积分', type:'life', mode:'in', rate:'120积分 → 100联盟积分', status:'ok', logo:'移', color:'green' },
+      { id:'c3', name:'东方航空里程', type:'air', mode:'in', rate:'100里程 → 166联盟积分', status:'ok', logo:'航', color:'blue' },
+      { id:'c4', name:'招商银行积分', type:'bank', mode:'in', rate:'即将支持', status:'soon', logo:'招', color:'gold' },
+      { id:'c8', name:'中国银行积分', type:'bank', mode:'in', rate:'150积分 → 100联盟积分', status:'ok', logo:'中', color:'blue' },
+      { id:'c9', name:'华润通积分', type:'life', mode:'in', rate:'270积分 → 100联盟积分', status:'ok', logo:'润', color:'green' },
+      { id:'c10', name:'万里通积分', type:'life', mode:'in', rate:'500积分 → 90联盟积分', status:'ok', logo:'万', color:'purple' },
+      { id:'c5', name:'联盟积分 → 话费充值', type:'life', mode:'out', rate:'650联盟积分 → 6.5元', status:'ok', logo:'费', color:'cyan' },
+      { id:'c6', name:'联盟积分 → 航司券包', type:'air', mode:'out', rate:'5,000联盟积分 → 旅行券', status:'ok', logo:'券', color:'blue' },
+      { id:'c7', name:'联盟积分 → 银行抵扣金', type:'bank', mode:'out', rate:'10,000联盟积分 → 抵扣金', status:'pending', logo:'金', color:'gold' },
+      { id:'c11', name:'联盟积分 → 环亚通积分', type:'life', mode:'out', rate:'650联盟积分 → 22环亚通积分', status:'ok', logo:'亚', color:'purple' },
+      { id:'c12', name:'联盟积分 → 易积分', type:'life', mode:'out', rate:'140联盟积分 → 100易积分', status:'ok', logo:'易', color:'green' },
+      { id:'c13', name:'联盟积分 → 万里通积分', type:'life', mode:'out', rate:'100联盟积分 → 450万里通积分', status:'ok', logo:'万', color:'blue' },
+      { id:'c14', name:'联盟积分 → 华润通积分', type:'life', mode:'out', rate:'49联盟积分 → 100华润通积分', status:'ok', logo:'润', color:'cyan' },
+    ],
+    products: [
+      { id:'v1', name:'视频会员月卡', tag:'pure', hot:true, icon:'🎬', price:'2,900 积分', detail:'适用于爱奇艺、腾讯视频、优酷视频、芒果TV等主流视频平台。支付成功后自动发放。' },
+      { id:'v2', name:'支付宝红包', tag:'pure', hot:true, icon:'🧧', price:'1,000 积分', detail:'自动存入支付宝余额，支付时直接抵扣。' },
+      { id:'v3', name:'京东E卡 100元', tag:'mix', hot:true, icon:'💳', price:'8,000 + ¥19.9', detail:'电子码即时发放，可用于京东全平台。' },
+      { id:'v4', name:'话费充值券', tag:'pure', hot:true, icon:'📱', price:'5,000 积分', detail:'充值成功后立即到账，三大运营商通用。' },
+      { id:'p1', name:'纯棉擦脸巾 80抽', tag:'pure', hot:false, icon:'🧻', price:'3,200 积分', detail:'亲肤柔软，包邮到家。' },
+      { id:'p2', name:'旅行洗护套装', tag:'pure', hot:false, icon:'🧴', price:'4,900 积分', detail:'实物商品，支持物流跟踪与售后。' },
+      { id:'p3', name:'东北五常大米 5kg', tag:'mix', hot:false, icon:'🍚', price:'8,800 积分', detail:'产地直供，香糯可口。' },
+      { id:'p4', name:'儿童毛绒玩具', tag:'pure', hot:false, icon:'🧸', price:'6,600 积分', detail:'亲肤材质，送礼佳品。' },
+    ],
+    records: [
+      { id:'r1', type:'exchange', status:'processing', name:'中国移动和积分 → 联盟积分', meta:'-100', time:'今天 09:32' },
+      { id:'r2', type:'exchange', status:'success', name:'东方航空里程 → 联盟积分', meta:'+166', time:'昨天 21:07' },
+      { id:'r3', type:'earn', status:'success', name:'签到任务奖励', meta:'+30', time:'昨天 08:11' },
+      { id:'r4', type:'exchange', status:'success', name:'联盟积分 → 视频会员月卡', meta:'-2,900', time:'前天 19:44' },
+    ],
+  };
+
+  /* ── DOM REFS ── */
+  const $ = (s) => document.querySelector(s);
+  const $$ = (s) => document.querySelectorAll(s);
+
+  const screens = {
+    home:     $('#screen-home'),
+    channels: $('#screen-channels'),
+    mall:     $('#screen-mall'),
+    records:  $('#screen-records'),
+    me:       $('#screen-me'),
+  };
+
+  /* ── NAVIGATION ── */
+  function setScreen(name) {
+    state.screen = name;
+    Object.values(screens).forEach(s => s.classList.remove('active'));
+    screens[name]?.classList.add('active');
+    $$('.nav-item').forEach(n => {
+      n.classList.toggle('active', n.dataset.screen === name);
+    });
+    // Show/hide header
+    const header = $('#mainHeader');
+    if (header) header.style.display = name === 'home' ? '' : 'none';
+  }
+
+  $$('.nav-item').forEach(n => {
+    n.addEventListener('click', () => setScreen(n.dataset.screen));
+  });
+
+  /* ── INTERNAL NAVIGATION ── */
+  $$('[data-goto]').forEach(el => {
+    el.addEventListener('click', () => {
+      const target = el.dataset.goto;
+      if (screens[target]) setScreen(target);
+    });
+  });
+
+  /* ── SEGMENTED CONTROL ── */
+  function setSeg(mode) {
+    state.channelMode = mode;
+    $('#segIn').classList.toggle('active', mode === 'in');
+    $('#segOut').classList.toggle('active', mode === 'out');
+    renderChannels();
+  }
+
+  $('#segIn').addEventListener('click', () => setSeg('in'));
+  $('#segOut').addEventListener('click', () => setSeg('out'));
+
+  /* ── PILL FILTERS ── */
+  function bindPillFilter(containerId, onFilter) {
+    const container = $(`#${containerId}`);
+    if (!container) return;
+    container.addEventListener('click', (e) => {
+      const pill = e.target.closest('.pill');
+      if (!pill) return;
+      container.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+      onFilter(pill.dataset.filter);
+    });
+  }
+
+  bindPillFilter('channelFilters', (filter) => {
+    state.channelFilter = filter;
+    renderChannels();
+  });
+
+  bindPillFilter('recordFilters', (filter) => {
+    state.recordFilter = filter;
+    renderRecords();
+  });
+
+  /* ── RENDER CHANNELS ── */
+  function renderChannels() {
+    const list = data.channels
+      .filter(c => c.mode === state.channelMode)
+      .filter(c => {
+        if (state.channelFilter === 'all') return true;
+        if (state.channelFilter === 'soon') return c.status === 'soon';
+        return c.type === state.channelFilter;
+      });
+
+    const statusLabel = { ok:'已接入', pending:'灰度中', soon:'即将支持' };
+    const statusClass = { ok:'ok', pending:'pending', soon:'soon' };
+
+    $('#channelList').innerHTML = list.length ? list.map(c => `
+      <div class="channel-row" data-channel-id="${c.id}">
+        <div class="channel-logo ${c.color}">${c.logo}</div>
+        <div class="channel-info">
+          <div class="channel-name">${c.name}</div>
+          <div class="channel-rate">${c.rate}</div>
+        </div>
+        <div class="channel-right">
+          <div class="channel-status ${statusClass[c.status] || 'ok'}">${statusLabel[c.status] || '已接入'}</div>
+          <div class="channel-arrow">进入 ›</div>
+        </div>
+      </div>
+    `).join('') : '<div style="text-align:center;padding:48px;color:var(--text-muted);font-size:14px;">暂无相关渠道</div>';
+
+    // Bind channel row click
+    $$('.channel-row[data-channel-id]').forEach(row => {
+      row.addEventListener('click', () => {
+        const ch = data.channels.find(c => c.id === row.dataset.channelId);
+        if (ch && ch.status === 'soon') {
+          openModal('接入意愿', `
+            <div class="glass-card" style="padding:var(--space-lg);">
+              <div style="font-size:16px;font-weight:700;color:var(--text-primary);margin-bottom:12px;">
+                你希望优先接入：${ch.name}
+              </div>
+              <div style="font-size:13px;color:var(--text-muted);line-height:1.6;margin-bottom:20px;">
+                基于用户意愿投票机制，帮助我们确定接入优先级。你的支持将推动该渠道更快上线。
+              </div>
+              <button class="btn-primary" onclick="closeModal()">投一票</button>
+            </div>
+          `);
+        } else {
+          openModal('兑换确认', buildQuickExchangeForm(ch.id));
+        }
+      });
+    });
+  }
+
+  /* ── QUICK EXCHANGE FORM ── */
+  function buildQuickExchangeForm(presetId) {
+    const options = data.channels.filter(c => c.mode === 'in' && c.status !== 'soon');
+    const preset = presetId || options[0]?.id;
+    const channelOptions = options.map(c =>
+      `<option value="${c.id}" ${c.id === preset ? 'selected' : ''}>${c.name}</option>`
+    ).join('');
+
+    return `
+      <div class="form-stack">
+        <div class="form-row">
+          <label>兑换方向</label>
+          <select id="qeMode">
+            <option value="in" selected>兑入</option>
+            <option value="out">兑出</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label>选择渠道</label>
+          <select id="qeChannel">${channelOptions}</select>
+        </div>
+        <div class="form-row">
+          <label>兑换额度</label>
+          <input id="qeAmount" value="120" inputmode="numeric" placeholder="输入数量" />
+        </div>
+        <div class="form-row" style="background:rgba(6,182,212,0.08);border-color:rgba(6,182,212,0.2);">
+          <label style="color:var(--accent-cyan);">预计到账</label>
+          <input id="qePreview" value="--" readonly style="color:var(--accent-cyan);" />
+        </div>
+        <button class="btn-primary" id="qeSubmit">确认并提交</button>
+        <div style="font-size:12px;color:var(--text-muted);text-align:center;margin-top:4px;">
+          实际到账以最终兑换页面为准
+        </div>
+      </div>
+    `;
+  }
+
+  function updateQEPreview() {
+    const mode = $('#qeMode')?.value || 'in';
+    const amt = parseInt($('#qeAmount')?.value || '0', 10);
+    const preview = $('#qePreview');
+    if (!preview) return;
+    if (mode === 'in') {
+      preview.value = `≈ ${Math.round(amt * 0.85)} 联盟积分`;
+    } else {
+      preview.value = `≈ ¥${(amt * 0.01).toFixed(2)}`;
+    }
+  }
+
+  /* ── RENDER PRODUCTS ── */
+  function renderProducts() {
+    const virtual = data.products.filter(p => ['v1','v2','v3','v4'].includes(p.id));
+    const physical = data.products.filter(p => ['p1','p2','p3','p4'].includes(p.id));
+    const mall = data.products;
+
+    const tagClass = { pure:'pure', mix:'mix', hot:'hot' };
+
+    const html = (list) => list.map(p => `
+      <div class="product-card" data-product-id="${p.id}">
+        <div class="product-thumb">
+          ${p.icon}
+          ${p.tag ? `<span class="product-tag ${tagClass[p.tag] || 'pure'}">${p.tag === 'mix' ? '积分+现金' : '纯积分兑'}</span>` : ''}
+        </div>
+        <div class="product-name">${p.name}</div>
+        <div class="product-price">${p.price}</div>
+      </div>
+    `).join('');
+
+    $('#virtualGrid').innerHTML = html(virtual);
+    $('#physicalGrid').innerHTML = html(physical);
+    $('#mallProductGrid').innerHTML = html(mall);
+
+    // Bind product click
+    $$('.product-card[data-product-id]').forEach(card => {
+      card.addEventListener('click', () => {
+        const p = data.products.find(x => x.id === card.dataset.productId);
+        if (p) openProductModal(p);
+      });
+    });
+  }
+
+  /* ── PRODUCT MODAL ── */
+  function openProductModal(p) {
+    openModal('商品详情', `
+      <div>
+        <div class="product-thumb" style="width:100%;height:220px;border-radius:var(--radius-xl);margin-bottom:20px;font-size:72px;">
+          ${p.icon}
+        </div>
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:24px;">
+          <div>
+            <div class="product-price" style="font-size:28px;margin-bottom:8px;">${p.price}</div>
+            <div style="font-size:14px;color:var(--text-secondary);">${p.name}</div>
+          </div>
+          <span class="product-tag ${p.tag === 'mix' ? 'mix' : 'pure'}">${p.tag === 'mix' ? '积分+现金' : '纯积分兑'}</span>
+        </div>
+        <div style="margin-bottom:24px;">
+          <div style="font-size:14px;font-weight:700;color:var(--text-primary);margin-bottom:12px;">商品详情</div>
+          <div style="font-size:13px;color:var(--text-secondary);line-height:1.8;">
+            ${p.detail}
+          </div>
+        </div>
+        <div class="divider"></div>
+        <div style="margin-bottom:24px;">
+          <div style="font-size:14px;font-weight:700;color:var(--text-primary);margin-bottom:12px;">规格选择</div>
+          <div class="pill-row" style="gap:8px;padding:0;">
+            <div class="pill active" style="padding:10px 20px;font-size:14px;">标准版</div>
+            <div class="pill" style="padding:10px 20px;font-size:14px;">豪华版</div>
+            <div class="pill" style="padding:10px 20px;font-size:14px;">尊享版</div>
+          </div>
+        </div>
+        <div style="display:flex;gap:10px;align-items:center;margin-bottom:24px;">
+          <div style="font-size:14px;font-weight:600;color:var(--text-secondary);">数量</div>
+          <div style="display:flex;align-items:center;gap:12px;margin-left:auto;">
+            <button class="glass-btn" style="width:36px;height:36px;font-size:16px;" id="qtyMinus">-</button>
+            <span id="qtyVal" style="font-size:18px;font-weight:700;min-width:24px;text-align:center;">1</span>
+            <button class="glass-btn" style="width:36px;height:36px;font-size:16px;" id="qtyPlus">+</button>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;gap:12px;margin-top:8px;">
+        <button class="modal-close" onclick="closeModal()" style="flex:1;height:52px;background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:var(--radius-lg);color:var(--text-secondary);font-size:15px;font-weight:600;cursor:pointer;">取消</button>
+        <button class="btn-primary" style="flex:2;height:52px;" id="buyBtn">立即兑换</button>
+      </div>
+    `);
+
+    let qty = 1;
+    $('#qtyMinus')?.addEventListener('click', () => {
+      qty = Math.max(1, qty - 1);
+      const el = $('#qtyVal');
+      if (el) el.textContent = qty;
+    });
+    $('#qtyPlus')?.addEventListener('click', () => {
+      qty = Math.min(99, qty + 1);
+      const el = $('#qtyVal');
+      if (el) el.textContent = qty;
+    });
+    $('#buyBtn')?.addEventListener('click', () => {
+      // 替换为短信验证流程
+      openModal('短信验证', `
+        <div style="text-align:center;">
+          <div style="font-size:14px;color:var(--text-secondary);margin-bottom:20px;line-height:1.6;">
+            验证码已发送至您绑定的手机号 138****8888
+          </div>
+          <div style="display:flex;gap:10px;justify-content:center;margin-bottom:24px;" id="otpFields">
+            <input class="otp-input" type="text" maxlength="1" inputmode="numeric" pattern="\d*" style="width:52px;height:60px;border-radius:14px;background:var(--glass-bg);border:1px solid var(--glass-border);outline:none;font-size:24px;color:var(--text-primary);text-align:center;font-family:monospace;box-sizing:border-box;" />
+            <input class="otp-input" type="text" maxlength="1" inputmode="numeric" pattern="\d*" style="width:52px;height:60px;border-radius:14px;background:var(--glass-bg);border:1px solid var(--glass-border);outline:none;font-size:24px;color:var(--text-primary);text-align:center;font-family:monospace;box-sizing:border-box;" />
+            <input class="otp-input" type="text" maxlength="1" inputmode="numeric" pattern="\d*" style="width:52px;height:60px;border-radius:14px;background:var(--glass-bg);border:1px solid var(--glass-border);outline:none;font-size:24px;color:var(--text-primary);text-align:center;font-family:monospace;box-sizing:border-box;" />
+            <input class="otp-input" type="text" maxlength="1" inputmode="numeric" pattern="\d*" style="width:52px;height:60px;border-radius:14px;background:var(--glass-bg);border:1px solid var(--glass-border);outline:none;font-size:24px;color:var(--text-primary);text-align:center;font-family:monospace;box-sizing:border-box;" />
+          </div>
+          <button class="btn-primary" id="vCodeConfirmBtn" style="height:52px;font-size:16px;width:100%;">确认兑换</button>
+        </div>
+      `);
+
+      // 绑定输入框自动跳转
+      const otpInputs = Array.from(document.querySelectorAll('#otpFields input'));
+      otpInputs[0]?.focus();
+      otpInputs.forEach((inp, i) => {
+        inp.addEventListener('input', () => {
+          inp.value = String(inp.value || '').replace(/\D/g, '').slice(-1);
+          if (inp.value && otpInputs[i + 1]) otpInputs[i + 1].focus();
+        });
+        inp.addEventListener('keydown', (e) => {
+          if (e.key === 'Backspace' && !inp.value && otpInputs[i - 1]) otpInputs[i - 1].focus();
+        });
+      });
+
+      $('#vCodeConfirmBtn')?.addEventListener('click', () => {
+        const val = otpInputs.map(i => i.value).join('');
+        if (val.length < 4) {
+          otpInputs.forEach(i => i.style.borderColor = 'var(--status-red)');
+          return;
+        }
+        
+        // 生成订单与记录
+        const m = String(p.price).match(/([\d,]+)\s*积分/);
+        const pointsCost = m ? parseInt(m[1].replace(/,/g, ""), 10) : 0;
+        const totalPoints = pointsCost * qty;
+        
+        const now = new Date();
+        const hh = String(now.getHours()).padStart(2, "0");
+        const mm = String(now.getMinutes()).padStart(2, "0");
+        const time = `今天 ${hh}:${mm}`;
+        
+        data.records.unshift({
+          id: `r${Date.now()}`,
+          type: "exchange",
+          status: "success",
+          name: `联盟积分 → ${p.name}`,
+          meta: `-${totalPoints.toLocaleString("en-US")}`,
+          time,
+        });
+        data.orders.unshift({
+          id: `o${Date.now()}`,
+          name: `${p.name} x${qty}`,
+          status: "兑换成功",
+          meta: `${totalPoints.toLocaleString("en-US")} 分`,
+          time,
+        });
+        if (typeof renderRecords === "function") renderRecords();
+
+        closeModal();
+        setTimeout(() => {
+          openModal('兑换成功', `
+            <div style="text-align:center;padding:10px 0 20px;">
+              <div style="width:64px;height:64px;border-radius:50%;background:rgba(16,185,129,0.15);color:var(--status-green);display:flex;align-items:center;justify-content:center;font-size:32px;margin:0 auto 20px;">
+                <i class="ph ph-check-circle"></i>
+              </div>
+              <div style="font-size:20px;font-weight:700;color:var(--text-primary);margin-bottom:12px;">兑换成功</div>
+              <div style="font-size:14px;color:var(--text-secondary);margin-bottom:32px;">您已成功兑换 ${p.name} x${qty}</div>
+              <button id="viewOrderBtn" class="btn-primary" style="height:52px;font-size:16px;width:100%;">查看订单</button>
+            </div>
+          `);
+          $('#viewOrderBtn')?.addEventListener('click', () => {
+            closeModal();
+            setScreen('records');
+          });
+        }, 300);
+      });
+    });
+  }
+
+  /* ── RENDER RECORDS ── */
+  function renderRecords() {
+    const list = data.records.filter(r => {
+      if (state.recordFilter === 'all') return true;
+      if (state.recordFilter === 'exchange') return r.type === 'exchange';
+      if (state.recordFilter === 'earn') return r.type === 'earn';
+      if (state.recordFilter === 'success') return r.status === 'success';
+      if (state.recordFilter === 'processing') return r.status === 'processing';
+      return true;
+    });
+
+    const icon = { exchange:'兑', earn:'赚' };
+    const logo = { exchange:'exchange', earn:'earn' };
+
+    $('#recordList').innerHTML = list.map(r => `
+      <div class="record-row">
+        <div class="record-logo ${r.status === 'success' ? 'success' : r.status === 'processing' ? 'process' : 'earn'}">${icon[r.type] || '兑'}</div>
+        <div class="record-info">
+          <div class="record-name">${r.name}</div>
+          <div class="record-time">${r.time}</div>
+        </div>
+        <div class="record-right">
+          <div class="record-status ${r.status}">${r.status === 'success' ? '成功' : '处理中'}</div>
+          <div class="record-meta">${r.meta}</div>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  /* ── MODAL ── */
+  function openModal(title, html) {
+    $('#modalTitle').textContent = title;
+    $('#modalContent').innerHTML = html;
+    $('#modalMask').classList.add('open');
+    $('#modal').classList.add('open');
+
+    // Rebind QE events if present
+    $('#qeMode')?.addEventListener('change', updateQEPreview);
+    $('#qeChannel')?.addEventListener('change', updateQEPreview);
+    $('#qeAmount')?.addEventListener('input', updateQEPreview);
+    $('#qeSubmit')?.addEventListener('click', () => {
+      closeModal();
+      setScreen('records');
+    });
+    updateQEPreview();
+  }
+
+  function closeModal() {
+    $('#modalMask').classList.remove('open');
+    $('#modal').classList.remove('open');
+  }
+
+  $('#modalMask').addEventListener('click', closeModal);
+  $('#modalClose').addEventListener('click', closeModal);
+
+  /* ── QUICK EXCHANGE BUTTON ── */
+  $('#btnQuickExchange')?.addEventListener('click', () => {
+    openModal('快捷兑换', buildQuickExchangeForm());
+  });
+
+  /* ── NOTIFY BUTTON ── */
+  $('#btnNotify')?.addEventListener('click', () => {
+    openModal('消息通知', `
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        <div class="glass-card" style="padding:16px;display:flex;gap:12px;align-items:flex-start;">
+          <div style="width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,#F59E0B,#D97706);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px;">🎉</div>
+          <div>
+            <div style="font-size:14px;font-weight:700;color:var(--text-primary);margin-bottom:4px;">新用户首兑双倍积分</div>
+            <div style="font-size:12px;color:var(--text-muted);line-height:1.5;">活动期间首次兑换，最高可获得500积分奖励，限时30天。</div>
+          </div>
+        </div>
+        <div class="glass-card" style="padding:16px;display:flex;gap:12px;align-items:flex-start;">
+          <div style="width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,#10B981,#059669);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px;">📦</div>
+          <div>
+            <div style="font-size:14px;font-weight:700;color:var(--text-primary);margin-bottom:4px;">订单已发货</div>
+            <div style="font-size:12px;color:var(--text-muted);line-height:1.5;">您的旅行洗护套装已发货，预计2-3个工作日送达。</div>
+          </div>
+        </div>
+        <div class="glass-card" style="padding:16px;display:flex;gap:12px;align-items:flex-start;">
+          <div style="width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,#4F46E5,#6366F1);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px;">💎</div>
+          <div>
+            <div style="font-size:14px;font-weight:700;color:var(--text-primary);margin-bottom:4px;">会员等级更新</div>
+            <div style="font-size:12px;color:var(--text-muted);line-height:1.5;">恭喜！您已累积10,000积分，距离钻石会员还差3,000积分。</div>
+          </div>
+        </div>
+      </div>
+    `);
+  });
+
+  /* ── UPDATE BALANCE DISPLAY ── */
+  function updateBalance() {
+    const val = state.points.toLocaleString('en-US');
+    $('#balanceValue').innerHTML = `${val}<span> 积分</span>`;
+    $('#channelsPointsValue').textContent = val;
+    const rmb = (state.points * 0.01).toFixed(2);
+    $('#rmbValue').textContent = `≈ ¥${rmb} 元`;
+    $('#channelsRmbValue').textContent = `约合 ¥${rmb} 元`;
+  }
+
+  /* ── INIT ── */
+  renderProducts();
+  renderChannels();
+  renderRecords();
+  updateBalance();
+
+  // Swipe to dismiss modal
+  let touchStartY = 0;
+  $('#modal').addEventListener('touchstart', e => { touchStartY = e.touches[0].clientY; });
+  $('#modal').addEventListener('touchend', e => {
+    const delta = e.changedTouches[0].clientY - touchStartY;
+    if (delta > 80) closeModal();
+  });
+</script>
+</body>
+</html>
