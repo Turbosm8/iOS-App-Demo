@@ -1,0 +1,2411 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>积分联盟计划 · Premium Alliance Mall</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+SC:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/@phosphor-icons/web@2.1.1/src/index.js"></script>
+  <style>
+    /* ═══════════════════════════════════════════════════
+       PREMIUM ALLIANCE MALL — DESIGN SYSTEM
+       Light Luxury Fintech · Apple Card × Revolut Ultra × AMEX Platinum
+       ═══════════════════════════════════════════════════ */
+
+    :root {
+      /* ── BACKGROUND ── */
+      --bg-base:       #F6F7FB;
+      --bg-surface:    #FFFFFF;
+      --bg-subtle:     #F0F1F8;
+      --bg-hover:      #F8F9FF;
+
+      /* ── BRAND COLORS ── */
+      --primary:       #6C63FF;   /* 品牌紫 */
+      --primary-light: #8B7CFF;   /* 辅助紫 */
+      --primary-soft:  rgba(108,99,255,0.08);
+      --primary-glow:  rgba(108,99,255,0.20);
+      --gold:          #D9B97A;   /* 香槟金 */
+      --gold-light:    #EDD9A3;
+      --gold-soft:     rgba(217,185,122,0.12);
+      --gold-glow:     rgba(217,185,122,0.30);
+
+      /* ── TEXT ── */
+      --text-primary:   #111827;
+      --text-secondary: #6B7280;
+      --text-muted:     #9CA3AF;
+      --text-inverse:   #FFFFFF;
+
+      /* ── BORDER ── */
+      --border:        #E8E9F0;
+      --border-light:  #F0F1F8;
+      --border-focus:  var(--primary);
+
+      /* ── STATUS ── */
+      --green:  #10B981;
+      --amber:  #F59E0B;
+      --red:    #EF4444;
+      --green-soft:  rgba(16,185,129,0.10);
+      --amber-soft:  rgba(245,158,11,0.10);
+      --red-soft:    rgba(239,68,68,0.10);
+
+      /* ── SHADOW ── */
+      --shadow-xs:  0 1px 2px rgba(0,0,0,0.04);
+      --shadow-sm:  0 2px 8px rgba(0,0,0,0.06);
+      --shadow-md:  0 4px 16px rgba(0,0,0,0.08);
+      --shadow-lg:  0 8px 32px rgba(0,0,0,0.10);
+      --shadow-xl:  0 16px 48px rgba(0,0,0,0.12);
+      --shadow-card: 0 2px 12px rgba(108,99,255,0.06), 0 1px 3px rgba(0,0,0,0.04);
+      --shadow-card-hover: 0 8px 32px rgba(108,99,255,0.12), 0 2px 8px rgba(0,0,0,0.06);
+
+      /* ── RADIUS ── */
+      --r-xs:  8px;
+      --r-sm:  12px;
+      --r-md:  16px;
+      --r-lg:  20px;
+      --r-xl:  24px;
+      --r-2xl: 32px;
+      --r-pill: 999px;
+
+      /* ── ANIMATION ── */
+      --ease-out:  cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in:   cubic-bezier(0.7, 0, 0.84, 0);
+      --ease:      cubic-bezier(0.4, 0, 0.2, 1);
+      --spring:    cubic-bezier(0.34, 1.56, 0.64, 1);
+      --dur-fast:  150ms;
+      --dur-base:  250ms;
+      --dur-slow:  400ms;
+
+      /* ── SPACING ── */
+      --sp-xs:  4px;
+      --sp-sm:  8px;
+      --sp-md:  16px;
+      --sp-lg:  24px;
+      --sp-xl:  32px;
+      --sp-2xl: 48px;
+
+      /* ── LAYOUT ── */
+      --nav-h:     72px;
+      --safe-bottom: env(safe-area-inset-bottom, 20px);
+    }
+
+    /* ═══════════════════════════════════════════════════ */
+    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+    html, body {
+      height: 100%;
+      font-family: 'Inter', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+      background: var(--bg-base);
+      color: var(--text-primary);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    ::-webkit-scrollbar { width: 0; height: 0; }
+
+    /* ── APP WRAPPER ── */
+    .app {
+      min-height: 100vh;
+      max-width: 430px;
+      margin: 0 auto;
+      position: relative;
+      background: var(--bg-base);
+    }
+
+    /* ═══════════════════════════════════════════════════
+       AMBIENT BACKGROUND — Subtle Geometric
+       ═══════════════════════════════════════════════════ */
+
+    .ambient-bg {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .ambient-glow {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(120px);
+      opacity: 0.5;
+    }
+
+    .ambient-glow-1 {
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(108,99,255,0.15) 0%, transparent 70%);
+      top: -80px; right: -60px;
+    }
+
+    .ambient-glow-2 {
+      width: 250px; height: 250px;
+      background: radial-gradient(circle, rgba(217,185,122,0.12) 0%, transparent 70%);
+      bottom: 20%; left: -80px;
+    }
+
+    .ambient-glow-3 {
+      width: 200px; height: 200px;
+      background: radial-gradient(circle, rgba(139,124,255,0.10) 0%, transparent 70%);
+      top: 40%; right: -40px;
+    }
+
+    /* Subtle dot grid */
+    .dot-grid {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.4;
+      background-image: radial-gradient(circle, rgba(108,99,255,0.15) 1px, transparent 1px);
+      background-size: 28px 28px;
+    }
+
+    /* ═══════════════════════════════════════════════════
+       HEADER
+       ═══════════════════════════════════════════════════ */
+
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      padding-top: env(safe-area-inset-top, 0);
+      background: rgba(246,247,251,0.88);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px var(--sp-lg);
+    }
+
+    .header-logo {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+    }
+
+    .header-logo-main {
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--text-primary);
+      letter-spacing: -0.3px;
+    }
+
+    .header-logo-sub {
+      font-size: 10px;
+      color: var(--text-muted);
+      font-weight: 500;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: var(--sp-sm);
+    }
+
+    /* Premium Icon Button */
+    .icon-btn {
+      width: 40px; height: 40px;
+      border-radius: var(--r-sm);
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all var(--dur-base) var(--ease-out);
+      color: var(--text-secondary);
+      font-size: 20px;
+      box-shadow: var(--shadow-xs);
+    }
+
+    .icon-btn:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+      box-shadow: 0 2px 12px var(--primary-glow);
+      transform: translateY(-1px);
+    }
+
+    .icon-btn:active { transform: scale(0.94); }
+
+    /* ═══════════════════════════════════════════════════
+       SCREENS
+       ═══════════════════════════════════════════════════ */
+
+    .screens-wrap {
+      position: relative;
+      z-index: 10;
+      padding-bottom: calc(var(--nav-h) + var(--safe-bottom) + 20px);
+    }
+
+    .screen {
+      display: none;
+      padding: var(--sp-lg);
+      animation: fadeUp var(--dur-slow) var(--ease-out);
+    }
+
+    .screen.active { display: block; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ═══════════════════════════════════════════════════
+       CARD BASE — Premium White Surface
+       ═══════════════════════════════════════════════════ */
+
+    .card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-xl);
+      box-shadow: var(--shadow-card);
+      transition: all var(--dur-base) var(--ease-out);
+    }
+
+    .card:hover {
+      box-shadow: var(--shadow-card-hover);
+      border-color: rgba(108,99,255,0.15);
+    }
+
+    /* ═══════════════════════════════════════════════════
+       HOME — BALANCE HERO
+       ═══════════════════════════════════════════════════ */
+
+    .balance-hero {
+      padding: var(--sp-xl) var(--sp-xl) var(--sp-lg);
+      margin-bottom: var(--sp-lg);
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--r-2xl);
+      background: linear-gradient(145deg, #FFFFFF 0%, #F8F7FF 60%, #F5F3FF 100%);
+      border: 1px solid rgba(108,99,255,0.12);
+      box-shadow: var(--shadow-card), 0 0 0 1px rgba(255,255,255,0.8) inset;
+    }
+
+    .balance-hero::before {
+      content: '';
+      position: absolute;
+      top: -30%; right: -15%;
+      width: 240px; height: 240px;
+      background: radial-gradient(circle, rgba(108,99,255,0.08), transparent 65%);
+      pointer-events: none;
+    }
+
+    .balance-hero::after {
+      content: '';
+      position: absolute;
+      bottom: -20%; left: -10%;
+      width: 180px; height: 180px;
+      background: radial-gradient(circle, rgba(217,185,122,0.08), transparent 65%);
+      pointer-events: none;
+    }
+
+    .balance-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: var(--sp-lg);
+      position: relative;
+      z-index: 2;
+    }
+
+    .balance-label {
+      font-size: 13px;
+      color: var(--text-muted);
+      font-weight: 500;
+      letter-spacing: 0.5px;
+    }
+
+    .balance-badge {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      padding: 5px 12px;
+      border-radius: var(--r-pill);
+      background: var(--gold-soft);
+      border: 1px solid rgba(217,185,122,0.25);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--gold);
+    }
+
+    .balance-main {
+      position: relative;
+      z-index: 2;
+    }
+
+    .balance-amount {
+      font-size: 48px;
+      font-weight: 900;
+      letter-spacing: -2.5px;
+      line-height: 1;
+      color: var(--text-primary);
+      margin: var(--sp-xs) 0 6px;
+    }
+
+    .balance-unit {
+      font-size: 20px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      letter-spacing: 0;
+    }
+
+    .balance-cny {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .balance-cny::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      animation: softPulse 2.5s ease-in-out infinite;
+    }
+
+    @keyframes softPulse {
+      0%, 100% { opacity: 1; transform: scale(1); box-shadow: 0 0 0 0 var(--primary-glow); }
+      50%       { opacity: 0.7; transform: scale(0.85); box-shadow: 0 0 0 4px transparent; }
+    }
+
+    /* Balance bottom strip */
+    .balance-strip {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: var(--sp-lg);
+      padding-top: var(--sp-lg);
+      border-top: 1px solid var(--border-light);
+      position: relative;
+      z-index: 2;
+    }
+
+    .balance-strip-item {
+      text-align: center;
+    }
+
+    .balance-strip-val {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--text-primary);
+    }
+
+    .balance-strip-label {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 2px;
+      font-weight: 500;
+    }
+
+    .strip-divider {
+      width: 1px;
+      height: 32px;
+      background: var(--border);
+    }
+
+    /* ═══════════════════════════════════════════════════
+       QUICK ACTIONS
+       ═══════════════════════════════════════════════════ */
+
+    .quick-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--sp-sm);
+      margin-bottom: var(--sp-xl);
+    }
+
+    .quick-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      padding: var(--sp-md) var(--sp-xs);
+      border-radius: var(--r-lg);
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      cursor: pointer;
+      transition: all var(--dur-base) var(--ease-out);
+      text-decoration: none;
+      color: inherit;
+      box-shadow: var(--shadow-xs);
+    }
+
+    .quick-item:hover {
+      border-color: rgba(108,99,255,0.25);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md), 0 0 0 1px rgba(108,99,255,0.08);
+    }
+
+    .quick-item:active { transform: scale(0.95); }
+
+    .quick-icon {
+      width: 46px; height: 46px;
+      border-radius: var(--r-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      position: relative;
+    }
+
+    .quick-icon::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: var(--r-md);
+      opacity: 0.12;
+    }
+
+    .quick-icon.purple { color: var(--primary); }
+    .quick-icon.purple::after { background: var(--primary); }
+    .quick-icon.gold { color: var(--gold); }
+    .quick-icon.gold::after { background: var(--gold); }
+    .quick-icon.green { color: var(--green); }
+    .quick-icon.green::after { background: var(--green); }
+    .quick-icon.cyan { color: #06B6D4; }
+    .quick-icon.cyan::after { background: #06B6D4; }
+
+    .quick-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      text-align: center;
+      line-height: 1.2;
+    }
+
+    /* ═══════════════════════════════════════════════════
+       SECTION
+       ═══════════════════════════════════════════════════ */
+
+    .section {
+      margin-bottom: var(--sp-xl);
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: var(--sp-md);
+    }
+
+    .section-title {
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      letter-spacing: -0.2px;
+    }
+
+    .section-title-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      flex-shrink: 0;
+    }
+
+    .section-more {
+      font-size: 13px;
+      color: var(--primary);
+      font-weight: 600;
+      cursor: pointer;
+      transition: all var(--dur-fast);
+      display: flex;
+      align-items: center;
+      gap: 3px;
+    }
+
+    .section-more:hover { opacity: 0.7; }
+
+    /* ═══════════════════════════════════════════════════
+       PRODUCT GRID
+       ═══════════════════════════════════════════════════ */
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--sp-md);
+    }
+
+    .product-card {
+      padding: var(--sp-md);
+      border-radius: var(--r-xl);
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      cursor: pointer;
+      transition: all var(--dur-base) var(--ease-out);
+      overflow: hidden;
+      position: relative;
+      box-shadow: var(--shadow-xs);
+    }
+
+    .product-card:hover {
+      border-color: rgba(108,99,255,0.2);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .product-card:active { transform: scale(0.97); }
+
+    .product-thumb {
+      width: 100%;
+      aspect-ratio: 1;
+      border-radius: var(--r-md);
+      background: linear-gradient(145deg, #F8F7FF, #F0F1F8);
+      border: 1px solid var(--border-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 48px;
+      margin-bottom: var(--sp-sm);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .product-tag {
+      position: absolute;
+      top: 8px; left: 8px;
+      padding: 3px 8px;
+      border-radius: var(--r-pill);
+      font-size: 10px;
+      font-weight: 700;
+      z-index: 2;
+    }
+
+    .product-tag.hot {
+      background: var(--gold-soft);
+      color: var(--gold);
+      border: 1px solid rgba(217,185,122,0.25);
+    }
+
+    .product-tag.mix {
+      background: var(--green-soft);
+      color: var(--green);
+      border: 1px solid rgba(16,185,129,0.25);
+    }
+
+    .product-tag.pure {
+      background: var(--primary-soft);
+      color: var(--primary);
+      border: 1px solid rgba(108,99,255,0.25);
+    }
+
+    .product-name {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-primary);
+      line-height: 1.4;
+      margin-bottom: 6px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      min-height: 38px;
+    }
+
+    .product-price {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--primary);
+      letter-spacing: -0.3px;
+    }
+
+    .product-price em {
+      font-style: normal;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    /* ═══════════════════════════════════════════════════
+       CHANNELS — Balance Ring + Filter
+       ═══════════════════════════════════════════════════ */
+
+    .points-ring-wrap {
+      text-align: center;
+      padding: var(--sp-xl) 0 var(--sp-lg);
+    }
+
+    .points-ring {
+      width: 200px; height: 200px;
+      border-radius: 50%;
+      margin: 0 auto var(--sp-md);
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-md);
+    }
+
+    .points-ring::before {
+      content: '';
+      position: absolute;
+      inset: 6px;
+      border-radius: 50%;
+      border: 2px dashed rgba(108,99,255,0.2);
+    }
+
+    .points-ring-core {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .points-ring-val {
+      font-size: 34px;
+      font-weight: 900;
+      color: var(--text-primary);
+      letter-spacing: -1.5px;
+      line-height: 1;
+    }
+
+    .points-ring-label {
+      font-size: 12px;
+      color: var(--text-muted);
+      font-weight: 500;
+      margin-top: 4px;
+    }
+
+    .points-cny {
+      font-size: 14px;
+      color: var(--primary);
+      font-weight: 700;
+      margin-top: var(--sp-sm);
+    }
+
+    /* Side Buttons (积分攻略 / 积分明细) */
+    .ring-side-tools {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      align-items: flex-end;
+    }
+
+    .side-tool-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 14px;
+      border-radius: var(--r-pill);
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all var(--dur-base) var(--ease-out);
+      box-shadow: var(--shadow-xs);
+      white-space: nowrap;
+    }
+
+    .side-tool-btn:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+      box-shadow: var(--shadow-sm);
+      transform: translateX(-3px);
+    }
+
+    /* Segmented Control */
+    .seg-control {
+      display: flex;
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      padding: 3px;
+      margin-bottom: var(--sp-md);
+      box-shadow: var(--shadow-xs);
+    }
+
+    .seg-btn {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      background: transparent;
+      border-radius: calc(var(--r-md) - 2px);
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all var(--dur-base) var(--ease-out);
+    }
+
+    .seg-btn.active {
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      color: #fff;
+      box-shadow: 0 3px 12px var(--primary-glow);
+    }
+
+    /* Pill Filter Row */
+    .pill-row {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+      margin-bottom: var(--sp-md);
+      scrollbar-width: none;
+    }
+    .pill-row::-webkit-scrollbar { display: none; }
+
+    .pill {
+      padding: 8px 18px;
+      border-radius: var(--r-pill);
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all var(--dur-base) var(--ease-out);
+      flex-shrink: 0;
+      box-shadow: var(--shadow-xs);
+    }
+
+    .pill.active {
+      border-color: var(--primary);
+      color: var(--primary);
+      background: var(--primary-soft);
+      box-shadow: 0 0 0 1px var(--primary);
+    }
+
+    .pill:hover:not(.active) {
+      border-color: rgba(108,99,255,0.3);
+      color: var(--text-secondary);
+    }
+
+    /* Channel Row */
+    .channel-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .channel-row {
+      display: flex;
+      align-items: center;
+      padding: var(--sp-md);
+      border-radius: var(--r-lg);
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      cursor: pointer;
+      transition: all var(--dur-base) var(--ease-out);
+      gap: var(--sp-md);
+      box-shadow: var(--shadow-xs);
+    }
+
+    .channel-row:hover {
+      border-color: rgba(108,99,255,0.2);
+      transform: translateX(3px);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .channel-row:active { transform: scale(0.98); }
+
+    .channel-logo {
+      width: 48px; height: 48px;
+      border-radius: var(--r-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      font-weight: 800;
+      color: #fff;
+      flex-shrink: 0;
+    }
+
+    .channel-logo.blue { background: linear-gradient(135deg, #3B82F6, #6366F1); }
+    .channel-logo.cyan { background: linear-gradient(135deg, #06B6D4, #0891B2); }
+    .channel-logo.purple { background: linear-gradient(135deg, var(--primary), var(--primary-light)); }
+    .channel-logo.gold { background: linear-gradient(135deg, var(--gold), #C4A060); }
+    .channel-logo.green { background: linear-gradient(135deg, var(--green), #059669); }
+
+    .channel-info { flex: 1; min-width: 0; }
+
+    .channel-name {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-primary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .channel-rate {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 3px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .channel-right { text-align: right; flex-shrink: 0; }
+
+    .channel-status {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: var(--r-pill);
+    }
+
+    .channel-status.ok {
+      background: var(--green-soft);
+      color: var(--green);
+    }
+
+    .channel-status.pending {
+      background: var(--amber-soft);
+      color: var(--amber);
+    }
+
+    .channel-status.soon {
+      background: var(--bg-subtle);
+      color: var(--text-muted);
+    }
+
+    .channel-arrow {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 3px;
+    }
+
+    /* ═══════════════════════════════════════════════════
+       MALL SCREEN
+       ═══════════════════════════════════════════════════ */
+
+    .mall-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: var(--sp-sm) 0 var(--sp-md);
+    }
+
+    .mall-title {
+      font-size: 24px;
+      font-weight: 900;
+      color: var(--text-primary);
+      letter-spacing: -0.5px;
+    }
+
+    .mall-subtitle {
+      font-size: 13px;
+      color: var(--text-muted);
+      font-weight: 500;
+      margin-top: 2px;
+    }
+
+    /* Search Bar */
+    .search-bar {
+      display: flex;
+      align-items: center;
+      gap: var(--sp-sm);
+      padding: 14px var(--sp-md);
+      border-radius: var(--r-xl);
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      margin-bottom: var(--sp-lg);
+      transition: all var(--dur-base);
+      box-shadow: var(--shadow-xs);
+    }
+
+    .search-bar:focus-within {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px var(--primary-soft), var(--shadow-sm);
+    }
+
+    .search-bar input {
+      flex: 1;
+      border: none;
+      background: transparent;
+      outline: none;
+      font-size: 15px;
+      color: var(--text-primary);
+      font-family: inherit;
+    }
+
+    .search-bar input::placeholder { color: var(--text-muted); }
+
+    /* Hero Banner */
+    .hero-banner {
+      border-radius: var(--r-xl);
+      height: 150px;
+      margin-bottom: var(--sp-lg);
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      box-shadow: var(--shadow-md);
+    }
+
+    .hero-banner-bg {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, #EDE9FE 0%, #DDD6FE 30%, #C4B5FD 60%, #A78BFA 100%);
+    }
+
+    .hero-banner-content {
+      position: relative;
+      z-index: 2;
+      padding: var(--sp-xl);
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 4px 12px;
+      border-radius: var(--r-pill);
+      background: rgba(255,255,255,0.25);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.4);
+      color: #6D28D9;
+      font-size: 11px;
+      font-weight: 800;
+      width: fit-content;
+      margin-bottom: var(--sp-sm);
+    }
+
+    .hero-title {
+      font-size: 20px;
+      font-weight: 900;
+      color: #4C1D95;
+      line-height: 1.3;
+      margin-bottom: 4px;
+    }
+
+    .hero-sub {
+      font-size: 13px;
+      color: rgba(76,29,149,0.7);
+      font-weight: 500;
+    }
+
+    /* Category Grid */
+    .cat-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: var(--sp-sm);
+      margin-bottom: var(--sp-lg);
+    }
+
+    .cat-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      transition: transform var(--dur-base) var(--spring);
+    }
+
+    .cat-item:hover { transform: translateY(-4px) scale(1.04); }
+    .cat-item:active { transform: scale(0.95); }
+
+    .cat-icon {
+      width: 52px; height: 52px;
+      border-radius: var(--r-md);
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      transition: all var(--dur-base);
+      box-shadow: var(--shadow-xs);
+    }
+
+    .cat-item:hover .cat-icon {
+      border-color: var(--primary);
+      box-shadow: 0 4px 16px var(--primary-glow);
+    }
+
+    .cat-label {
+      font-size: 11px;
+      color: var(--text-secondary);
+      font-weight: 600;
+      text-align: center;
+    }
+
+    /* Mall Section Panel */
+    .mall-panel {
+      background: var(--bg-surface);
+      border-radius: var(--r-xl) var(--r-xl) 0 0;
+      border: 1px solid var(--border);
+      border-bottom: none;
+      padding: var(--sp-xl) var(--sp-md);
+      margin: 0 calc(-1 * var(--sp-lg));
+    }
+
+    /* ═══════════════════════════════════════════════════
+       PROFILE / ME SCREEN
+       ═══════════════════════════════════════════════════ */
+
+    .profile-header {
+      display: flex;
+      align-items: center;
+      gap: var(--sp-md);
+      padding: var(--sp-xl);
+      margin-bottom: var(--sp-md);
+      border-radius: var(--r-xl);
+      background: linear-gradient(145deg, #FFFFFF 0%, #F8F7FF 100%);
+      border: 1px solid rgba(108,99,255,0.1);
+      box-shadow: var(--shadow-card);
+    }
+
+    .profile-avatar {
+      width: 64px; height: 64px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      font-weight: 800;
+      color: #fff;
+      flex-shrink: 0;
+      box-shadow: 0 4px 16px var(--primary-glow);
+      position: relative;
+    }
+
+    .profile-avatar::after {
+      content: '';
+      position: absolute;
+      inset: -3px;
+      border-radius: 50%;
+      border: 2px solid rgba(108,99,255,0.2);
+    }
+
+    .profile-info { flex: 1; }
+
+    .profile-name {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--text-primary);
+      letter-spacing: -0.2px;
+    }
+
+    .profile-phone {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 3px;
+      font-weight: 500;
+    }
+
+    /* Member Card */
+    .member-card {
+      padding: var(--sp-xl);
+      margin-bottom: var(--sp-md);
+      border-radius: var(--r-xl);
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, #F5F3FF 0%, #EDE9FE 50%, #DDD6FE 100%);
+      border: 1px solid rgba(108,99,255,0.15);
+      box-shadow: var(--shadow-card);
+    }
+
+    .member-card::before {
+      content: '';
+      position: absolute;
+      top: -40px; right: -40px;
+      width: 160px; height: 160px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(108,99,255,0.1), transparent 60%);
+    }
+
+    .member-card::after {
+      content: '';
+      position: absolute;
+      bottom: -30px; left: -20px;
+      width: 120px; height: 120px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(217,185,122,0.12), transparent 60%);
+    }
+
+    .member-level {
+      font-size: 11px;
+      color: rgba(108,99,255,0.7);
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      position: relative;
+      z-index: 2;
+    }
+
+    .member-title {
+      font-size: 28px;
+      font-weight: 900;
+      color: var(--text-primary);
+      margin: 6px 0 8px;
+      position: relative;
+      z-index: 2;
+      background: linear-gradient(135deg, var(--text-primary), var(--primary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .member-hint {
+      font-size: 13px;
+      color: rgba(108,99,255,0.7);
+      position: relative;
+      z-index: 2;
+      font-weight: 500;
+    }
+
+    /* Asset Grid */
+    .asset-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--sp-sm);
+      margin-bottom: var(--sp-lg);
+    }
+
+    .asset-item {
+      padding: var(--sp-md) var(--sp-xs);
+      border-radius: var(--r-lg);
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      text-align: center;
+      box-shadow: var(--shadow-xs);
+    }
+
+    .asset-val {
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--text-primary);
+      letter-spacing: -0.3px;
+    }
+
+    .asset-label {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 4px;
+      font-weight: 500;
+    }
+
+    /* Order Grid */
+    .order-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      text-align: center;
+    }
+
+    .order-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      transition: transform var(--dur-base) var(--spring);
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .order-item:hover { transform: translateY(-3px); }
+
+    .order-icon { font-size: 26px; }
+
+    .order-label {
+      font-size: 12px;
+      color: var(--text-secondary);
+      font-weight: 600;
+    }
+
+    /* Service Grid */
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--sp-sm);
+    }
+
+    .service-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      padding: var(--sp-md) var(--sp-xs);
+      border-radius: var(--r-lg);
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      cursor: pointer;
+      transition: all var(--dur-base) var(--ease-out);
+      box-shadow: var(--shadow-xs);
+    }
+
+    .service-item:hover {
+      border-color: rgba(108,99,255,0.2);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .service-icon { font-size: 26px; }
+
+    .service-label {
+      font-size: 11px;
+      color: var(--text-secondary);
+      font-weight: 600;
+      text-align: center;
+      line-height: 1.2;
+    }
+
+    /* ═══════════════════════════════════════════════════
+       RECORDS
+       ═══════════════════════════════════════════════════ */
+
+    .record-row {
+      display: flex;
+      align-items: center;
+      padding: var(--sp-md);
+      border-radius: var(--r-lg);
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      gap: var(--sp-md);
+      margin-bottom: 10px;
+      transition: all var(--dur-base) var(--ease-out);
+      box-shadow: var(--shadow-xs);
+    }
+
+    .record-row:hover {
+      border-color: rgba(108,99,255,0.15);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .record-logo {
+      width: 44px; height: 44px;
+      border-radius: var(--r-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 800;
+      color: #fff;
+      flex-shrink: 0;
+    }
+
+    .record-logo.success { background: linear-gradient(135deg, var(--green), #059669); }
+    .record-logo.process { background: linear-gradient(135deg, var(--amber), #D97706); }
+    .record-logo.earn    { background: linear-gradient(135deg, var(--primary), var(--primary-light)); }
+
+    .record-info { flex: 1; min-width: 0; }
+
+    .record-name {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-primary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .record-time {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .record-right { text-align: right; flex-shrink: 0; }
+
+    .record-status {
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .record-status.success { color: var(--green); }
+    .record-status.process { color: var(--amber); }
+    .record-status.earn    { color: var(--primary); }
+
+    .record-amount {
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-top: 2px;
+    }
+
+    /* ═══════════════════════════════════════════════════
+       MODAL
+       ═══════════════════════════════════════════════════ */
+
+    .modal-mask {
+      position: fixed;
+      inset: 0;
+      background: rgba(17,24,39,0.5);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: 80;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity var(--dur-base) var(--ease);
+    }
+
+    .modal-mask.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal {
+      position: fixed;
+      left: 0; right: 0;
+      bottom: 0;
+      z-index: 90;
+      border-radius: var(--r-2xl) var(--r-2xl) 0 0;
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-bottom: none;
+      transform: translateY(100%);
+      transition: transform var(--dur-slow) var(--ease-out);
+      max-height: calc(100vh - 80px);
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 -12px 48px rgba(0,0,0,0.12);
+    }
+
+    .modal.open { transform: translateY(0); }
+
+    .modal-head { padding: 20px 24px 12px; flex-shrink: 0; }
+
+    .modal-handle {
+      width: 44px; height: 4px;
+      border-radius: 2px;
+      background: var(--border);
+      margin: 0 auto 16px;
+    }
+
+    .modal-title-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .modal-title {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--text-primary);
+    }
+
+    .modal-close {
+      padding: 8px 16px;
+      border-radius: var(--r-md);
+      background: var(--bg-subtle);
+      border: 1px solid var(--border);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all var(--dur-fast);
+    }
+
+    .modal-close:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    .modal-body {
+      padding: 0 24px 40px;
+      overflow-y: auto;
+      flex: 1;
+    }
+
+    /* Form */
+    .form-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .form-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px;
+      border-radius: var(--r-lg);
+      background: var(--bg-subtle);
+      border: 1px solid var(--border);
+    }
+
+    .form-row label {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-secondary);
+    }
+
+    .form-row input,
+    .form-row select {
+      border: none;
+      background: transparent;
+      outline: none;
+      font-size: 15px;
+      font-weight: 700;
+      text-align: right;
+      width: 55%;
+      font-family: inherit;
+      color: var(--primary);
+    }
+
+    .form-row select {
+      -webkit-appearance: none;
+      appearance: none;
+      color: var(--text-primary);
+    }
+
+    /* Captcha */
+    .captcha-row {
+      display: flex;
+      align-items: center;
+      gap: var(--sp-sm);
+    }
+
+    .captcha-input {
+      flex: 1;
+      padding: 14px 16px;
+      border-radius: var(--r-lg);
+      background: var(--bg-subtle);
+      border: 1px solid var(--border);
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      color: var(--text-primary);
+      outline: none;
+      font-family: inherit;
+      transition: border-color var(--dur-fast);
+    }
+
+    .captcha-input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px var(--primary-soft);
+    }
+
+    .captcha-input.error {
+      border-color: var(--red);
+      box-shadow: 0 0 0 3px var(--red-soft);
+      animation: shake 0.4s var(--ease);
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-6px); }
+      75% { transform: translateX(6px); }
+    }
+
+    .captcha-code {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 14px;
+      border-radius: var(--r-md);
+      background: var(--primary-soft);
+      border: 1px solid rgba(108,99,255,0.2);
+      font-size: 16px;
+      font-weight: 900;
+      letter-spacing: 4px;
+      color: var(--primary);
+      cursor: pointer;
+      min-width: 80px;
+      text-align: center;
+      transition: all var(--dur-fast);
+      user-select: none;
+    }
+
+    .captcha-code:hover { background: rgba(108,99,255,0.15); }
+
+    /* Primary Button */
+    .btn-primary {
+      width: 100%;
+      padding: 16px;
+      border: none;
+      border-radius: var(--r-lg);
+      font-size: 16px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all var(--dur-base) var(--ease-out);
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      color: #fff;
+      box-shadow: 0 6px 20px var(--primary-glow);
+      position: relative;
+      overflow: hidden;
+      font-family: inherit;
+      letter-spacing: 0;
+    }
+
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.15), transparent);
+      opacity: 0;
+      transition: opacity var(--dur-fast);
+    }
+
+    .btn-primary:hover::before { opacity: 1; }
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 28px var(--primary-glow);
+    }
+    .btn-primary:active { transform: scale(0.98); }
+
+    .btn-primary.gold {
+      background: linear-gradient(135deg, var(--gold), #C4A060);
+      box-shadow: 0 6px 20px var(--gold-glow);
+    }
+
+    .btn-primary.gold:hover { box-shadow: 0 10px 28px var(--gold-glow); }
+
+    /* ═══════════════════════════════════════════════════
+       BOTTOM NAVIGATION
+       ═══════════════════════════════════════════════════ */
+
+    .nav {
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: 430px;
+      height: calc(var(--nav-h) + var(--safe-bottom));
+      padding-bottom: var(--safe-bottom);
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border-top: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      z-index: 60;
+      box-shadow: 0 -4px 24px rgba(0,0,0,0.06);
+    }
+
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      cursor: pointer;
+      color: var(--text-muted);
+      font-size: 11px;
+      font-weight: 600;
+      transition: all var(--dur-base) var(--ease-out);
+      text-decoration: none;
+      position: relative;
+    }
+
+    .nav-item i { font-size: 24px; transition: transform var(--dur-base) var(--spring); }
+
+    .nav-item.active { color: var(--primary); }
+
+    .nav-item.active::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 50%; transform: translateX(-50%);
+      width: 28px; height: 3px;
+      border-radius: 0 0 3px 3px;
+      background: linear-gradient(90deg, var(--primary), var(--primary-light));
+    }
+
+    .nav-item.active i { transform: translateY(-2px); }
+
+    /* ═══════════════════════════════════════════════════
+       MISC UTILITIES
+       ═══════════════════════════════════════════════════ */
+
+    .divider {
+      height: 1px;
+      background: var(--border-light);
+      margin: var(--sp-md) 0;
+    }
+
+    .text-primary { color: var(--text-primary); }
+    .text-muted   { color: var(--text-muted); }
+
+    /* Loading shimmer */
+    @keyframes shimmer {
+      0%   { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+
+    .skeleton {
+      background: linear-gradient(90deg,
+        rgba(108,99,255,0.04) 25%,
+        rgba(108,99,255,0.08) 50%,
+        rgba(108,99,255,0.04) 75%
+      );
+      background-size: 200% 100%;
+      animation: shimmer 1.5s ease-in-out infinite;
+      border-radius: var(--r-md);
+    }
+
+    /* Focus state */
+    .focus-ring:focus-visible {
+      outline: 2px solid var(--primary);
+      outline-offset: 2px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════
+     AMBIENT BACKGROUND
+     ═══════════════════════════════════════════════════ -->
+<div class="ambient-bg" aria-hidden="true">
+  <div class="ambient-glow ambient-glow-1"></div>
+  <div class="ambient-glow ambient-glow-2"></div>
+  <div class="ambient-glow ambient-glow-3"></div>
+</div>
+<div class="dot-grid" aria-hidden="true"></div>
+
+<!-- ═══════════════════════════════════════════════════
+     APP WRAPPER
+     ═══════════════════════════════════════════════════ -->
+<div class="app">
+
+  <!-- HEADER -->
+  <header class="header" id="mainHeader">
+    <div class="header-inner">
+      <div class="header-logo">
+        <div class="header-logo-main">积分联盟计划</div>
+        <div class="header-logo-sub">Alliance Points</div>
+      </div>
+      <div class="header-actions">
+        <button class="icon-btn" id="btnNotify" title="通知">
+          <i class="ph ph-bell"></i>
+        </button>
+        <button class="icon-btn" id="btnQuickExchange" title="快捷兑换">
+          <i class="ph ph-lightning"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- SCREENS -->
+  <div class="screens-wrap">
+
+    <!-- ╔═══════════════════════════════════════════════╗ -->
+    <!-- ║   HOME SCREEN                                 ║ -->
+    <!-- ╚═══════════════════════════════════════════════╝ -->
+    <section id="screen-home" class="screen active">
+
+      <!-- Balance Hero -->
+      <div class="balance-hero">
+        <div class="balance-top">
+          <div class="balance-label">平台总积分</div>
+          <div class="balance-badge">
+            <i class="ph-fill ph-crown" style="font-size:12px;"></i>
+            黄金会员
+          </div>
+        </div>
+        <div class="balance-main">
+          <div class="balance-amount" id="balanceValue">12,860<span class="balance-unit"> 积分</span></div>
+          <div class="balance-cny" id="rmbValue">≈ ¥128.60 元</div>
+        </div>
+        <div class="balance-strip">
+          <div class="balance-strip-item">
+            <div class="balance-strip-val">+328</div>
+            <div class="balance-strip-label">今日新增</div>
+          </div>
+          <div class="strip-divider"></div>
+          <div class="balance-strip-item">
+            <div class="balance-strip-val">5</div>
+            <div class="balance-strip-label">在兑渠道</div>
+          </div>
+          <div class="strip-divider"></div>
+          <div class="balance-strip-item">
+            <div class="balance-strip-val">2</div>
+            <div class="balance-strip-label">进行中</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Actions -->
+      <div class="quick-grid">
+        <div class="quick-item" data-goto="channels">
+          <div class="quick-icon purple"><i class="ph-fill ph-arrows-split"></i></div>
+          <div class="quick-label">积分汇聚</div>
+        </div>
+        <div class="quick-item" data-goto="mall">
+          <div class="quick-icon gold"><i class="ph-fill ph-storefront"></i></div>
+          <div class="quick-label">积分商城</div>
+        </div>
+        <div class="quick-item" onclick="window.open('https://m.changyoyo.com/activity/#/standard/index?appId=Changyoyo_Life_Central&activityCode=2024042601&channel_source=02000000','_blank')">
+          <div class="quick-icon cyan"><i class="ph-fill ph-buildings"></i></div>
+          <div class="quick-label">企业付</div>
+        </div>
+        <div class="quick-item" onclick="window.open('https://m.changyoyo.com/oil/index.html?appId=Changyoyo_Life_Central_Gasoline&from=undefined','_blank')">
+          <div class="quick-icon green"><i class="ph-fill ph-gas-pump"></i></div>
+          <div class="quick-label">积分加油</div>
+        </div>
+      </div>
+
+      <!-- Virtual Benefits -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-title"><span class="section-title-dot"></span>虚拟权益</div>
+          <div class="section-more">更多 <i class="ph ph-caret-right" style="font-size:12px;"></i></div>
+        </div>
+        <div class="product-grid" id="virtualGrid"></div>
+      </div>
+
+      <!-- Physical Benefits -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-title"><span class="section-title-dot"></span>实物优选</div>
+          <div class="section-more">全部 <i class="ph ph-caret-right" style="font-size:12px;"></i></div>
+        </div>
+        <div class="product-grid" id="physicalGrid"></div>
+      </div>
+
+      <!-- Interactive Tasks -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-title"><span class="section-title-dot"></span>互动任务</div>
+          <div class="section-more">赚积分 <i class="ph ph-caret-right" style="font-size:12px;"></i></div>
+        </div>
+        <div class="channel-list" id="miniGamesList">
+          <div class="channel-row" onclick="location.href='https://m.changyoyo.com/orchard/index.html'">
+            <div class="channel-logo green">果</div>
+            <div class="channel-info">
+              <div class="channel-name">畅由果园</div>
+              <div class="channel-rate">浇水种树，收获免费水果与积分</div>
+            </div>
+            <div class="channel-right">
+              <div class="channel-status ok">去种树</div>
+            </div>
+          </div>
+          <div class="channel-row">
+            <div class="channel-logo purple">签</div>
+            <div class="channel-info">
+              <div class="channel-name">每日签到</div>
+              <div class="channel-rate">连续签到赢取最高 1,000 积分</div>
+            </div>
+            <div class="channel-right">
+              <div class="channel-status pending">去签到</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ╔═══════════════════════════════════════════════╗ -->
+    <!-- ║   CHANNELS SCREEN (积分)                      ║ -->
+    <!-- ╚═══════════════════════════════════════════════╝ -->
+    <section id="screen-channels" class="screen">
+
+      <!-- Ring + Side Tools -->
+      <div style="position:relative; padding:24px 0 32px; text-align:center;">
+        <div class="ring-side-tools">
+          <div class="side-tool-btn" onclick="window.open('https://m.changyoyo.com/jfmall/index.html#/hjfStrategy','_blank')">
+            积分攻略 <i class="ph ph-arrow-up-right" style="font-size:11px;"></i>
+          </div>
+          <div class="side-tool-btn" data-goto="records">
+            积分明细 <i class="ph ph-list" style="font-size:11px;"></i>
+          </div>
+        </div>
+        <div class="points-ring" style="margin:0 auto;">
+          <div class="points-ring-core">
+            <div class="points-ring-val" id="channelsPointsValue">12,860</div>
+            <div class="points-ring-label">联盟积分</div>
+          </div>
+        </div>
+        <div class="points-cny" id="channelsRmbValue">≈ ¥128.60 元</div>
+      </div>
+
+      <!-- Segmented -->
+      <div class="seg-control">
+        <button class="seg-btn active" id="segIn" data-mode="in">兑入</button>
+        <button class="seg-btn" id="segOut" data-mode="out">兑出</button>
+      </div>
+
+      <!-- Filters -->
+      <div class="pill-row" id="channelFilters">
+        <div class="pill active" data-filter="all">全部</div>
+        <div class="pill" data-filter="bank">银行</div>
+        <div class="pill" data-filter="air">航司</div>
+        <div class="pill" data-filter="life">生活</div>
+        <div class="pill" data-filter="soon">即将支持</div>
+      </div>
+
+      <!-- Channel List -->
+      <div class="channel-list" id="channelList"></div>
+    </section>
+
+    <!-- ╔═══════════════════════════════════════════════╗ -->
+    <!-- ║   MALL SCREEN                                 ║ -->
+    <!-- ╚═══════════════════════════════════════════════╝ -->
+    <section id="screen-mall" class="screen">
+
+      <!-- Topbar -->
+      <div class="mall-topbar">
+        <div>
+          <div class="mall-title">积分商城</div>
+          <div class="mall-subtitle">Premium Alliance Mall</div>
+        </div>
+        <button class="icon-btn" style="width:36px;height:36px;font-size:18px;" onclick="window.open('https://m.changyoyo.com/jfmall/index.htm#/cymall','_blank')">
+          <i class="ph ph-dots-three"></i>
+        </button>
+      </div>
+
+      <!-- Search -->
+      <div class="search-bar">
+        <i class="ph ph-magnifying-glass" style="color:var(--text-muted);font-size:18px;"></i>
+        <input type="search" placeholder="搜索商品、品牌或分类..." />
+      </div>
+
+      <!-- Hero Banner -->
+      <div class="hero-banner" onclick="location.href='https://m.changyoyo.com/sale/'">
+        <div class="hero-banner-bg"></div>
+        <div class="hero-banner-content">
+          <div class="hero-tag">
+            <i class="ph-fill ph-fire" style="font-size:11px;"></i>
+            限时活动
+          </div>
+          <div class="hero-title">新用户首兑 · 积分翻倍</div>
+          <div class="hero-sub">最高可得 500 联盟积分奖励</div>
+        </div>
+      </div>
+
+      <!-- Categories -->
+      <div class="cat-grid">
+        <div class="cat-item"><div class="cat-icon">📱</div><div class="cat-label">手机数码</div></div>
+        <div class="cat-item"><div class="cat-icon">🧴</div><div class="cat-label">生活家居</div></div>
+        <div class="cat-item"><div class="cat-icon">🎁</div><div class="cat-label">积分礼券</div></div>
+        <div class="cat-item"><div class="cat-icon">🥤</div><div class="cat-label">美食饮品</div></div>
+        <div class="cat-item"><div class="cat-icon">🧳</div><div class="cat-label">出行旅游</div></div>
+      </div>
+
+      <!-- Products -->
+      <div class="mall-panel">
+        <div class="section-header" style="margin: 0 0 16px 8px;">
+          <div class="section-title"><span class="section-title-dot"></span>品牌优选</div>
+          <div class="section-more">查看全部 <i class="ph ph-caret-right" style="font-size:12px;"></i></div>
+        </div>
+        <div class="product-grid" id="mallProductGrid"></div>
+      </div>
+    </section>
+
+    <!-- ╔═══════════════════════════════════════════════╗ -->
+    <!-- ║   RECORDS SCREEN                              ║ -->
+    <!-- ╚═══════════════════════════════════════════════╝ -->
+    <section id="screen-records" class="screen">
+      <div class="section-header">
+        <div class="section-title"><span class="section-title-dot"></span>积分明细</div>
+        <div class="section-more"><i class="ph ph-funnel" style="font-size:14px;margin-right:4px;"></i>筛选</div>
+      </div>
+
+      <div class="pill-row" id="recordFilters">
+        <div class="pill active" data-filter="all">全部</div>
+        <div class="pill" data-filter="exchange">兑换</div>
+        <div class="pill" data-filter="earn">获取</div>
+        <div class="pill" data-filter="success">成功</div>
+        <div class="pill" data-filter="processing">处理中</div>
+      </div>
+
+      <div class="channel-list" id="recordList"></div>
+    </section>
+
+    <!-- ╔═══════════════════════════════════════════════╗ -->
+    <!-- ║   ME / PROFILE SCREEN                         ║ -->
+    <!-- ╚═══════════════════════════════════════════════╝ -->
+    <section id="screen-me" class="screen">
+
+      <!-- Profile Header -->
+      <div class="profile-header card">
+        <div class="profile-avatar">J</div>
+        <div class="profile-info">
+          <div class="profile-name">Joker</div>
+          <div class="profile-phone">185 **** 2430</div>
+        </div>
+        <button class="icon-btn" style="margin-left:auto;">
+          <i class="ph ph-gear"></i>
+        </button>
+      </div>
+
+      <!-- Member Card -->
+      <div class="member-card">
+        <div class="member-level">联盟会员 · 当前等级</div>
+        <div class="member-title">黄金会员</div>
+        <div class="member-hint">再累计 3,000 积分升级钻石，享额外 9 折兑</div>
+      </div>
+
+      <!-- Asset Grid -->
+      <div class="asset-grid">
+        <div class="asset-item">
+          <div class="asset-val">12,860</div>
+          <div class="asset-label">畅由积分</div>
+        </div>
+        <div class="asset-item">
+          <div class="asset-val">0</div>
+          <div class="asset-label">权益包</div>
+        </div>
+        <div class="asset-item">
+          <div class="asset-val">4</div>
+          <div class="asset-label">卡券</div>
+        </div>
+        <div class="asset-item">
+          <div class="asset-val">0</div>
+          <div class="asset-label">优惠券</div>
+        </div>
+      </div>
+
+      <!-- Orders -->
+      <div class="card" style="padding:var(--sp-lg);margin-bottom:var(--sp-md);">
+        <div class="section-header" style="margin-bottom:var(--sp-md);">
+          <div class="section-title"><span class="section-title-dot"></span>我的订单</div>
+          <div class="section-more">全部 <i class="ph ph-caret-right" style="font-size:12px;"></i></div>
+        </div>
+        <div class="order-grid">
+          <div class="order-item"><div class="order-icon">💳</div><div class="order-label">待付款</div></div>
+          <div class="order-item"><div class="order-icon">📦</div><div class="order-label">待发货</div></div>
+          <div class="order-item"><div class="order-icon">🚚</div><div class="order-label">待收货</div></div>
+          <div class="order-item"><div class="order-icon">↩️</div><div class="order-label">售后</div></div>
+          <div class="order-item"><div class="order-icon">📋</div><div class="order-label">全部</div></div>
+        </div>
+      </div>
+
+      <!-- My Coupons -->
+      <div class="card" style="padding:var(--sp-lg);margin-bottom:var(--sp-md);">
+        <div class="section-header" style="margin-bottom:var(--sp-md);">
+          <div class="section-title"><span class="section-title-dot"></span>我的卡券</div>
+          <div class="section-more">全部 <i class="ph ph-caret-right" style="font-size:12px;"></i></div>
+        </div>
+        <div class="record-row" style="margin-bottom:var(--sp-sm);">
+          <div class="channel-logo purple" style="width:40px;height:40px;font-size:14px;">卡</div>
+          <div class="channel-info">
+            <div class="channel-name">京东E卡 50元</div>
+            <div class="channel-rate">有效期至 2026-06-30</div>
+          </div>
+          <div>
+            <button class="icon-btn" style="width:32px;height:32px;font-size:14px;" title="复制">
+              <i class="ph ph-copy"></i>
+            </button>
+          </div>
+        </div>
+        <div class="record-row">
+          <div class="channel-logo blue" style="width:40px;height:40px;font-size:14px;">影</div>
+          <div class="channel-info">
+            <div class="channel-name">畅由电影月卡</div>
+            <div class="channel-rate">有效期至 2026-05-15</div>
+          </div>
+          <div>
+            <button class="icon-btn" style="width:32px;height:32px;font-size:14px;" title="复制">
+              <i class="ph ph-copy"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Services -->
+      <div class="card" style="padding:var(--sp-lg);">
+        <div class="section-header" style="margin-bottom:var(--sp-md);">
+          <div class="section-title"><span class="section-title-dot"></span>更多服务</div>
+        </div>
+        <div class="service-grid">
+          <div class="service-item"><div class="service-icon">📄</div><div class="service-label">我的账单</div></div>
+          <div class="service-item"><div class="service-icon">☎️</div><div class="service-label">客服服务</div></div>
+          <div class="service-item"><div class="service-icon">📨</div><div class="service-label">我的消息</div></div>
+          <div class="service-item"><div class="service-icon">➕</div><div class="service-label">充积分</div></div>
+        </div>
+      </div>
+    </section>
+
+  </div><!-- /screens-wrap -->
+</div><!-- /app -->
+
+<!-- ═══════════════════════════════════════════════════
+     MODAL
+     ═══════════════════════════════════════════════════ -->
+<div id="modalMask" class="modal-mask"></div>
+<div id="modal" class="modal" role="dialog" aria-modal="true">
+  <div class="modal-head">
+    <div class="modal-handle"></div>
+    <div class="modal-title-row">
+      <div class="modal-title" id="modalTitle">快捷兑换</div>
+      <button class="modal-close" onclick="closeModal()">关闭</button>
+    </div>
+  </div>
+  <div class="modal-body">
+    <div id="modalContent"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     JAVASCRIPT
+     ═══════════════════════════════════════════════════ -->
+<script>
+'use strict';
+
+// ── Data ──────────────────────────────────────────────
+
+const virtualProducts = [
+  { id: 1, name: '视频网站月卡', price: 800, tag: 'hot', tagLabel: '热兑', thumb: '🎬' },
+  { id: 2, name: '外卖平台代金券', price: 500, tag: 'mix', tagLabel: '组合', thumb: '🍜' },
+  { id: 3, name: '音乐App会员', price: 600, tag: 'pure', tagLabel: '纯积分', thumb: '🎵' },
+  { id: 4, name: '阅读书币充值', price: 300, tag: 'pure', tagLabel: '纯积分', thumb: '📖' },
+];
+
+const physicalProducts = [
+  { id: 5, name: '小米蓝牙耳机', price: 8800, tag: 'hot', tagLabel: '热兑', thumb: '🎧' },
+  { id: 6, name: '品牌保温杯套装', price: 3200, tag: 'mix', tagLabel: '组合', thumb: '🥤' },
+  { id: 7, name: '智能手环 Pro', price: 12000, tag: 'pure', tagLabel: '纯积分', thumb: '⌚' },
+  { id: 8, name: '有机坚果礼盒', price: 2600, tag: 'mix', tagLabel: '组合', thumb: '🎁' },
+];
+
+const mallProducts = [
+  { id: 9, name: 'Apple AirPods Pro', price: 29900, tag: 'hot', tagLabel: '热兑', thumb: '🎧' },
+  { id: 10, name: '戴森吹风机', price: 58000, tag: 'pure', tagLabel: '纯积分', thumb: '💨' },
+  { id: 11, name: '星巴克礼卡 100元', price: 4000, tag: 'mix', tagLabel: '组合', thumb: '☕' },
+  { id: 12, name: '出行打车券包', price: 1500, tag: 'pure', tagLabel: '纯积分', thumb: '🚗' },
+];
+
+const channelsIn = [
+  { name: '工商银行', rate: '500:1', logo: '工', color: 'blue', status: 'ok', statusLabel: '支持', arrow: '1积分≈0.02元' },
+  { name: '建设银行', rate: '200:1', logo: '建', color: 'cyan', status: 'ok', statusLabel: '支持', arrow: '1积分≈0.05元' },
+  { name: '中国国航', rate: '100:1', logo: '国', color: 'purple', status: 'ok', statusLabel: '支持', arrow: '1积分≈0.10元' },
+  { name: '东方航空', rate: '150:1', logo: '东', color: 'gold', status: 'ok', statusLabel: '支持', arrow: '1积分≈0.07元' },
+  { name: '饿了么', rate: '50:1', logo: '饿', color: 'green', status: 'pending', statusLabel: '即将', arrow: '即将上线' },
+  { name: '支付宝', rate: '100:1', logo: '支', color: 'blue', status: 'soon', statusLabel: '敬请', arrow: '敬请期待' },
+];
+
+const channelsOut = [
+  { name: '京东E卡', rate: '100:1', logo: '京', color: 'gold', status: 'ok', statusLabel: '支持', arrow: '1积分≈0.01元' },
+  { name: '话费充值', rate: '200:1', logo: '话', color: 'green', status: 'ok', statusLabel: '支持', arrow: '1积分≈0.05元' },
+  { name: '美团外卖', rate: '80:1', logo: '美', color: 'cyan', status: 'ok', statusLabel: '支持', arrow: '1积分≈0.012元' },
+];
+
+const records = [
+  { name: '工商银行', time: '2026-05-13 14:32', status: 'success', statusLabel: '已到账', logo: '工', logoType: 'success', amount: '+2,000', amountType: 'earn' },
+  { name: '京东E卡 50元', time: '2026-05-12 09:15', status: 'process', statusLabel: '处理中', logo: '京', logoType: 'process', amount: '-5,000', amountType: 'exchange' },
+  { name: '中国国航', time: '2026-05-10 16:45', status: 'success', statusLabel: '已到账', logo: '国', logoType: 'success', amount: '+5,000', amountType: 'earn' },
+  { name: '话费充值', time: '2026-05-08 11:20', status: 'success', statusLabel: '已到账', logo: '话', logoType: 'success', amount: '-2,000', amountType: 'exchange' },
+  { name: '饿了么红包', time: '2026-05-06 18:05', status: 'success', statusLabel: '已到账', logo: '饿', logoType: 'success', amount: '-500', amountType: 'exchange' },
+];
+
+// ── State ──────────────────────────────────────────────
+
+let currentScreen = 'home';
+let channelMode = 'in';
+let channelFilter = 'all';
+let recordFilter = 'all';
+let currentCaptcha = '';
+
+// ── Navigation ─────────────────────────────────────────
+
+function setScreen(name) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById('screen-' + name).classList.add('active');
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.querySelector(`.nav-item[data-nav="${name}"]`)?.classList.add('active');
+  currentScreen = name;
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+document.querySelectorAll('[data-goto]').forEach(el => {
+  el.addEventListener('click', () => setScreen(el.dataset.goto));
+});
+
+document.querySelectorAll('.nav-item[data-nav]').forEach(el => {
+  el.addEventListener('click', () => setScreen(el.dataset.nav));
+});
+
+document.querySelectorAll('[data-goto="records"]').forEach(el => {
+  el.addEventListener('click', () => setScreen('records'));
+});
+
+// ── Render Products ────────────────────────────────────
+
+function renderProductCard(p) {
+  return `
+    <div class="product-card" onclick="openExchangeModal(${p.id}, '${p.name}', ${p.price})">
+      <div class="product-thumb">
+        <span class="product-tag ${p.tag}">${p.tagLabel}</span>
+        ${p.thumb}
+      </div>
+      <div class="product-name">${p.name}</div>
+      <div class="product-price">${p.price.toLocaleString()} <em>积分</em></div>
+    </div>
+  `;
+}
+
+function renderVirtual() {
+  document.getElementById('virtualGrid').innerHTML = virtualProducts.map(renderProductCard).join('');
+}
+
+function renderPhysical() {
+  document.getElementById('physicalGrid').innerHTML = physicalProducts.map(renderProductCard).join('');
+}
+
+function renderMallProducts() {
+  document.getElementById('mallProductGrid').innerHTML = mallProducts.map(renderProductCard).join('');
+}
+
+// ── Render Channels ────────────────────────────────────
+
+function renderChannels() {
+  const data = channelMode === 'in' ? channelsIn : channelsOut;
+  const filtered = channelFilter === 'all'
+    ? data
+    : data.filter(ch => {
+        if (channelFilter === 'bank') return ['工商银行','建设银行'].includes(ch.name);
+        if (channelFilter === 'air') return ['中国国航','东方航空'].includes(ch.name);
+        if (channelFilter === 'life') return ['饿了么','支付宝'].includes(ch.name);
+        if (channelFilter === 'soon') return ch.status === 'soon';
+        return true;
+      });
+
+  document.getElementById('channelList').innerHTML = filtered.map(ch => `
+    <div class="channel-row">
+      <div class="channel-logo ${ch.color}">${ch.logo}</div>
+      <div class="channel-info">
+        <div class="channel-name">${ch.name}</div>
+        <div class="channel-rate">${ch.rate}</div>
+      </div>
+      <div class="channel-right">
+        <div class="channel-status ${ch.status}">${ch.statusLabel}</div>
+        <div class="channel-arrow">${ch.arrow}</div>
+      </div>
+    </div>
+  `).join('');
+}
+
+// ── Render Records ─────────────────────────────────────
+
+function renderRecords() {
+  const filtered = recordFilter === 'all'
+    ? records
+    : records.filter(r => {
+        if (recordFilter === 'exchange') return r.amount.startsWith('-');
+        if (recordFilter === 'earn') return r.amount.startsWith('+');
+        if (recordFilter === 'success') return r.status === 'success';
+        if (recordFilter === 'processing') return r.status === 'process';
+        return true;
+      });
+
+  document.getElementById('recordList').innerHTML = filtered.map(r => `
+    <div class="record-row">
+      <div class="record-logo ${r.logoType}">${r.logo}</div>
+      <div class="record-info">
+        <div class="record-name">${r.name}</div>
+        <div class="record-time">${r.time}</div>
+      </div>
+      <div class="record-right">
+        <div class="record-status ${r.status}">${r.statusLabel}</div>
+        <div class="record-amount" style="color:${r.amount.startsWith('+') ? 'var(--primary)' : 'var(--text-primary)'}">${r.amount}</div>
+      </div>
+    </div>
+  `).join('');
+}
+
+// ── Segmented & Filter Controls ────────────────────────
+
+document.getElementById('segIn').addEventListener('click', () => {
+  channelMode = 'in';
+  document.getElementById('segIn').classList.add('active');
+  document.getElementById('segOut').classList.remove('active');
+  renderChannels();
+});
+
+document.getElementById('segOut').addEventListener('click', () => {
+  channelMode = 'out';
+  document.getElementById('segOut').classList.add('active');
+  document.getElementById('segIn').classList.remove('active');
+  renderChannels();
+});
+
+document.getElementById('channelFilters').addEventListener('click', e => {
+  const pill = e.target.closest('.pill');
+  if (!pill) return;
+  channelFilter = pill.dataset.filter;
+  document.querySelectorAll('#channelFilters .pill').forEach(p => p.classList.remove('active'));
+  pill.classList.add('active');
+  renderChannels();
+});
+
+document.getElementById('recordFilters').addEventListener('click', e => {
+  const pill = e.target.closest('.pill');
+  if (!pill) return;
+  recordFilter = pill.dataset.filter;
+  document.querySelectorAll('#recordFilters .pill').forEach(p => p.classList.remove('active'));
+  pill.classList.add('active');
+  renderRecords();
+});
+
+// ── Modal ──────────────────────────────────────────────
+
+function openModal() {
+  document.getElementById('modalMask').classList.add('open');
+  document.getElementById('modal').classList.add('open');
+}
+
+function closeModal() {
+  document.getElementById('modalMask').classList.remove('open');
+  document.getElementById('modal').classList.remove('open');
+}
+
+document.getElementById('modalMask').addEventListener('click', closeModal);
+
+// ── Exchange Modal (with Captcha) ──────────────────────
+
+function generateVCode() {
+  const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+  let code = '';
+  for (let i = 0; i < 4; i++) code += chars[Math.floor(Math.random() * chars.length)];
+  return code;
+}
+
+function refreshCaptcha() {
+  currentCaptcha = generateVCode();
+  document.getElementById('captchaCode').textContent = currentCaptcha;
+  document.getElementById('captchaInput').value = '';
+  document.getElementById('captchaInput').classList.remove('error');
+}
+
+function openExchangeModal(id, name, price) {
+  document.getElementById('modalTitle').textContent = '立即兑换';
+  openModal();
+
+  document.getElementById('modalContent').innerHTML = `
+    <div class="form-stack">
+      <div class="form-row">
+        <label>商品名称</label>
+        <span style="font-weight:700;color:var(--text-primary);">${name}</span>
+      </div>
+      <div class="form-row">
+        <label>消耗积分</label>
+        <span style="font-weight:800;color:var(--primary);">${price.toLocaleString()}</span>
+      </div>
+      <div class="form-row">
+        <label>到账账号</label>
+        <span style="font-size:14px;color:var(--text-secondary);">185****2430</span>
+      </div>
+      <div class="form-row">
+        <label>安全验证</label>
+        <div class="captcha-row">
+          <input type="text" id="captchaInput" class="captcha-input" maxlength="4" placeholder="请输入验证码" autocomplete="off" />
+          <div class="captcha-code" id="captchaCode" onclick="refreshCaptcha()" title="点击刷新"></div>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:20px;">
+      <button class="btn-primary" id="buyBtn">确认兑换</button>
+      <p style="font-size:11px;color:var(--text-muted);text-align:center;margin-top:10px;">
+        兑换即表示同意《积分兑换协议》
+      </p>
+    </div>
+  `;
+
+  refreshCaptcha();
+
+  document.getElementById('buyBtn').addEventListener('click', () => {
+    const input = document.getElementById('captchaInput').value.trim().toUpperCase();
+    if (input !== currentCaptcha) {
+      document.getElementById('captchaInput').classList.add('error');
+      refreshCaptcha();
+      return;
+    }
+    closeModal();
+    setScreen('records');
+  });
+
+  document.getElementById('captchaInput').addEventListener('keyup', e => {
+    if (e.key === 'Enter') document.getElementById('buyBtn').click();
+  });
+}
+
+// ── Quick Exchange Modal ────────────────────────────────
+
+document.getElementById('btnQuickExchange').addEventListener('click', () => {
+  document.getElementById('modalTitle').textContent = '快捷兑换';
+  openModal();
+  document.getElementById('modalContent').innerHTML = `
+    <div class="form-stack">
+      <div class="form-row">
+        <label>兑换积分</label>
+        <input type="number" id="exAmount" placeholder="请输入数量" value="1000" />
+      </div>
+      <div class="form-row">
+        <label>目标渠道</label>
+        <select id="exChannel">
+          <option>工商银行</option>
+          <option>建设银行</option>
+          <option>中国国航</option>
+          <option>京东E卡</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <label>预计到账</label>
+        <span style="font-weight:800;color:var(--primary);">约 ¥5.00 元</span>
+      </div>
+    </div>
+    <div style="margin-top:20px;">
+      <button class="btn-primary gold" id="doExchangeBtn">立即兑换</button>
+    </div>
+  `;
+
+  document.getElementById('doExchangeBtn').addEventListener('click', () => {
+    const amount = document.getElementById('exAmount').value;
+    if (!amount || parseInt(amount) <= 0) return;
+    closeModal();
+    setScreen('records');
+  });
+});
+
+// ── Notify ─────────────────────────────────────────────
+
+document.getElementById('btnNotify').addEventListener('click', () => {
+  document.getElementById('modalTitle').textContent = '系统通知';
+  openModal();
+  document.getElementById('modalContent').innerHTML = `
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      <div class="record-row" style="cursor:default;">
+        <div class="record-logo earn" style="width:40px;height:40px;font-size:14px;">✦</div>
+        <div class="channel-info">
+          <div class="channel-name">恭喜获得 500 积分奖励</div>
+          <div class="channel-rate">2小时前</div>
+        </div>
+      </div>
+      <div class="record-row" style="cursor:default;">
+        <div class="record-logo success" style="width:40px;height:40px;font-size:14px;">✓</div>
+        <div class="channel-info">
+          <div class="channel-name">京东E卡已到账</div>
+          <div class="channel-rate">昨天 14:32</div>
+        </div>
+      </div>
+      <div class="record-row" style="cursor:default;">
+        <div class="record-logo process" style="width:40px;height:40px;font-size:14px;">⟳</div>
+        <div class="channel-info">
+          <div class="channel-name">工商银行兑换处理中</div>
+          <div class="channel-rate">05-12 09:15</div>
+        </div>
+      </div>
+    </div>
+  `;
+});
+
+// ── Init ────────────────────────────────────────────────
+
+renderVirtual();
+renderPhysical();
+renderMallProducts();
+renderChannels();
+renderRecords();
+</script>
+
+</body>
+</html>
