@@ -3,41 +3,128 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>iOS App Demo</title>
+    <title>畅由联盟 - iOS App Demo</title>
     <style>
       :root { color-scheme: light; }
-      body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif; background: #fff; color: #111; }
-      .wrap { max-width: 920px; margin: 0 auto; padding: 40px 20px; }
-      h1 { font-size: 22px; margin: 0 0 10px; font-weight: 700; }
-      p { margin: 0 0 18px; color: #666; line-height: 1.6; }
-      
-      
-      a.card { display: block; text-decoration: none; color: inherit; border: 1px solid #eee; border-radius: 16px; padding: 16px; transition: transform 0.15s ease, border-color 0.15s ease; }
-      a.card:hover { transform: translateY(-2px); border-color: #ddd; }
-      .title { font-weight: 700; font-size: 16px; margin-bottom: 8px; }
-      .desc { color: #666; font-size: 13px; line-height: 1.6; }
+      body {
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "PingFang SC", "Helvetica Neue", sans-serif;
+        background: #F6F7FB;
+        color: #111827;
+      }
+      .wrap { max-width: 600px; margin: 0 auto; padding: 48px 20px 60px; }
+      .logo-row {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 8px;
+      }
+      .logo {
+        width: 44px; height: 44px; border-radius: 14px;
+        background: linear-gradient(135deg, #6C63FF, #8B7CFF);
+        display: flex; align-items: center; justify-content: center;
+        color: #fff; font-size: 20px; font-weight: 800;
+      }
+      h1 { font-size: 26px; font-weight: 800; margin: 0; color: #111827; }
+      .subtitle { font-size: 14px; color: #9CA3AF; margin: 4px 0 36px; }
+      .badge {
+        display: inline-block;
+        padding: 2px 10px; border-radius: 99px;
+        font-size: 11px; font-weight: 600;
+        background: linear-gradient(135deg,#6C63FF,#8B7CFF);
+        color: #fff; margin-left: 8px; vertical-align: middle;
+      }
+      .section-label {
+        font-size: 11px; font-weight: 700; letter-spacing: 0.08em;
+        color: #9CA3AF; text-transform: uppercase;
+        margin: 0 0 12px;
+      }
+      .cards { display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px; }
+      a.card {
+        display: block; text-decoration: none; color: inherit;
+        background: #fff; border: 1.5px solid transparent;
+        border-radius: 18px; padding: 18px 20px;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+        transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+        position: relative;
+      }
+      a.card:hover {
+        transform: translateY(-2px);
+        border-color: rgba(108,99,255,0.2);
+        box-shadow: 0 6px 24px rgba(108,99,255,0.10);
+      }
+      a.card.featured {
+        border-color: rgba(108,99,255,0.3);
+        background: linear-gradient(135deg,#FFFFFF,#F5F3FF);
+      }
+      .card-title { font-weight: 700; font-size: 15px; margin-bottom: 6px; display: flex; align-items: center; gap: 6px; }
+      .card-desc { color: #6B7280; font-size: 13px; line-height: 1.6; }
+      .card-arrow {
+        position: absolute; right: 20px; top: 50%; transform: translateY(-50%);
+        color: #D1D5DB; font-size: 18px;
+      }
+      .divider { height: 1px; background: rgba(0,0,0,0.05); margin: 8px 0 24px; }
     </style>
   </head>
   <body>
     <div class="wrap">
-      <h1>积分联盟计划 Demo</h1>
-      <p>选择要预览的前端页面（GitHub Pages 发布后可直接访问）。</p>
-      <div class="cards" style="display: flex; flex-direction: column; gap: 16px; margin-top: 24px;">
-        <a class="card" href="./积分联盟计划iOS版App.html">
-          <div class="title">主文件（天蓝色风格）</div>
-          <div class="desc">项目主入口文件（如需后续合并，可继续以此为基准）。采用了优化版的天蓝色清新视觉。</div>
+      <div class="logo-row">
+        <div class="logo">畅</div>
+        <div>
+          <h1>畅由联盟</h1>
+        </div>
+      </div>
+      <p class="subtitle">Premium Alliance Mall · iOS App 前端原型集合</p>
+
+      <div class="section-label">最新版本</div>
+      <div class="cards">
+        <a class="card featured" href="./畅由联盟_PremiumAllianceMall.html">
+          <div class="card-title">
+            Premium Alliance Mall
+            <span class="badge">LATEST</span>
+          </div>
+          <div class="card-desc">Premium Light Luxury Fintech UI — 明亮轻奢金融感，参考 Apple Card + Revolut Ultra + AMEX Platinum 设计语言。主色 #6C63FF · 香槟金 #D9B97A · 浅灰底 #F6F7FB。4 屏：首页 / 积分 / 订单 / 我的。</div>
+          <span class="card-arrow">›</span>
+        </a>
+        <a class="card" href="./优化版.html">
+          <div class="card-title">畅由积分 · 优化版</div>
+          <div class="card-desc">香槟金 + 米白轻奢风，参考积分互通列表真实样式重构。</div>
+          <span class="card-arrow">›</span>
+        </a>
+        <a class="card" href="./积分联盟iOS版App_优化版.html">
+          <div class="card-title">积分联盟 · 优化版</div>
+          <div class="card-desc">天蓝色清新视觉主题，配合 Google Fonts Noto Sans SC，交互完善。</div>
+          <span class="card-arrow">›</span>
+        </a>
+      </div>
+
+      <div class="divider"></div>
+      <div class="section-label">历史版本</div>
+      <div class="cards">
+        <a class="card" href="./积分联盟计划iOS版App_PremiumMall_Final.html">
+          <div class="card-title">PremiumMall Final（上一版）</div>
+          <div class="card-desc">原香槟金配色实现版本，含积分兑换弹窗、验证码流程。</div>
+          <span class="card-arrow">›</span>
         </a>
         <a class="card" href="./积分联盟计划iOS版App_AceternityLux.html">
-          <div class="title">AceternityLux（明亮科技奢华）</div>
-          <div class="desc">Aceternity UI 风格，金属拉丝边框光效与极致纯粹的排版质感。</div>
+          <div class="card-title">AceternityLux（明亮科技奢华）</div>
+          <div class="card-desc">Aceternity UI 风格，金属拉丝边框光效与极致纯粹的排版质感。</div>
+          <span class="card-arrow">›</span>
         </a>
         <a class="card" href="./积分联盟计划iOS版App_AppleStore.html">
-          <div class="title">Bento Box（高级奶油便当盒风）</div>
-          <div class="desc">高级奶油风配色，无边框高圆角（28px），模块化布局，带来温暖治愈的现代感。</div>
+          <div class="card-title">Bento Box（高级奶油便当盒风）</div>
+          <div class="card-desc">高级奶油风配色，无边框高圆角（28px），模块化布局。</div>
+          <span class="card-arrow">›</span>
         </a>
         <a class="card" href="./积分联盟计划iOS版App_DribbbleLux.html">
-          <div class="title">DribbbleLux（极简电商风格）</div>
-          <div class="desc">Clean Commerce 白底线条风格 + 商品详情页轮播/规格/数量/吸底按钮。</div>
+          <div class="card-title">DribbbleLux（极简电商风格）</div>
+          <div class="card-desc">Clean Commerce 白底线条风格 + 商品详情页轮播/规格/数量/吸底按钮。</div>
+          <span class="card-arrow">›</span>
+        </a>
+        <a class="card" href="./积分联盟计划iOS版App.html">
+          <div class="card-title">主文件（天蓝色风格）</div>
+          <div class="card-desc">项目最初版本，天蓝色清新视觉风格。</div>
+          <span class="card-arrow">›</span>
         </a>
       </div>
     </div>
